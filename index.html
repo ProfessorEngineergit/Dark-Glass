@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Glass Design System</title>
+  <style>
+    /* === Reset & Base === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #0a0e27 0%, #16213e 50%, #0f1419 100%);
+      color: #ffffff;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === Container === */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* === Header === */
+    .header {
+      text-align: center;
+      margin-bottom: 80px;
+      padding: 60px 20px;
+    }
+
+    .header h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .header .subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* === Section === */
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .section-description {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+    }
+
+    /* === Glass Panel === */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                  inset 0 0 40px rgba(255, 255, 255, 0.03);
+      transition: all 0.3s ease;
+    }
+
+    .glass-panel:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.18);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+                  inset 0 0 50px rgba(255, 255, 255, 0.05);
+    }
+
+    /* === Glass Button === */
+    .glass-btn {
+      padding: 14px 32px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #fff;
+      font-size: 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      letter-spacing: 0.03em;
+    }
+
+    .glass-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-btn.primary {
+      background: rgba(86, 156, 255, 0.35);
+      border-color: rgba(86, 156, 255, 0.45);
+    }
+
+    .glass-btn.primary:hover {
+      background: rgba(86, 156, 255, 0.5);
+      border-color: rgba(86, 156, 255, 0.6);
+    }
+
+    .glass-btn.danger {
+      background: rgba(255, 80, 80, 0.3);
+      border-color: rgba(255, 80, 80, 0.4);
+    }
+
+    .glass-btn.danger:hover {
+      background: rgba(255, 80, 80, 0.45);
+      border-color: rgba(255, 80, 80, 0.55);
+    }
+
+    /* === Grid Layout === */
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    /* === List Items === */
+    .glass-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .glass-list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .glass-list-item:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateX(8px);
+    }
+
+    .glass-list-item.active {
+      background: rgba(86, 156, 255, 0.22);
+      border-color: rgba(86, 156, 255, 0.45);
+    }
+
+    /* === Code Block === */
+    .code-block {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      overflow-x: auto;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .code-block code {
+      font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .code-block .comment {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .code-block .tag {
+      color: #5a9cff;
+    }
+
+    .code-block .attr {
+      color: #a6e22e;
+    }
+
+    .code-block .value {
+      color: #e6db74;
+    }
+
+    /* === Philosophy Cards === */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .philosophy-card {
+      background: radial-gradient(120% 120% at 50% 0%, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04) 70%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .philosophy-card h3 {
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin-bottom: 15px;
+      letter-spacing: 0.05em;
+    }
+
+    .philosophy-card p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+    }
+
+    .philosophy-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    /* === Button Showcase === */
+    .button-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+    }
+
+    /* === Feature Badge === */
+    .feature-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin: 5px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    /* === Footer === */
+    .footer {
+      text-align: center;
+      padding: 60px 20px 40px;
+      color: rgba(255, 255, 255, 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 100px;
+    }
+
+    /* === Responsive === */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px 15px;
+      }
+
+      .header {
+        margin-bottom: 50px;
+        padding: 30px 15px;
+      }
+
+      .component-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .philosophy-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .button-showcase {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .glass-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header Section -->
+    <header class="header">
+      <h1>Dark Glass Design System</h1>
+      <p class="subtitle">
+        Ein minimalistisches Design-System inspiriert von Weltraum-Ästhetik, 
+        das Transparenz, Tiefe und Eleganz durch moderne Glasmorphismus-Effekte vereint.
+      </p>
+    </header>
+
+    <!-- Philosophy Section -->
+    <section class="section">
+      <h2 class="section-title">Philosophie</h2>
+      <p class="section-description">
+        Dark Glass verbindet die Reinheit des Minimalismus mit der visuellen Tiefe moderner UI-Patterns.
+        Inspiriert von der Unendlichkeit des Weltraums, schafft es eine Ästhetik, die gleichzeitig futuristisch und zeitlos ist.
+      </p>
+      
+      <div class="philosophy-grid">
+        <div class="philosophy-card">
+          <div class="philosophy-icon">✨</div>
+          <h3>Minimalismus</h3>
+          <p>Reduzierte Formen und klare Strukturen schaffen Fokus auf das Wesentliche.</p>
+        </div>
+        
+        <div class="philosophy-card">
+          <div class="philosophy-icon">🔮</div>
+          <h3>Transparenz</h3>
+          <p>Glaseffekte mit Backdrop-Blur erzeugen Tiefe und räumliche Hierarchie.</p>
+        </div>
+        
+        <div class="philosophy-card">
+          <div class="philosophy-icon">🌌</div>
+          <h3>Weltraum-Ästhetik</h3>
+          <p>Dunkle Farbpalette mit subtilen Gradienten erinnert an die Weiten des Kosmos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Components Section -->
+    <section class="section">
+      <h2 class="section-title">Komponenten</h2>
+
+      <!-- Buttons -->
+      <div class="glass-panel">
+        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Buttons</h3>
+        <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 25px;">
+          Pill-förmige Buttons mit Glaseffekt und Hover-Animationen. 
+          Runde Ecken (border-radius: 999px) erzeugen die charakteristische weiche Form.
+        </p>
+        
+        <div class="button-showcase">
+          <button class="glass-btn">Standard Button</button>
+          <button class="glass-btn primary">Primary Button</button>
+          <button class="glass-btn danger">Danger Button</button>
+        </div>
+
+        <div class="code-block">
+          <code><span class="comment">/* Glass Button */</span>
+<span class="tag">.glass-btn</span> {
+  padding: <span class="value">14px 32px</span>;
+  background: <span class="value">rgba(255, 255, 255, 0.12)</span>;
+  border: <span class="value">1px solid rgba(255, 255, 255, 0.18)</span>;
+  border-radius: <span class="value">999px</span>;
+  backdrop-filter: <span class="attr">blur</span>(<span class="value">12px</span>);
+  transition: <span class="value">all 0.3s ease</span>;
+}
+
+<span class="tag">.glass-btn:hover</span> {
+  background: <span class="value">rgba(255, 255, 255, 0.2)</span>;
+  transform: <span class="attr">translateY</span>(<span class="value">-2px</span>);
+}</code>
+        </div>
+      </div>
+
+      <!-- Cards/Panels -->
+      <div class="glass-panel">
+        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Glass Panels</h3>
+        <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 25px;">
+          Container-Elemente mit Glaseffekt für Inhalte. Nutzen backdrop-filter für Unschärfe,
+          halbtransparente Hintergründe und subtile Schatten für räumliche Tiefe.
+        </p>
+
+        <div class="component-grid">
+          <div class="glass-panel" style="margin-bottom: 0;">
+            <h4 style="font-weight: 300; margin-bottom: 10px;">Content Panel</h4>
+            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">
+              Dies ist ein Beispiel für einen Glass-Panel Container. 
+              Er eignet sich perfekt für Karten, Dialoge oder Informationsboxen.
+            </p>
+          </div>
+
+          <div class="glass-panel" style="margin-bottom: 0; background: radial-gradient(120% 120% at 50% 0%, rgba(255,255,255,0.18), rgba(255,255,255,0.06) 70%);">
+            <h4 style="font-weight: 300; margin-bottom: 10px;">Gradient Variant</h4>
+            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">
+              Mit radialen Gradienten können interessante Licht-Effekte erzeugt werden,
+              die dem Panel mehr visuelles Interesse verleihen.
+            </p>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <code><span class="comment">/* Glass Panel */</span>
+<span class="tag">.glass-panel</span> {
+  background: <span class="value">rgba(255, 255, 255, 0.06)</span>;
+  backdrop-filter: <span class="attr">blur</span>(<span class="value">24px</span>);
+  border: <span class="value">1px solid rgba(255, 255, 255, 0.12)</span>;
+  border-radius: <span class="value">24px</span>;
+  box-shadow: <span class="value">0 8px 32px rgba(0, 0, 0, 0.3)</span>,
+              <span class="value">inset 0 0 40px rgba(255, 255, 255, 0.03)</span>;
+}</code>
+        </div>
+      </div>
+
+      <!-- List Items -->
+      <div class="glass-panel">
+        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Interactive List Items</h3>
+        <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 25px;">
+          Listen-Elemente mit Hover-Effekten und Active-States. 
+          Perfekt für Navigationen, Auswahllisten oder Menüs.
+        </p>
+
+        <ul class="glass-list">
+          <li class="glass-list-item">
+            <span>🚀 Warp Navigation</span>
+            <span style="color: rgba(255, 255, 255, 0.5);">→</span>
+          </li>
+          <li class="glass-list-item active">
+            <span>⚡ Quick Actions</span>
+            <span style="color: rgba(255, 255, 255, 0.5);">→</span>
+          </li>
+          <li class="glass-list-item">
+            <span>🌟 Settings</span>
+            <span style="color: rgba(255, 255, 255, 0.5);">→</span>
+          </li>
+          <li class="glass-list-item">
+            <span>📊 Analytics</span>
+            <span style="color: rgba(255, 255, 255, 0.5);">→</span>
+          </li>
+        </ul>
+
+        <div class="code-block">
+          <code><span class="comment">/* Glass List Item */</span>
+<span class="tag">.glass-list-item</span> {
+  padding: <span class="value">16px 20px</span>;
+  background: <span class="value">rgba(255, 255, 255, 0.08)</span>;
+  border: <span class="value">1px solid rgba(255, 255, 255, 0.12)</span>;
+  border-radius: <span class="value">16px</span>;
+  transition: <span class="value">all 0.3s ease</span>;
+}
+
+<span class="tag">.glass-list-item:hover</span> {
+  background: <span class="value">rgba(255, 255, 255, 0.14)</span>;
+  transform: <span class="attr">translateX</span>(<span class="value">8px</span>);
+}
+
+<span class="tag">.glass-list-item.active</span> {
+  background: <span class="value">rgba(86, 156, 255, 0.22)</span>;
+  border-color: <span class="value">rgba(86, 156, 255, 0.45)</span>;
+}</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- Design Tokens Section -->
+    <section class="section">
+      <h2 class="section-title">Design Tokens</h2>
+      
+      <div class="glass-panel">
+        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Kern-Werte</h3>
+        
+        <div style="display: grid; gap: 20px;">
+          <div>
+            <h4 style="font-weight: 300; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9);">Hintergrund</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <span class="feature-badge">linear-gradient(135deg, #0a0e27, #16213e, #0f1419)</span>
+            </div>
+          </div>
+
+          <div>
+            <h4 style="font-weight: 300; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9);">Glass Effekt</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <span class="feature-badge">backdrop-filter: blur(24px)</span>
+              <span class="feature-badge">background: rgba(255, 255, 255, 0.06)</span>
+              <span class="feature-badge">border: 1px solid rgba(255, 255, 255, 0.12)</span>
+            </div>
+          </div>
+
+          <div>
+            <h4 style="font-weight: 300; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9);">Border Radius</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <span class="feature-badge">Pills: 999px</span>
+              <span class="feature-badge">Panels: 24px</span>
+              <span class="feature-badge">Cards: 20px</span>
+              <span class="feature-badge">Items: 16px</span>
+            </div>
+          </div>
+
+          <div>
+            <h4 style="font-weight: 300; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9);">Schatten</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <span class="feature-badge">box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3)</span>
+              <span class="feature-badge">inset 0 0 40px rgba(255, 255, 255, 0.03)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Usage Section -->
+    <section class="section">
+      <h2 class="section-title">Verwendung</h2>
+      
+      <div class="glass-panel">
+        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Schnellstart</h3>
+        <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 25px;">
+          Kopiere die CSS-Klassen in dein Projekt und verwende sie auf deinen Elementen.
+          Alle Komponenten sind responsiv und funktionieren auf allen modernen Browsern mit backdrop-filter Support.
+        </p>
+
+        <div class="code-block">
+          <code><span class="comment">&lt;!-- Button Beispiel --&gt;</span>
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="value">"glass-btn"</span><span class="tag">&gt;</span>
+  Click me
+<span class="tag">&lt;/button&gt;</span>
+
+<span class="comment">&lt;!-- Panel Beispiel --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"glass-panel"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h3&gt;</span>Panel Title<span class="tag">&lt;/h3&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Panel content goes here...<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- List Beispiel --&gt;</span>
+<span class="tag">&lt;ul</span> <span class="attr">class</span>=<span class="value">"glass-list"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;li</span> <span class="attr">class</span>=<span class="value">"glass-list-item"</span><span class="tag">&gt;</span>Item 1<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li</span> <span class="attr">class</span>=<span class="value">"glass-list-item active"</span><span class="tag">&gt;</span>Item 2<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span></code>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Dark Glass Design System · Inspiriert von der Unendlichkeit des Weltraums</p>
+      <p style="margin-top: 10px; font-size: 0.9rem;">
+        Built with ✨ Glassmorphism · 🌌 Space Aesthetics · 💎 Minimal Design
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

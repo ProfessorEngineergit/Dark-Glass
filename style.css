@@ -1,0 +1,387 @@
+/* Dark Glass Design System */
+
+/* Font Imports */
+@font-face {
+    font-family: 'Nasalization';
+    src: url('https://professorengineergit.github.io/Bahrian_Novotny_My_Universe/Nasalization%20V2.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap');
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --glass-bg: rgba(30, 30, 30, 0.5);
+    --glass-bg-light: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-glow: rgba(0, 243, 255, 0.3);
+    --blur-amount: 12px;
+}
+
+body {
+    font-family: 'Exo 2', 'Orbitron', sans-serif;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Terminal Loading Screen */
+.terminal-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    color: #0f0;
+    transition: opacity 0.5s ease;
+}
+
+.terminal-loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.terminal-line {
+    margin: 0.3rem 0;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    background: #0f0;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Space Background */
+.space-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+}
+
+.space-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 60px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 10px, #fff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: twinkle 5s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Main Content */
+.main-content {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-title {
+    font-family: 'Nasalization', 'Orbitron', sans-serif;
+    font-size: clamp(60px, 15vw, 200px);
+    letter-spacing: 0.2em;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(0, 243, 255, 0.6),
+        0 0 30px rgba(0, 243, 255, 0.4);
+}
+
+.hero-subtitle {
+    font-size: clamp(18px, 3vw, 32px);
+    opacity: 0.9;
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+/* Glass Panel Base Styles */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+    border: 1px solid var(--glass-border);
+    border-radius: 25px;
+    padding: 2rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    cursor: move;
+    position: relative;
+}
+
+.glass-panel:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.7),
+        0 0 20px var(--glass-glow);
+}
+
+.glass-panel.dragging {
+    opacity: 0.8;
+    cursor: grabbing;
+    transform: rotate(2deg);
+}
+
+/* Panel Grid Layout */
+.panels-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.draggable-panel {
+    position: absolute;
+    width: 350px;
+    min-height: 200px;
+    z-index: 10;
+}
+
+.draggable-panel.active {
+    z-index: 100;
+}
+
+/* Panel Content */
+.panel-header {
+    font-family: 'Nasalization', 'Orbitron', sans-serif;
+    font-size: 24px;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.panel-content {
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Buttons */
+.glass-button {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    padding: 1rem 2.5rem;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.glass-button:hover {
+    background: rgba(50, 50, 50, 0.6);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 5px 25px rgba(0, 0, 0, 0.5),
+        0 0 30px var(--glass-glow);
+    filter: brightness(1.2);
+}
+
+.glass-button:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+/* Glitch Animation */
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+        opacity: 1;
+    }
+    20% {
+        transform: translate(-2px, 2px);
+        opacity: 0.8;
+    }
+    40% {
+        transform: translate(-2px, -2px);
+        opacity: 0.9;
+    }
+    60% {
+        transform: translate(2px, 2px);
+        opacity: 0.85;
+    }
+    80% {
+        transform: translate(2px, -2px);
+        opacity: 0.95;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+.glitch {
+    position: relative;
+    animation: glitch 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Text Scramble Effect */
+.scramble-text {
+    display: inline-block;
+}
+
+/* Showcase Section */
+.showcase-section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.showcase-title {
+    font-family: 'Nasalization', 'Orbitron', sans-serif;
+    font-size: clamp(36px, 8vw, 72px);
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* Background Image Overlay */
+.background-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1200') center/cover;
+    opacity: 0.3;
+    z-index: 0;
+    border-radius: 20px;
+}
+
+/* Info Panel */
+.info-panel {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 48px;
+        letter-spacing: 0.1em;
+    }
+    
+    .hero-subtitle {
+        font-size: 18px;
+    }
+    
+    .glass-panel {
+        padding: 1.5rem;
+    }
+    
+    .panels-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .draggable-panel {
+        width: 90%;
+        max-width: 350px;
+    }
+    
+    .glass-button {
+        padding: 0.8rem 2rem;
+        font-size: 16px;
+    }
+}
+
+/* Utility Classes */
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}

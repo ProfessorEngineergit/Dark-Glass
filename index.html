@@ -892,12 +892,15 @@
     }
     
     .preview-panel {
+      --preview-blur: 15px;
+      --preview-alpha: 0.1;
+      --preview-border: 0.2;
       width: 200px;
       height: 200px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, var(--preview-alpha));
+      backdrop-filter: blur(var(--preview-blur));
+      -webkit-backdrop-filter: blur(var(--preview-blur));
+      border: 1px solid rgba(255, 255, 255, var(--preview-border));
       border-radius: 20px;
       display: flex;
       align-items: center;
@@ -905,13 +908,14 @@
       font-family: 'Nasalization V2', sans-serif;
       font-size: 0.9rem;
       letter-spacing: 0.05em;
-      transition: all 0.1s ease;
+      transition: none;
     }
 
     /* === Live Transparency Demo === */
     .transparency-demo {
       position: relative;
       min-height: 500px;
+      background: linear-gradient(135deg, #0a0e27 0%, #16213e 50%, #1a1a3e 100%);
       background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1200&q=80');
       background-size: cover;
       background-position: center;
@@ -1874,6 +1878,8 @@
     let currentElement = null;
     let offsetX = 0;
     let offsetY = 0;
+    let containerBounds = null;
+    let elementBounds = null;
 
     function makeDraggable(element) {
       element.addEventListener('mousedown', startDrag);
@@ -1891,6 +1897,17 @@
       
       offsetX = clientX - rect.left;
       offsetY = clientY - rect.top;
+      
+      // Cache dimensions on drag start for performance
+      const container = currentElement.parentElement;
+      containerBounds = {
+        width: container.offsetWidth,
+        height: container.offsetHeight
+      };
+      elementBounds = {
+        width: currentElement.offsetWidth,
+        height: currentElement.offsetHeight
+      };
       
       currentElement.classList.add('dragging');
       currentElement.style.cursor = 'grabbing';
@@ -1910,13 +1927,14 @@
       let newX = clientX - containerRect.left - offsetX;
       let newY = clientY - containerRect.top - offsetY;
       
-      // Keep within bounds
-      const maxX = container.offsetWidth - currentElement.offsetWidth;
-      const maxY = container.offsetHeight - currentElement.offsetHeight;
+      // Keep within bounds using cached dimensions
+      const maxX = containerBounds.width - elementBounds.width;
+      const maxY = containerBounds.height - elementBounds.height;
       
       newX = Math.max(0, Math.min(newX, maxX));
       newY = Math.max(0, Math.min(newY, maxY));
       
+      // Use transform for better performance
       currentElement.style.left = newX + 'px';
       currentElement.style.top = newY + 'px';
     }
@@ -1929,6 +1947,8 @@
       }
       isDragging = false;
       currentElement = null;
+      containerBounds = null;
+      elementBounds = null;
     }
 
     document.addEventListener('mousemove', drag);
@@ -1956,25 +1976,23 @@
     const borderValue = document.getElementById('borderValue');
 
     if (blurSlider && previewPanel) {
+      // Use CSS custom properties for better performance
       blurSlider.addEventListener('input', (e) => {
         const value = e.target.value;
         blurValue.textContent = value + 'px';
-        previewPanel.style.backdropFilter = `blur(${value}px)`;
-        previewPanel.style.webkitBackdropFilter = `blur(${value}px)`;
+        previewPanel.style.setProperty('--preview-blur', value + 'px');
       });
 
       transparencySlider.addEventListener('input', (e) => {
         const value = e.target.value;
         transparencyValue.textContent = value;
-        const currentBorder = borderSlider.value;
-        previewPanel.style.background = `rgba(255, 255, 255, ${value})`;
-        previewPanel.style.border = `1px solid rgba(255, 255, 255, ${currentBorder})`;
+        previewPanel.style.setProperty('--preview-alpha', value);
       });
 
       borderSlider.addEventListener('input', (e) => {
         const value = e.target.value;
         borderValue.textContent = value;
-        previewPanel.style.border = `1px solid rgba(255, 255, 255, ${value})`;
+        previewPanel.style.setProperty('--preview-border', value);
       });
     }
 

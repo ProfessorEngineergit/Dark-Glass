@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARK GLASS - A Design System from the Future</title>
+    <style>
+        @font-face {
+            font-family: 'Nasalization';
+            src: url('https://professorengineergit.github.io/Bahrian_Novotny_My_Universe/Nasalization%20V2.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --preview-blur: 10px;
+            --preview-alpha: 0.5;
+            --preview-border: 0.2;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Nasalization', sans-serif;
+            font-size: clamp(60px, 12vw, 150px);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px #ffffff,
+                         0 0 20px #ffffff,
+                         0 0 30px #ffffff,
+                         0 0 40px #00f3ff;
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% {
+                text-shadow: 0 0 10px #ffffff,
+                             0 0 20px #ffffff,
+                             0 0 30px #ffffff,
+                             0 0 40px #00f3ff;
+            }
+            50% {
+                text-shadow: 0 0 15px #ffffff,
+                             0 0 30px #ffffff,
+                             0 0 45px #ffffff,
+                             0 0 60px #00f3ff,
+                             0 0 80px #00f3ff;
+            }
+        }
+
+        .hero h2 {
+            font-family: 'Exo 2', sans-serif;
+            font-size: clamp(20px, 3vw, 36px);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            opacity: 0.9;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-family: 'Nasalization', sans-serif;
+            font-size: clamp(32px, 5vw, 48px);
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Glass Card Styling */
+        .glass-card {
+            background: rgba(30, 30, 30, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.2);
+        }
+
+        /* Draggable Cards Gallery */
+        .cards-container {
+            position: relative;
+            min-height: 600px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .draggable-card {
+            cursor: move;
+            user-select: none;
+            padding: 2rem;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .draggable-card.dragging {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(0, 243, 255, 0.4);
+            z-index: 1000;
+        }
+
+        .draggable-card h3 {
+            font-family: 'Nasalization', sans-serif;
+            font-size: 20px;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .draggable-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .card-light {
+            background: rgba(30, 30, 30, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .card-medium {
+            background: rgba(30, 30, 30, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .card-strong {
+            background: rgba(30, 30, 30, 0.5);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .card-ultra {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .card-cyan {
+            background: rgba(0, 243, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-color: rgba(0, 243, 255, 0.3);
+        }
+
+        .card-purple {
+            background: rgba(168, 85, 247, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+
+        /* Button Showcase */
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .button-group h3 {
+            font-family: 'Nasalization', sans-serif;
+            font-size: 18px;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .glass-button {
+            background: rgba(30, 30, 30, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            cursor: pointer;
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+        }
+
+        .glass-button:hover {
+            background: rgba(50, 50, 50, 0.6);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 5px 20px rgba(0, 243, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .glass-button:active {
+            transform: translateY(0);
+        }
+
+        .btn-small {
+            padding: 0.5rem 1.5rem;
+            font-size: 14px;
+        }
+
+        .btn-medium {
+            padding: 0.75rem 2rem;
+            font-size: 16px;
+        }
+
+        .btn-large {
+            padding: 1rem 2.5rem;
+            font-size: 18px;
+        }
+
+        .btn-icon {
+            padding: 0.75rem;
+            font-size: 24px;
+            border-radius: 16px;
+            width: 56px;
+            height: 56px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Live Customization */
+        .customization-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .customization-panel {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .control-group label {
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .control-group input[type="range"] {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .control-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #00f3ff;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        .control-group input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #00f3ff;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            border: none;
+        }
+
+        .preview-panel {
+            background: rgba(30, 30, 30, var(--preview-alpha));
+            backdrop-filter: blur(var(--preview-blur));
+            -webkit-backdrop-filter: blur(var(--preview-blur));
+            border: 1px solid rgba(255, 255, 255, var(--preview-border));
+            border-radius: 25px;
+            padding: 2rem;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .preview-panel h3 {
+            font-family: 'Nasalization', sans-serif;
+            font-size: 24px;
+            margin-bottom: 1rem;
+        }
+
+        /* Toggle Switch */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 22px;
+            height: 22px;
+            background: #fff;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .toggle-switch.active {
+            background: rgba(0, 243, 255, 0.3);
+            border-color: #00f3ff;
+        }
+
+        .toggle-switch.active::after {
+            left: 33px;
+            background: #00f3ff;
+            box-shadow: 0 2px 10px rgba(0, 243, 255, 0.5);
+        }
+
+        /* Checkbox */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            cursor: pointer;
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox.checked {
+            background: rgba(0, 243, 255, 0.3);
+            border-color: #00f3ff;
+        }
+
+        .checkbox.checked::after {
+            content: '✓';
+            color: #00f3ff;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Transparency Demo */
+        .transparency-demo {
+            position: relative;
+            min-height: 600px;
+            background: linear-gradient(135deg, 
+                #667eea 0%, 
+                #764ba2 25%, 
+                #f093fb 50%, 
+                #4facfe 75%, 
+                #00f2fe 100%);
+            border-radius: 25px;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .demo-panel {
+            position: absolute;
+            background: rgba(30, 30, 30, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            cursor: move;
+            user-select: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .demo-panel.dragging {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+        }
+
+        .demo-panel h4 {
+            font-family: 'Nasalization', sans-serif;
+            font-size: 16px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Code Snippet */
+        .code-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .code-block {
+            position: relative;
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .code-header h4 {
+            font-family: 'Nasalization', sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+        }
+
+        .copy-btn {
+            background: rgba(0, 243, 255, 0.2);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            color: #00f3ff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+        }
+
+        .copy-btn.copied {
+            background: rgba(0, 255, 100, 0.3);
+            border-color: rgba(0, 255, 100, 0.5);
+            color: #0f0;
+        }
+
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .code-keyword { color: #ff79c6; }
+        .code-property { color: #8be9fd; }
+        .code-value { color: #50fa7b; }
+        .code-comment { color: #6272a4; font-style: italic; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            opacity: 0.6;
+            font-size: 14px;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 32px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+
+    <div class="content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>DARK GLASS</h1>
+            <h2>A Design System from the Future</h2>
+            <div class="scroll-indicator"></div>
+        </section>
+
+        <!-- Draggable Cards Gallery -->
+        <section id="cards">
+            <h2>INTERACTIVE GLASS CARDS</h2>
+            <p style="text-align: center; opacity: 0.7; margin-bottom: 2rem;">Drag and drop these cards anywhere! Each demonstrates a different blur intensity.</p>
+            <div class="cards-container">
+                <div class="draggable-card card-light">
+                    <h3>LIGHT BLUR</h3>
+                    <p>Subtle glass effect with 5px blur and 30% opacity. Perfect for minimal overlay elements that need to maintain background visibility.</p>
+                </div>
+                <div class="draggable-card card-medium">
+                    <h3>MEDIUM BLUR</h3>
+                    <p>Balanced glass effect with 10px blur and 40% opacity. Ideal for most UI components like cards, modals, and panels.</p>
+                </div>
+                <div class="draggable-card card-strong">
+                    <h3>STRONG BLUR</h3>
+                    <p>Enhanced glass effect with 15px blur and 50% opacity. Great for prominent elements that need more depth and separation.</p>
+                </div>
+                <div class="draggable-card card-ultra">
+                    <h3>ULTRA BLUR</h3>
+                    <p>Maximum glass effect with 20px blur and 60% opacity. Best for hero sections and focal point elements requiring maximum impact.</p>
+                </div>
+                <div class="draggable-card card-cyan">
+                    <h3>CYAN TINTED</h3>
+                    <p>Futuristic cyan-tinted glass with 12px blur. Adds a sci-fi aesthetic perfect for tech-forward designs and digital interfaces.</p>
+                </div>
+                <div class="draggable-card card-purple">
+                    <h3>PURPLE TINTED</h3>
+                    <p>Elegant purple-tinted glass with 12px blur. Creates a premium, luxurious feel ideal for creative and artistic applications.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Button Showcase -->
+        <section id="buttons">
+            <h2>BUTTON SHOWCASE</h2>
+            <div class="buttons-grid">
+                <div class="button-group">
+                    <h3>SMALL BUTTONS</h3>
+                    <button class="glass-button btn-small">Click Me</button>
+                    <button class="glass-button btn-small">Action</button>
+                    <button class="glass-button btn-small">Submit</button>
+                </div>
+                <div class="button-group">
+                    <h3>MEDIUM BUTTONS</h3>
+                    <button class="glass-button btn-medium">Get Started</button>
+                    <button class="glass-button btn-medium">Learn More</button>
+                    <button class="glass-button btn-medium">Contact Us</button>
+                </div>
+                <div class="button-group">
+                    <h3>LARGE BUTTONS</h3>
+                    <button class="glass-button btn-large">Download Now</button>
+                    <button class="glass-button btn-large">Start Free Trial</button>
+                </div>
+                <div class="button-group">
+                    <h3>ICON BUTTONS</h3>
+                    <div style="display: flex; gap: 1rem;">
+                        <button class="glass-button btn-icon">⚙️</button>
+                        <button class="glass-button btn-icon">🔍</button>
+                        <button class="glass-button btn-icon">❤️</button>
+                        <button class="glass-button btn-icon">🚀</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Customization -->
+        <section id="customization">
+            <h2>LIVE CUSTOMIZATION</h2>
+            <div class="customization-panel">
+                <div class="controls">
+                    <div class="control-group">
+                        <label>
+                            <span>Blur Intensity</span>
+                            <span id="blur-value">10px</span>
+                        </label>
+                        <input type="range" id="blur-slider" min="5" max="30" value="10" step="1">
+                    </div>
+                    <div class="control-group">
+                        <label>
+                            <span>Transparency</span>
+                            <span id="alpha-value">0.50</span>
+                        </label>
+                        <input type="range" id="alpha-slider" min="0.05" max="0.9" value="0.5" step="0.05">
+                    </div>
+                    <div class="control-group">
+                        <label>
+                            <span>Border Opacity</span>
+                            <span id="border-value">0.20</span>
+                        </label>
+                        <input type="range" id="border-slider" min="0.1" max="0.5" value="0.2" step="0.05">
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <h4 style="margin-bottom: 1rem; font-family: 'Nasalization', sans-serif;">Toggle Switches</h4>
+                        <div class="toggle-container">
+                            <div class="toggle-switch" data-toggle="1"></div>
+                            <span>Enable Feature A</span>
+                        </div>
+                        <div class="toggle-container">
+                            <div class="toggle-switch" data-toggle="2"></div>
+                            <span>Enable Feature B</span>
+                        </div>
+                        <div class="toggle-container">
+                            <div class="toggle-switch active" data-toggle="3"></div>
+                            <span>Enable Feature C</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <h4 style="margin-bottom: 1rem; font-family: 'Nasalization', sans-serif;">Checkboxes</h4>
+                        <div class="checkbox-container">
+                            <div class="checkbox" data-checkbox="1"></div>
+                            <span>Option One</span>
+                        </div>
+                        <div class="checkbox-container">
+                            <div class="checkbox checked" data-checkbox="2"></div>
+                            <span>Option Two</span>
+                        </div>
+                        <div class="checkbox-container">
+                            <div class="checkbox" data-checkbox="3"></div>
+                            <span>Option Three</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-panel">
+                    <h3>LIVE PREVIEW</h3>
+                    <p>Adjust the sliders to see real-time changes to the glass effect. This panel updates instantly as you move the controls.</p>
+                    <p style="margin-top: 1rem; opacity: 0.7;">Experiment with different combinations to find your perfect glass aesthetic!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transparency Demo -->
+        <section id="transparency">
+            <h2>LIVE TRANSPARENCY DEMO</h2>
+            <p style="text-align: center; opacity: 0.7; margin-bottom: 2rem;">Drag these glass panels over the colorful background to see how the blur and transparency effects work!</p>
+            <div class="transparency-demo">
+                <div class="demo-panel" style="top: 50px; left: 50px; width: 200px;">
+                    <h4>Panel Alpha</h4>
+                    <p style="font-size: 14px; opacity: 0.8;">Drag me around!</p>
+                </div>
+                <div class="demo-panel" style="top: 150px; right: 50px; width: 220px;">
+                    <h4>Panel Beta</h4>
+                    <p style="font-size: 14px; opacity: 0.8;">See the blur effect!</p>
+                </div>
+                <div class="demo-panel" style="bottom: 50px; left: 100px; width: 200px;">
+                    <h4>Panel Gamma</h4>
+                    <p style="font-size: 14px; opacity: 0.8;">Move me too!</p>
+                </div>
+                <div class="demo-panel" style="top: 50%; right: 100px; width: 180px;">
+                    <h4>Panel Delta</h4>
+                    <p style="font-size: 14px; opacity: 0.8;">I'm draggable!</p>
+                </div>
+                <div class="demo-panel" style="bottom: 120px; right: 50%; width: 200px;">
+                    <h4>Panel Epsilon</h4>
+                    <p style="font-size: 14px; opacity: 0.8;">Try dragging me!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Snippets -->
+        <section id="code">
+            <h2>CODE SNIPPETS</h2>
+            <div class="code-section">
+                <div class="code-block">
+                    <div class="code-header">
+                        <h4>GLASS CARD CSS</h4>
+                        <button class="copy-btn" data-copy="1">COPY</button>
+                    </div>
+                    <pre><code><span class="code-comment">/* Perfect Glass Card Effect */</span>
+<span class="code-keyword">.glass-card</span> {
+  <span class="code-property">background</span>: <span class="code-value">rgba(30, 30, 30, 0.5)</span>;
+  <span class="code-property">backdrop-filter</span>: <span class="code-value">blur(10px)</span>;
+  <span class="code-property">-webkit-backdrop-filter</span>: <span class="code-value">blur(10px)</span>;
+  <span class="code-property">border</span>: <span class="code-value">1px solid rgba(255, 255, 255, 0.1)</span>;
+  <span class="code-property">border-radius</span>: <span class="code-value">25px</span>;
+  <span class="code-property">padding</span>: <span class="code-value">2rem</span>;
+  <span class="code-property">transition</span>: <span class="code-value">all 0.3s ease</span>;
+}
+
+<span class="code-keyword">.glass-card:hover</span> {
+  <span class="code-property">border-color</span>: <span class="code-value">rgba(255, 255, 255, 0.2)</span>;
+  <span class="code-property">transform</span>: <span class="code-value">translateY(-5px)</span>;
+  <span class="code-property">box-shadow</span>: <span class="code-value">0 10px 40px rgba(0, 243, 255, 0.2)</span>;
+}</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <h4>GLASS BUTTON CSS</h4>
+                        <button class="copy-btn" data-copy="2">COPY</button>
+                    </div>
+                    <pre><code><span class="code-comment">/* Sleek Glass Button */</span>
+<span class="code-keyword">.glass-button</span> {
+  <span class="code-property">background</span>: <span class="code-value">rgba(30, 30, 30, 0.5)</span>;
+  <span class="code-property">backdrop-filter</span>: <span class="code-value">blur(10px)</span>;
+  <span class="code-property">-webkit-backdrop-filter</span>: <span class="code-value">blur(10px)</span>;
+  <span class="code-property">border</span>: <span class="code-value">1px solid rgba(255, 255, 255, 0.2)</span>;
+  <span class="code-property">border-radius</span>: <span class="code-value">50px</span>;
+  <span class="code-property">color</span>: <span class="code-value">#fff</span>;
+  <span class="code-property">padding</span>: <span class="code-value">0.75rem 2rem</span>;
+  <span class="code-property">cursor</span>: <span class="code-value">pointer</span>;
+  <span class="code-property">transition</span>: <span class="code-value">all 0.3s ease</span>;
+}
+
+<span class="code-keyword">.glass-button:hover</span> {
+  <span class="code-property">background</span>: <span class="code-value">rgba(50, 50, 50, 0.6)</span>;
+  <span class="code-property">box-shadow</span>: <span class="code-value">0 5px 20px rgba(0, 243, 255, 0.3)</span>;
+  <span class="code-property">transform</span>: <span class="code-value">translateY(-2px)</span>;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>DARK GLASS © 2024 - Designed for the Future</p>
+            <p style="margin-top: 0.5rem;">Made with ✨ and cutting-edge web technologies</p>
+        </footer>
+    </div>
+
+    <script>
+        // ============================================
+        // STARFIELD ANIMATION
+        // ============================================
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        const starCount = 200; // Reduced for better performance
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initStars();
+        }
+
+        function initStars() {
+            stars = [];
+            for (let i = 0; i < starCount; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 1.5,
+                    opacity: Math.random(),
+                    twinkleSpeed: Math.random() * 0.02 + 0.01,
+                    twinkleDirection: Math.random() > 0.5 ? 1 : -1
+                });
+            }
+        }
+
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            stars.forEach(star => {
+                star.opacity += star.twinkleSpeed * star.twinkleDirection;
+                
+                if (star.opacity <= 0 || star.opacity >= 1) {
+                    star.twinkleDirection *= -1;
+                }
+                
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+            });
+            
+            requestAnimationFrame(animateStars);
+        }
+
+        // Use debounced resize for performance
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(resizeCanvas, 150);
+        });
+        
+        resizeCanvas();
+        animateStars();
+
+        // ============================================
+        // DRAG AND DROP FUNCTIONALITY
+        // ============================================
+        function makeDraggable(element) {
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            let isDragging = false;
+
+            element.addEventListener('mousedown', dragMouseDown);
+            element.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+            function dragMouseDown(e) {
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                isDragging = true;
+                element.classList.add('dragging');
+                document.addEventListener('mouseup', closeDragElement);
+                document.addEventListener('mousemove', elementDrag);
+            }
+
+            function dragTouchStart(e) {
+                e.preventDefault();
+                const touch = e.touches[0];
+                pos3 = touch.clientX;
+                pos4 = touch.clientY;
+                isDragging = true;
+                element.classList.add('dragging');
+                document.addEventListener('touchend', closeDragElement);
+                document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+            }
+
+            function elementDrag(e) {
+                if (!isDragging) return;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                moveElement();
+            }
+
+            function elementTouchDrag(e) {
+                if (!isDragging) return;
+                e.preventDefault();
+                const touch = e.touches[0];
+                pos1 = pos3 - touch.clientX;
+                pos2 = pos4 - touch.clientY;
+                pos3 = touch.clientX;
+                pos4 = touch.clientY;
+                moveElement();
+            }
+
+            function moveElement() {
+                let newTop = element.offsetTop - pos2;
+                let newLeft = element.offsetLeft - pos1;
+
+                // Keep within viewport bounds
+                const maxX = window.innerWidth - element.offsetWidth - 20;
+                const maxY = window.innerHeight - element.offsetHeight - 20;
+                
+                newLeft = Math.max(20, Math.min(newLeft, maxX));
+                newTop = Math.max(20, Math.min(newTop, maxY));
+
+                element.style.position = 'fixed';
+                element.style.top = newTop + "px";
+                element.style.left = newLeft + "px";
+            }
+
+            function closeDragElement() {
+                isDragging = false;
+                element.classList.remove('dragging');
+                document.removeEventListener('mouseup', closeDragElement);
+                document.removeEventListener('mousemove', elementDrag);
+                document.removeEventListener('touchend', closeDragElement);
+                document.removeEventListener('touchmove', elementTouchDrag);
+            }
+        }
+
+        // Make all draggable cards draggable
+        document.querySelectorAll('.draggable-card').forEach(card => {
+            makeDraggable(card);
+        });
+
+        // Make all demo panels draggable
+        document.querySelectorAll('.demo-panel').forEach(panel => {
+            makeDraggable(panel);
+        });
+
+        // ============================================
+        // LIVE CUSTOMIZATION SLIDERS
+        // ============================================
+        const blurSlider = document.getElementById('blur-slider');
+        const alphaSlider = document.getElementById('alpha-slider');
+        const borderSlider = document.getElementById('border-slider');
+        const blurValue = document.getElementById('blur-value');
+        const alphaValue = document.getElementById('alpha-value');
+        const borderValue = document.getElementById('border-value');
+        const previewPanel = document.querySelector('.preview-panel');
+
+        blurSlider.addEventListener('input', (e) => {
+            const value = e.target.value;
+            blurValue.textContent = value + 'px';
+            previewPanel.style.setProperty('--preview-blur', value + 'px');
+        });
+
+        alphaSlider.addEventListener('input', (e) => {
+            const value = parseFloat(e.target.value);
+            alphaValue.textContent = value.toFixed(2);
+            previewPanel.style.setProperty('--preview-alpha', value);
+        });
+
+        borderSlider.addEventListener('input', (e) => {
+            const value = parseFloat(e.target.value);
+            borderValue.textContent = value.toFixed(2);
+            previewPanel.style.setProperty('--preview-border', value);
+        });
+
+        // ============================================
+        // TOGGLE SWITCHES
+        // ============================================
+        document.querySelectorAll('.toggle-switch').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('active');
+            });
+        });
+
+        // ============================================
+        // CHECKBOXES
+        // ============================================
+        document.querySelectorAll('.checkbox-container').forEach(container => {
+            const checkbox = container.querySelector('.checkbox');
+            container.addEventListener('click', () => {
+                checkbox.classList.toggle('checked');
+            });
+        });
+
+        // ============================================
+        // COPY TO CLIPBOARD
+        // ============================================
+        const codeSnippets = {
+            1: `.glass-card {
+  background: rgba(30, 30, 30, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(0, 243, 255, 0.2);
+}`,
+            2: `.glass-button {
+  background: rgba(30, 30, 30, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  color: #fff;
+  padding: 0.75rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.glass-button:hover {
+  background: rgba(50, 50, 50, 0.6);
+  box-shadow: 0 5px 20px rgba(0, 243, 255, 0.3);
+  transform: translateY(-2px);
+}`
+        };
+
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.getAttribute('data-copy');
+                const code = codeSnippets[id];
+                
+                navigator.clipboard.writeText(code).then(() => {
+                    btn.textContent = 'COPIED!';
+                    btn.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        btn.textContent = 'COPY';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        });
+
+        // ============================================
+        // SMOOTH SCROLL
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Button click animations
+        document.querySelectorAll('.glass-button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>

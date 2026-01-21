@@ -1,15 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DARK GLASS - A Design System from the Future</title>
-  
-  <!-- Google Fonts - Exo 2 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+  <title>Dark Glass Design System</title>
   <style>
     /* === Custom Font === */
     @font-face {
@@ -70,7 +64,7 @@
     }
 
     body {
-      font-family: 'Exo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       background: var(--void-black);
       color: var(--star-white);
       line-height: 1.6;
@@ -246,52 +240,37 @@
     .header {
       text-align: center;
       margin-bottom: 80px;
-      padding: 100px 20px 60px;
+      padding: 60px 20px;
     }
 
     .header h1 {
       font-family: 'Nasalization V2', sans-serif;
-      font-size: clamp(3rem, 12vw, 120px);
+      font-size: clamp(2.5rem, 6vw, 4rem);
       font-weight: 400;
-      letter-spacing: 0.15em;
-      margin-bottom: 30px;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
       animation: breathe 4s ease-in-out infinite;
       background: linear-gradient(135deg, var(--star-white), var(--quantum-blue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 0 0 5px #ffffff;
-      filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.5));
     }
 
     @keyframes breathe {
       0%, 100% {
-        filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.3));
-        letter-spacing: 0.15em;
+        text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        letter-spacing: 0.12em;
       }
       50% {
-        filter: drop-shadow(0 0 50px rgba(0, 240, 255, 0.8));
-        letter-spacing: 0.18em;
+        text-shadow: 0 0 40px rgba(0, 240, 255, 0.6);
+        letter-spacing: 0.14em;
       }
     }
 
     .header .subtitle {
-      font-family: 'Exo 2', sans-serif;
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.85);
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: rgba(255, 255, 255, 0.7);
       max-width: 700px;
-      margin: 0 auto 20px;
-      line-height: 1.8;
-      letter-spacing: 0.05em;
-      text-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
-    }
-    
-    .header .tagline {
-      font-family: 'Exo 2', sans-serif;
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
-      color: rgba(255, 255, 255, 0.6);
-      max-width: 600px;
       margin: 0 auto;
       line-height: 1.8;
     }
@@ -630,337 +609,6 @@
       gap: 15px;
       align-items: center;
     }
-    
-    /* === Enhanced Button Sizes === */
-    .glass-btn.btn-small {
-      padding: 8px 16px;
-      font-size: 0.85rem;
-    }
-    
-    .glass-btn.btn-medium {
-      padding: 12px 28px;
-      font-size: 0.95rem;
-    }
-    
-    .glass-btn.btn-large {
-      padding: 16px 40px;
-      font-size: 1.1rem;
-    }
-    
-    .glass-btn.btn-icon {
-      padding: 12px;
-      border-radius: 16px;
-      min-width: 44px;
-    }
-    
-    .glass-btn.btn-round {
-      border-radius: 50px;
-    }
-
-    /* === Draggable Glass Cards === */
-    .draggable-gallery {
-      position: relative;
-      min-height: 600px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 40px;
-      margin: 30px 0;
-      overflow: hidden;
-    }
-    
-    .draggable-card {
-      position: absolute;
-      width: 200px;
-      padding: 24px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(var(--card-blur, 15px));
-      -webkit-backdrop-filter: blur(var(--card-blur, 15px));
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      cursor: grab;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      user-select: none;
-    }
-    
-    .draggable-card.dragging {
-      cursor: grabbing;
-      transform: scale(1.08) rotate(2deg);
-      box-shadow: 0 12px 48px rgba(0, 240, 255, 0.4);
-      z-index: 1000;
-    }
-    
-    .draggable-card h4 {
-      font-family: 'Nasalization V2', sans-serif;
-      font-size: 1rem;
-      margin-bottom: 8px;
-      letter-spacing: 0.05em;
-    }
-    
-    .draggable-card p {
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.7);
-      line-height: 1.4;
-    }
-    
-    .card-specs {
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.5);
-      font-family: 'Exo 2', monospace;
-    }
-
-    /* === Toggle Switches === */
-    .toggle-switch {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      margin: 10px 0;
-    }
-    
-    .toggle-switch input {
-      display: none;
-    }
-    
-    .toggle-slider {
-      position: relative;
-      width: 50px;
-      height: 26px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid var(--glass-border);
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-    }
-    
-    .toggle-slider::before {
-      content: '';
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--star-white);
-      top: 3px;
-      left: 4px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-    
-    .toggle-switch input:checked + .toggle-slider {
-      background: var(--quantum-blue);
-      border-color: var(--quantum-blue);
-    }
-    
-    .toggle-switch input:checked + .toggle-slider::before {
-      left: 26px;
-    }
-    
-    .toggle-label {
-      font-family: 'Exo 2', sans-serif;
-      font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    /* === Glass Checkboxes === */
-    .glass-checkbox {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin: 8px 0;
-      cursor: pointer;
-    }
-    
-    .glass-checkbox input {
-      display: none;
-    }
-    
-    .checkbox-box {
-      width: 22px;
-      height: 22px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 2px solid var(--glass-border);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-      backdrop-filter: blur(10px);
-    }
-    
-    .glass-checkbox input:checked + .checkbox-box {
-      background: var(--quantum-purple);
-      border-color: var(--quantum-purple);
-    }
-    
-    .checkbox-box::after {
-      content: '✓';
-      color: var(--star-white);
-      font-size: 14px;
-      opacity: 0;
-      transform: scale(0);
-      transition: all 0.2s ease;
-    }
-    
-    .glass-checkbox input:checked + .checkbox-box::after {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* === Range Sliders === */
-    .slider-control {
-      margin: 20px 0;
-    }
-    
-    .slider-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      font-family: 'Exo 2', sans-serif;
-      font-size: 0.95rem;
-    }
-    
-    .slider-value {
-      font-family: 'Exo 2', monospace;
-      color: var(--quantum-blue);
-      font-weight: 600;
-    }
-    
-    .glass-slider {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid var(--glass-border);
-      border-radius: 10px;
-      outline: none;
-      backdrop-filter: blur(10px);
-    }
-    
-    .glass-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      background: var(--quantum-blue);
-      border: 2px solid var(--star-white);
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
-      transition: all 0.2s ease;
-    }
-    
-    .glass-slider::-webkit-slider-thumb:hover {
-      transform: scale(1.2);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 1);
-    }
-    
-    .glass-slider::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
-      background: var(--quantum-blue);
-      border: 2px solid var(--star-white);
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
-      transition: all 0.2s ease;
-    }
-    
-    .glass-slider::-moz-range-thumb:hover {
-      transform: scale(1.2);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 1);
-    }
-
-    /* === Live Preview Panel === */
-    .live-preview {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 40px;
-      margin: 30px 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 300px;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .preview-panel {
-      width: 200px;
-      height: 200px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Nasalization V2', sans-serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      transition: all 0.1s ease;
-    }
-
-    /* === Live Transparency Demo === */
-    .transparency-demo {
-      position: relative;
-      min-height: 500px;
-      background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1200&q=80');
-      background-size: cover;
-      background-position: center;
-      border-radius: 20px;
-      overflow: hidden;
-      margin: 30px 0;
-    }
-    
-    .demo-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.3);
-    }
-    
-    .demo-panel {
-      position: absolute;
-      width: 220px;
-      padding: 30px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 20px;
-      cursor: grab;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      transition: transform 0.2s ease;
-    }
-    
-    .demo-panel.dragging {
-      cursor: grabbing;
-      transform: scale(1.05);
-      box-shadow: 0 12px 48px rgba(0, 240, 255, 0.5);
-    }
-    
-    .demo-panel h4 {
-      font-family: 'Nasalization V2', sans-serif;
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
-    }
-    
-    .demo-panel p {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.9);
-      line-height: 1.5;
-    }
 
     /* === Feature Badge === */
     .feature-badge {
@@ -1065,10 +713,7 @@
       <div class="nav-title">DARK GLASS</div>
       <ul class="nav-links">
         <li><a href="#philosophy">Philosophy</a></li>
-        <li><a href="#draggable">Draggable Cards</a></li>
         <li><a href="#components">Components</a></li>
-        <li><a href="#controls">Live Controls</a></li>
-        <li><a href="#demo">Transparency Demo</a></li>
         <li><a href="#tokens">Tokens</a></li>
         <li><a href="#usage">Usage</a></li>
       </ul>
@@ -1078,154 +723,58 @@
   <div class="container">
     <!-- Header Section -->
     <header class="header reveal">
-      <h1>DARK GLASS</h1>
-      <p class="subtitle">A Design System from the Future</p>
-      <p class="tagline">
-        A minimalist design system inspired by space aesthetics, 
-        combining transparency, depth, and elegance through modern glassmorphism effects.
+      <h1>Dark Glass Design System</h1>
+      <p class="subtitle">
+        Ein minimalistisches Design-System inspiriert von Weltraum-Ästhetik, 
+        das Transparenz, Tiefe und Eleganz durch moderne Glasmorphismus-Effekte vereint.
       </p>
     </header>
 
     <!-- Philosophy Section -->
     <section class="section" id="philosophy">
-      <h2 class="section-title reveal">Philosophy</h2>
+      <h2 class="section-title reveal">Philosophie</h2>
       <p class="section-description reveal">
-        Dark Glass combines the purity of minimalism with the visual depth of modern UI patterns.
-        Inspired by the infinity of space, it creates an aesthetic that is both futuristic and timeless.
+        Dark Glass verbindet die Reinheit des Minimalismus mit der visuellen Tiefe moderner UI-Patterns.
+        Inspiriert von der Unendlichkeit des Weltraums, schafft es eine Ästhetik, die gleichzeitig futuristisch und zeitlos ist.
       </p>
       
       <div class="philosophy-grid">
         <div class="philosophy-card reveal">
           <div class="philosophy-icon">✨</div>
-          <h3>Minimalism</h3>
-          <p>Reduced forms and clear structures create focus on the essential.</p>
+          <h3>Minimalismus</h3>
+          <p>Reduzierte Formen und klare Strukturen schaffen Fokus auf das Wesentliche.</p>
         </div>
         
         <div class="philosophy-card reveal">
           <div class="philosophy-icon">🔮</div>
-          <h3>Transparency</h3>
-          <p>Glass effects with backdrop-blur create depth and spatial hierarchy.</p>
+          <h3>Transparenz</h3>
+          <p>Glaseffekte mit Backdrop-Blur erzeugen Tiefe und räumliche Hierarchie.</p>
         </div>
         
         <div class="philosophy-card reveal">
           <div class="philosophy-icon">🌌</div>
-          <h3>Space Aesthetics</h3>
-          <p>Dark color palette with subtle gradients reminiscent of the vastness of the cosmos.</p>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Draggable Glass Cards Gallery Section -->
-    <section class="section" id="draggable">
-      <h2 class="section-title reveal">Interactive Draggable Glass Cards</h2>
-      <p class="section-description reveal">
-        Experience the magic of glassmorphism with these draggable cards. Drag them around to see different blur and transparency levels in action!
-      </p>
-      
-      <div class="draggable-gallery reveal" id="draggableGallery">
-        <div class="draggable-card" style="--card-blur: 5px; left: 50px; top: 50px; background: rgba(255, 255, 255, 0.3);">
-          <h4>LIGHT BLUR</h4>
-          <p>Minimal blur effect for subtle depth.</p>
-          <div class="card-specs">
-            blur: 5px<br>
-            alpha: 0.3
-          </div>
-        </div>
-        
-        <div class="draggable-card" style="--card-blur: 10px; left: 280px; top: 80px; background: rgba(255, 255, 255, 0.15);">
-          <h4>MEDIUM BLUR</h4>
-          <p>Balanced blur for good readability.</p>
-          <div class="card-specs">
-            blur: 10px<br>
-            alpha: 0.15
-          </div>
-        </div>
-        
-        <div class="draggable-card" style="--card-blur: 15px; left: 50px; top: 280px; background: rgba(255, 255, 255, 0.12);">
-          <h4>STRONG BLUR</h4>
-          <p>Enhanced frosted glass appearance.</p>
-          <div class="card-specs">
-            blur: 15px<br>
-            alpha: 0.12
-          </div>
-        </div>
-        
-        <div class="draggable-card" style="--card-blur: 20px; left: 280px; top: 310px; background: rgba(255, 255, 255, 0.08);">
-          <h4>ULTRA BLUR</h4>
-          <p>Maximum blur for dramatic effect.</p>
-          <div class="card-specs">
-            blur: 20px<br>
-            alpha: 0.08
-          </div>
-        </div>
-        
-        <div class="draggable-card" style="--card-blur: 12px; left: 520px; top: 140px; background: rgba(0, 240, 255, 0.2);">
-          <h4>QUANTUM GLASS</h4>
-          <p>Colored glass with cyan tint.</p>
-          <div class="card-specs">
-            blur: 12px<br>
-            cyan: 0.2
-          </div>
-        </div>
-        
-        <div class="draggable-card" style="--card-blur: 18px; left: 520px; top: 370px; background: rgba(168, 85, 247, 0.15);">
-          <h4>COSMIC GLASS</h4>
-          <p>Purple-tinted glass variant.</p>
-          <div class="card-specs">
-            blur: 18px<br>
-            purple: 0.15
-          </div>
+          <h3>Weltraum-Ästhetik</h3>
+          <p>Dunkle Farbpalette mit subtilen Gradienten erinnert an die Weiten des Kosmos.</p>
         </div>
       </div>
     </section>
 
     <!-- Components Section -->
     <section class="section" id="components">
-      <h2 class="section-title reveal">Components</h2>
+      <h2 class="section-title reveal">Komponenten</h2>
 
       <!-- Buttons -->
       <div class="glass-panel reveal">
-        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Buttons - All Sizes & Variants</h3>
+        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Buttons</h3>
         <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 25px;">
-          Glass buttons with various sizes, shapes, and hover animations. 
-          From small to large, icon buttons with 16px radius, and fully round buttons with 50px radius.
+          Pill-förmige Buttons mit Glaseffekt und Hover-Animationen. 
+          Runde Ecken (border-radius: 999px) erzeugen die charakteristische weiche Form.
         </p>
         
-        <div style="margin-bottom: 30px;">
-          <h4 style="font-family: 'Exo 2'; font-size: 1rem; margin-bottom: 15px; color: var(--quantum-blue);">Standard Sizes</h4>
-          <div class="button-showcase">
-            <button class="glass-btn btn-small">Small Button</button>
-            <button class="glass-btn btn-medium">Medium Button</button>
-            <button class="glass-btn btn-large">Large Button</button>
-          </div>
-        </div>
-        
-        <div style="margin-bottom: 30px;">
-          <h4 style="font-family: 'Exo 2'; font-size: 1rem; margin-bottom: 15px; color: var(--quantum-purple);">Color Variants</h4>
-          <div class="button-showcase">
-            <button class="glass-btn btn-medium">Standard</button>
-            <button class="glass-btn btn-medium primary">Primary</button>
-            <button class="glass-btn btn-medium danger">Danger</button>
-          </div>
-        </div>
-        
-        <div style="margin-bottom: 30px;">
-          <h4 style="font-family: 'Exo 2'; font-size: 1rem; margin-bottom: 15px; color: var(--quantum-pink);">Icon Buttons (16px radius)</h4>
-          <div class="button-showcase">
-            <button class="glass-btn btn-icon">⚡</button>
-            <button class="glass-btn btn-icon primary">🚀</button>
-            <button class="glass-btn btn-icon">⭐</button>
-            <button class="glass-btn btn-icon danger">🔥</button>
-          </div>
-        </div>
-        
-        <div style="margin-bottom: 30px;">
-          <h4 style="font-family: 'Exo 2'; font-size: 1rem; margin-bottom: 15px; color: var(--cosmic-gold);">Round Buttons (50px radius)</h4>
-          <div class="button-showcase">
-            <button class="glass-btn btn-medium btn-round">Round Small</button>
-            <button class="glass-btn btn-large btn-round primary">Round Large</button>
-            <button class="glass-btn btn-medium btn-round">✨ With Icon</button>
-          </div>
+        <div class="button-showcase">
+          <button class="glass-btn">Standard Button</button>
+          <button class="glass-btn primary">Primary Button</button>
+          <button class="glass-btn danger">Danger Button</button>
         </div>
 
         <div class="code-block">
@@ -1251,24 +800,24 @@
       <div class="glass-panel reveal">
         <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Glass Panels</h3>
         <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 25px;">
-          Container elements with glass effect for content. Uses backdrop-filter for blur,
-          semi-transparent backgrounds and subtle shadows for spatial depth.
+          Container-Elemente mit Glaseffekt für Inhalte. Nutzen backdrop-filter für Unschärfe,
+          halbtransparente Hintergründe und subtile Schatten für räumliche Tiefe.
         </p>
 
         <div class="component-grid">
           <div class="glass-panel" style="margin-bottom: 0;">
             <h4 style="font-weight: 300; margin-bottom: 10px;">Content Panel</h4>
             <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">
-              This is an example of a glass panel container. 
-              It's perfect for cards, dialogs, or information boxes.
+              Dies ist ein Beispiel für einen Glass-Panel Container. 
+              Er eignet sich perfekt für Karten, Dialoge oder Informationsboxen.
             </p>
           </div>
 
           <div class="glass-panel" style="margin-bottom: 0; background: radial-gradient(120% 120% at 50% 0%, rgba(255,255,255,0.18), rgba(255,255,255,0.06) 70%);">
             <h4 style="font-weight: 300; margin-bottom: 10px;">Gradient Variant</h4>
             <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">
-              With radial gradients, interesting light effects can be created,
-              that give the panel more visual interest.
+              Mit radialen Gradienten können interessante Licht-Effekte erzeugt werden,
+              die dem Panel mehr visuelles Interesse verleihen.
             </p>
           </div>
         </div>
@@ -1291,8 +840,8 @@
       <div class="glass-panel reveal">
         <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Interactive List Items</h3>
         <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 25px;">
-          List elements with hover effects and active states. 
-          Perfect for navigations, selection lists or menus.
+          Listen-Elemente mit Hover-Effekten und Active-States. 
+          Perfekt für Navigationen, Auswahllisten oder Menüs.
         </p>
 
         <ul class="glass-list">
@@ -1337,155 +886,24 @@
         </div>
       </div>
     </section>
-    
-    <!-- Live Controls Section -->
-    <section class="section" id="controls">
-      <h2 class="section-title reveal">Live Controls & Interactive Components</h2>
-      <p class="section-description reveal">
-        Toggle switches, checkboxes, and range sliders with live preview panels. Adjust values and see the effects in real-time!
-      </p>
-      
-      <div class="glass-panel reveal">
-        <h3 style="margin-bottom: 30px; font-weight: 300; font-size: 1.5rem;">Toggle Switches</h3>
-        
-        <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px;">
-          <label class="toggle-switch">
-            <input type="checkbox" checked>
-            <span class="toggle-slider"></span>
-            <span class="toggle-label">Enable Glass Effect</span>
-          </label>
-          
-          <label class="toggle-switch">
-            <input type="checkbox">
-            <span class="toggle-slider"></span>
-            <span class="toggle-label">Dark Mode</span>
-          </label>
-          
-          <label class="toggle-switch">
-            <input type="checkbox" checked>
-            <span class="toggle-slider"></span>
-            <span class="toggle-label">Animations</span>
-          </label>
-        </div>
-        
-        <h3 style="margin-bottom: 30px; font-weight: 300; font-size: 1.5rem;">Glass Checkboxes</h3>
-        
-        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px;">
-          <label class="glass-checkbox">
-            <input type="checkbox" checked>
-            <span class="checkbox-box"></span>
-            <span class="toggle-label">Backdrop Blur</span>
-          </label>
-          
-          <label class="glass-checkbox">
-            <input type="checkbox" checked>
-            <span class="checkbox-box"></span>
-            <span class="toggle-label">Border Glow</span>
-          </label>
-          
-          <label class="glass-checkbox">
-            <input type="checkbox">
-            <span class="checkbox-box"></span>
-            <span class="toggle-label">Shadow Effects</span>
-          </label>
-          
-          <label class="glass-checkbox">
-            <input type="checkbox" checked>
-            <span class="checkbox-box"></span>
-            <span class="toggle-label">Hover Animations</span>
-          </label>
-        </div>
-        
-        <h3 style="margin-bottom: 30px; font-weight: 300; font-size: 1.5rem;">Live Preview Sliders</h3>
-        <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 30px;">
-          Adjust the sliders below and watch the preview panel change in real-time!
-        </p>
-        
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
-          <div>
-            <div class="slider-control">
-              <div class="slider-label">
-                <span>Blur Amount</span>
-                <span class="slider-value" id="blurValue">15px</span>
-              </div>
-              <input type="range" class="glass-slider" id="blurSlider" min="5" max="30" value="15">
-            </div>
-            
-            <div class="slider-control">
-              <div class="slider-label">
-                <span>Transparency</span>
-                <span class="slider-value" id="transparencyValue">0.1</span>
-              </div>
-              <input type="range" class="glass-slider" id="transparencySlider" min="0.05" max="0.9" step="0.05" value="0.1">
-            </div>
-            
-            <div class="slider-control">
-              <div class="slider-label">
-                <span>Border Opacity</span>
-                <span class="slider-value" id="borderValue">0.2</span>
-              </div>
-              <input type="range" class="glass-slider" id="borderSlider" min="0.1" max="0.5" step="0.05" value="0.2">
-            </div>
-          </div>
-          
-          <div class="live-preview">
-            <div class="preview-panel" id="previewPanel">
-              LIVE<br>PREVIEW
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Live Transparency Demo Section -->
-    <section class="section" id="demo">
-      <h2 class="section-title reveal">Live Transparency Demonstration</h2>
-      <p class="section-description reveal">
-        Drag the glass panels over the space background to see how transparency and blur work in different contexts!
-      </p>
-      
-      <div class="transparency-demo reveal" id="transparencyDemo">
-        <div class="demo-overlay"></div>
-        
-        <div class="demo-panel" style="left: 50px; top: 80px;">
-          <h4>GLASS PANEL</h4>
-          <p>Drag me around to see the transparency effect over the nebula background!</p>
-        </div>
-        
-        <div class="demo-panel" style="left: 350px; top: 150px; backdrop-filter: blur(30px); background: rgba(255, 255, 255, 0.08);">
-          <h4>ULTRA BLUR</h4>
-          <p>High blur creates a frosted glass appearance with maximum depth.</p>
-        </div>
-        
-        <div class="demo-panel" style="left: 650px; top: 80px; backdrop-filter: blur(10px); background: rgba(0, 240, 255, 0.25);">
-          <h4>QUANTUM TINT</h4>
-          <p>Colored glass with cyan overlay and moderate blur effect.</p>
-        </div>
-        
-        <div class="demo-panel" style="left: 200px; top: 300px; backdrop-filter: blur(15px); background: rgba(168, 85, 247, 0.2);">
-          <h4>COSMIC GLASS</h4>
-          <p>Purple-tinted panel demonstrating colored transparency.</p>
-        </div>
-      </div>
-    </section>
 
     <!-- Design Tokens Section -->
     <section class="section" id="tokens">
       <h2 class="section-title reveal">Design Tokens</h2>
       
       <div class="glass-panel reveal">
-        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Core Values</h3>
+        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Kern-Werte</h3>
         
         <div style="display: grid; gap: 20px;">
           <div>
-            <h4 style="font-weight: 300; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9);">Background</h4>
+            <h4 style="font-weight: 300; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9);">Hintergrund</h4>
             <div style="display: flex; flex-wrap: wrap; gap: 10px;">
               <span class="feature-badge">linear-gradient(135deg, #0a0e27, #16213e, #0f1419)</span>
             </div>
           </div>
 
           <div>
-            <h4 style="font-weight: 300; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9);">Glass Effect</h4>
+            <h4 style="font-weight: 300; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9);">Glass Effekt</h4>
             <div style="display: flex; flex-wrap: wrap; gap: 10px;">
               <span class="feature-badge">backdrop-filter: blur(24px)</span>
               <span class="feature-badge">background: rgba(255, 255, 255, 0.06)</span>
@@ -1504,7 +922,7 @@
           </div>
 
           <div>
-            <h4 style="font-weight: 300; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9);">Shadows</h4>
+            <h4 style="font-weight: 300; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9);">Schatten</h4>
             <div style="display: flex; flex-wrap: wrap; gap: 10px;">
               <span class="feature-badge">box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3)</span>
               <span class="feature-badge">inset 0 0 40px rgba(255, 255, 255, 0.03)</span>
@@ -1516,29 +934,29 @@
 
     <!-- Usage Section -->
     <section class="section" id="usage">
-      <h2 class="section-title reveal">Usage</h2>
+      <h2 class="section-title reveal">Verwendung</h2>
       
       <div class="glass-panel reveal">
-        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Quick Start</h3>
+        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Schnellstart</h3>
         <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 25px;">
-          Copy the CSS classes into your project and use them on your elements.
-          All components are responsive and work on all modern browsers with backdrop-filter support.
+          Kopiere die CSS-Klassen in dein Projekt und verwende sie auf deinen Elementen.
+          Alle Komponenten sind responsiv und funktionieren auf allen modernen Browsern mit backdrop-filter Support.
         </p>
 
         <div class="code-block">
           <button class="copy-btn">Copy</button>
-          <code><span class="comment">&lt;!-- Button Example --&gt;</span>
+          <code><span class="comment">&lt;!-- Button Beispiel --&gt;</span>
 <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="value">"glass-btn"</span><span class="tag">&gt;</span>
   Click me
 <span class="tag">&lt;/button&gt;</span>
 
-<span class="comment">&lt;!-- Panel Example --&gt;</span>
+<span class="comment">&lt;!-- Panel Beispiel --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"glass-panel"</span><span class="tag">&gt;</span>
   <span class="tag">&lt;h3&gt;</span>Panel Title<span class="tag">&lt;/h3&gt;</span>
   <span class="tag">&lt;p&gt;</span>Panel content goes here...<span class="tag">&lt;/p&gt;</span>
 <span class="tag">&lt;/div&gt;</span>
 
-<span class="comment">&lt;!-- List Example --&gt;</span>
+<span class="comment">&lt;!-- List Beispiel --&gt;</span>
 <span class="tag">&lt;ul</span> <span class="attr">class</span>=<span class="value">"glass-list"</span><span class="tag">&gt;</span>
   <span class="tag">&lt;li</span> <span class="attr">class</span>=<span class="value">"glass-list-item"</span><span class="tag">&gt;</span>Item 1<span class="tag">&lt;/li&gt;</span>
   <span class="tag">&lt;li</span> <span class="attr">class</span>=<span class="value">"glass-list-item active"</span><span class="tag">&gt;</span>Item 2<span class="tag">&lt;/li&gt;</span>
@@ -1549,7 +967,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p>DARK GLASS Design System · Inspired by the Infinity of Space</p>
+      <p>Dark Glass Design System · Inspiriert von der Unendlichkeit des Weltraums</p>
       <p style="margin-top: 10px; font-size: 0.9rem;">
         Built with ✨ Glassmorphism · 🌌 Space Aesthetics · 💎 Minimal Design
       </p>
@@ -1868,115 +1286,6 @@
 
     window.addEventListener('scroll', highlightNavigation);
     highlightNavigation();
-    
-    // ========== DRAGGABLE GLASS CARDS ==========
-    let isDragging = false;
-    let currentElement = null;
-    let offsetX = 0;
-    let offsetY = 0;
-
-    function makeDraggable(element) {
-      element.addEventListener('mousedown', startDrag);
-      element.addEventListener('touchstart', startDrag);
-    }
-
-    function startDrag(e) {
-      e.preventDefault();
-      isDragging = true;
-      currentElement = this;
-      
-      const rect = currentElement.getBoundingClientRect();
-      const clientX = e.clientX || e.touches[0].clientX;
-      const clientY = e.clientY || e.touches[0].clientY;
-      
-      offsetX = clientX - rect.left;
-      offsetY = clientY - rect.top;
-      
-      currentElement.classList.add('dragging');
-      currentElement.style.cursor = 'grabbing';
-      currentElement.style.zIndex = '1000';
-    }
-
-    function drag(e) {
-      if (!isDragging || !currentElement) return;
-      
-      e.preventDefault();
-      const clientX = e.clientX || e.touches[0].clientX;
-      const clientY = e.clientY || e.touches[0].clientY;
-      
-      const container = currentElement.parentElement;
-      const containerRect = container.getBoundingClientRect();
-      
-      let newX = clientX - containerRect.left - offsetX;
-      let newY = clientY - containerRect.top - offsetY;
-      
-      // Keep within bounds
-      const maxX = container.offsetWidth - currentElement.offsetWidth;
-      const maxY = container.offsetHeight - currentElement.offsetHeight;
-      
-      newX = Math.max(0, Math.min(newX, maxX));
-      newY = Math.max(0, Math.min(newY, maxY));
-      
-      currentElement.style.left = newX + 'px';
-      currentElement.style.top = newY + 'px';
-    }
-
-    function endDrag() {
-      if (currentElement) {
-        currentElement.classList.remove('dragging');
-        currentElement.style.cursor = 'grab';
-        currentElement.style.zIndex = '';
-      }
-      isDragging = false;
-      currentElement = null;
-    }
-
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('touchmove', drag);
-    document.addEventListener('mouseup', endDrag);
-    document.addEventListener('touchend', endDrag);
-
-    // Make all draggable cards draggable
-    document.querySelectorAll('.draggable-card').forEach(card => {
-      makeDraggable(card);
-    });
-
-    // Make demo panels draggable
-    document.querySelectorAll('.demo-panel').forEach(panel => {
-      makeDraggable(panel);
-    });
-
-    // ========== LIVE SLIDER CONTROLS ==========
-    const blurSlider = document.getElementById('blurSlider');
-    const transparencySlider = document.getElementById('transparencySlider');
-    const borderSlider = document.getElementById('borderSlider');
-    const previewPanel = document.getElementById('previewPanel');
-    const blurValue = document.getElementById('blurValue');
-    const transparencyValue = document.getElementById('transparencyValue');
-    const borderValue = document.getElementById('borderValue');
-
-    if (blurSlider && previewPanel) {
-      blurSlider.addEventListener('input', (e) => {
-        const value = e.target.value;
-        blurValue.textContent = value + 'px';
-        previewPanel.style.backdropFilter = `blur(${value}px)`;
-        previewPanel.style.webkitBackdropFilter = `blur(${value}px)`;
-      });
-
-      transparencySlider.addEventListener('input', (e) => {
-        const value = e.target.value;
-        transparencyValue.textContent = value;
-        const currentBorder = borderSlider.value;
-        previewPanel.style.background = `rgba(255, 255, 255, ${value})`;
-        previewPanel.style.border = `1px solid rgba(255, 255, 255, ${currentBorder})`;
-      });
-
-      borderSlider.addEventListener('input', (e) => {
-        const value = e.target.value;
-        borderValue.textContent = value;
-        previewPanel.style.border = `1px solid rgba(255, 255, 255, ${value})`;
-      });
-    }
 
     // ========== PERFORMANCE OPTIMIZATION ==========
     // Use will-change on hover for performance

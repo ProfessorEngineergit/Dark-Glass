@@ -827,11 +827,11 @@
         const canvas = document.getElementById('starfield');
         const ctx = canvas.getContext('2d');
         let stars = [];
-        const starCount = 250;
+        const starCount = 200; // Reduced for better performance
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
-            canvas.height = document.documentElement.scrollHeight;
+            canvas.height = window.innerHeight;
             initStars();
         }
 
@@ -868,20 +868,15 @@
             requestAnimationFrame(animateStars);
         }
 
-        window.addEventListener('resize', resizeCanvas);
+        // Use debounced resize for performance
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(resizeCanvas, 150);
+        });
+        
         resizeCanvas();
         animateStars();
-
-        // Update canvas height on scroll (for dynamic content)
-        let resizeTimeout;
-        window.addEventListener('scroll', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                if (canvas.height !== document.documentElement.scrollHeight) {
-                    canvas.height = document.documentElement.scrollHeight;
-                }
-            }, 100);
-        });
 
         // ============================================
         // DRAG AND DROP FUNCTIONALITY

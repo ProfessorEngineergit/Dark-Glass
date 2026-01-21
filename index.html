@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARK GLASS - Design System from the Future</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Terminal Loading Screen -->
+    <div class="terminal-loading">
+        <div id="terminal-lines"></div>
+    </div>
+
+    <!-- Space Background -->
+    <div class="space-background"></div>
+
+    <!-- Background Image Overlay -->
+    <div class="background-overlay"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="hero-title scramble-text glitch">DARK GLASS</h1>
+            <p class="hero-subtitle scramble-text">A Design System from the Future</p>
+            <div class="flex-center mt-2">
+                <button class="glass-button">EXPLORE</button>
+                <button class="glass-button">LEARN MORE</button>
+            </div>
+        </section>
+
+        <!-- Showcase Section -->
+        <section class="showcase-section">
+            <h2 class="showcase-title scramble-text">EXPERIENCE GLASSMORPHISM</h2>
+            
+            <div class="info-panel glass-panel">
+                <h3 class="panel-header">What is Dark Glass?</h3>
+                <div class="panel-content">
+                    <p>Dark Glass is a cutting-edge design system that combines the elegance of glassmorphism with the mystery of the cosmos. Featuring semi-transparent backgrounds, backdrop blur effects, and interactive elements that respond to your every move.</p>
+                    <p class="mt-2"><strong>Key Features:</strong></p>
+                    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                        <li>🌌 Space-themed aesthetics</li>
+                        <li>✨ Glassmorphism effects with backdrop blur</li>
+                        <li>🎯 Fully draggable interface elements</li>
+                        <li>⚡ Intensive hover and interaction effects</li>
+                        <li>🎨 Terminal-inspired loading experience</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Draggable Panels Section -->
+        <section class="showcase-section">
+            <h2 class="showcase-title scramble-text">DRAG & EXPLORE</h2>
+            <p class="text-center" style="opacity: 0.8; margin-bottom: 2rem; font-size: 18px;">
+                Click and drag the panels below to see the blur effects in action
+            </p>
+        </section>
+    </div>
+
+    <!-- Draggable Glass Panels -->
+    <div class="draggable-panel glass-panel" style="opacity: 0; transform: scale(0.8); transition: all 0.5s ease;">
+        <h3 class="panel-header">Panel Alpha</h3>
+        <div class="panel-content">
+            <p>This panel demonstrates the glassmorphism effect. Drag it around to see how the backdrop blur creates a frosted glass appearance over the background.</p>
+            <button class="glass-button mt-2" style="padding: 0.5rem 1.5rem; font-size: 14px;">INTERACT</button>
+        </div>
+    </div>
+
+    <div class="draggable-panel glass-panel" style="opacity: 0; transform: scale(0.8); transition: all 0.5s ease;">
+        <h3 class="panel-header">Panel Beta</h3>
+        <div class="panel-content">
+            <p>Notice the subtle border and shadow effects. The glass panels maintain readability while allowing the background to shine through with beautiful blur.</p>
+            <button class="glass-button mt-2" style="padding: 0.5rem 1.5rem; font-size: 14px;">CLICK ME</button>
+        </div>
+    </div>
+
+    <div class="draggable-panel glass-panel" style="opacity: 0; transform: scale(0.8); transition: all 0.5s ease;">
+        <h3 class="panel-header">Panel Gamma</h3>
+        <div class="panel-content">
+            <p>Hover effects intensify the visual experience. Each interaction creates a sense of depth and dimension in the flat digital space.</p>
+            <div class="flex-center mt-2">
+                <button class="glass-button" style="padding: 0.5rem 1.5rem; font-size: 14px;">ACTION</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="draggable-panel glass-panel" style="opacity: 0; transform: scale(0.8); transition: all 0.5s ease;">
+        <h3 class="panel-header">Panel Delta</h3>
+        <div class="panel-content">
+            <p>The Dark Glass design system brings together modern aesthetics with functional interactivity. Every element is crafted for both beauty and usability.</p>
+            <button class="glass-button mt-2" style="padding: 0.5rem 1.5rem; font-size: 14px;">DISCOVER</button>
+        </div>
+    </div>
+
+    <!-- Additional Content Section -->
+    <div class="main-content" style="margin-top: 100vh;">
+        <section class="showcase-section">
+            <h2 class="showcase-title scramble-text">DESIGN TOKENS</h2>
+            
+            <div class="panels-container">
+                <div class="glass-panel">
+                    <h3 class="panel-header">Glass Background</h3>
+                    <div class="panel-content">
+                        <code style="background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 5px; display: block;">
+                            rgba(30, 30, 30, 0.5)
+                        </code>
+                        <p class="mt-2">Semi-transparent dark background that allows the cosmos to peek through</p>
+                    </div>
+                </div>
+
+                <div class="glass-panel">
+                    <h3 class="panel-header">Backdrop Blur</h3>
+                    <div class="panel-content">
+                        <code style="background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 5px; display: block;">
+                            backdrop-filter: blur(12px)
+                        </code>
+                        <p class="mt-2">Creates the signature frosted glass effect</p>
+                    </div>
+                </div>
+
+                <div class="glass-panel">
+                    <h3 class="panel-header">Glass Border</h3>
+                    <div class="panel-content">
+                        <code style="background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 5px; display: block;">
+                            1px solid rgba(255, 255, 255, 0.1)
+                        </code>
+                        <p class="mt-2">Subtle white border adds definition to the glass panels</p>
+                    </div>
+                </div>
+
+                <div class="glass-panel">
+                    <h3 class="panel-header">Glow Shadow</h3>
+                    <div class="panel-content">
+                        <code style="background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 5px; display: block;">
+                            box-shadow: 0 0 15px rgba(0,0,0,0.5)
+                        </code>
+                        <p class="mt-2">Deep shadows create depth and dimension</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="showcase-section" style="padding-bottom: 4rem;">
+            <h2 class="showcase-title scramble-text">INTERACTIVE ELEMENTS</h2>
+            
+            <div class="glass-panel info-panel text-center">
+                <h3 class="panel-header">Buttons & Controls</h3>
+                <div class="panel-content">
+                    <p class="mb-2">Experience the intensive hover effects on our round buttons</p>
+                    <div class="flex-center" style="flex-wrap: wrap; margin-top: 2rem;">
+                        <button class="glass-button">PRIMARY</button>
+                        <button class="glass-button">SECONDARY</button>
+                        <button class="glass-button">TERTIARY</button>
+                    </div>
+                    <div class="flex-center" style="flex-wrap: wrap; margin-top: 1.5rem;">
+                        <button class="glass-button">EXPLORE</button>
+                        <button class="glass-button">DOWNLOAD</button>
+                        <button class="glass-button">CONTACT</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="showcase-section" style="padding-bottom: 6rem;">
+            <div class="glass-panel info-panel text-center">
+                <h3 class="panel-header scramble-text">WELCOME TO THE FUTURE</h3>
+                <div class="panel-content">
+                    <p style="font-size: 18px; line-height: 1.8;">
+                        Dark Glass represents the evolution of digital design. Where transparency meets technology, 
+                        where interaction becomes art, and where every pixel serves a purpose in creating 
+                        experiences that transcend the screen.
+                    </p>
+                    <button class="glass-button mt-2" style="padding: 1.2rem 3rem; font-size: 20px;">BEGIN YOUR JOURNEY</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

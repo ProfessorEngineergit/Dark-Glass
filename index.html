@@ -1,1303 +1,1099 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dark Glass Design System</title>
-  <style>
-    /* === Custom Font === */
-    @font-face {
-      font-family: 'Nasalization V2';
-      src: url('https://professorengineergit.github.io/Bahrian_Novotny_My_Universe/Nasalization%20V2.woff2') format('woff2'),
-           url('https://professorengineergit.github.io/Bahrian_Novotny_My_Universe/Nasalization%20V2.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    /* === CSS Custom Properties === */
-    :root {
-      /* Core Colors */
-      --void-black: #030014;
-      --deep-space: #0a0e27;
-      --nebula-purple: #16213e;
-      --star-white: #ffffff;
-      
-      /* Accent Colors */
-      --quantum-blue: #00f0ff;
-      --quantum-purple: #a855f7;
-      --quantum-pink: #ec4899;
-      --cosmic-gold: #fbbf24;
-      
-      /* Glass Properties */
-      --glass-bg: rgba(255, 255, 255, 0.06);
-      --glass-border: rgba(255, 255, 255, 0.12);
-      --glass-blur: 24px;
-      
-      /* Transitions */
-      --transition-fast: 0.15s ease;
-      --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-spring: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    /* Theme Variants */
-    [data-theme="cosmic-glass"] {
-      --deep-space: #1a0a2e;
-      --nebula-purple: #2d1b69;
-      --quantum-blue: #ff66ff;
-      --quantum-purple: #da70d6;
-    }
-
-    [data-theme="deep-space"] {
-      --void-black: #000000;
-      --deep-space: #050510;
-      --nebula-purple: #0a0a1a;
-      --quantum-blue: #0ff;
-      --quantum-purple: #66f;
-    }
-
-    /* === Reset & Base === */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background: var(--void-black);
-      color: var(--star-white);
-      line-height: 1.6;
-      overflow-x: hidden;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      position: relative;
-    }
-
-    /* Starfield Canvas */
-    #starfield {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* Cursor Particles Container */
-    #cursor-particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    .cursor-particle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      pointer-events: none;
-      animation: particleFade 0.8s ease-out forwards;
-    }
-
-    @keyframes particleFade {
-      0% {
-        opacity: 1;
-        transform: scale(1) translate(0, 0);
-      }
-      100% {
-        opacity: 0;
-        transform: scale(0) translate(var(--tx), var(--ty));
-      }
-    }
-
-    /* === Container === */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* === Theme Toggle Button === */
-    .theme-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1000;
-      display: flex;
-      gap: 8px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(var(--glass-blur));
-      -webkit-backdrop-filter: blur(var(--glass-blur));
-      border: 1px solid var(--glass-border);
-      border-radius: 50px;
-      padding: 8px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    .theme-btn {
-      padding: 8px 16px;
-      background: transparent;
-      border: 1px solid transparent;
-      color: var(--star-white);
-      font-size: 12px;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-      font-family: 'Nasalization V2', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .theme-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .theme-btn.active {
-      background: var(--quantum-blue);
-      color: var(--void-black);
-      border-color: var(--quantum-blue);
-    }
-
-    /* === Sticky Navigation === */
-    .sticky-nav {
-      position: fixed;
-      top: -100px;
-      left: 0;
-      right: 0;
-      z-index: 999;
-      background: var(--glass-bg);
-      backdrop-filter: blur(var(--glass-blur));
-      -webkit-backdrop-filter: blur(var(--glass-blur));
-      border-bottom: 1px solid var(--glass-border);
-      padding: 15px 0;
-      transition: top var(--transition-smooth);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-    }
-
-    .sticky-nav.visible {
-      top: 0;
-    }
-
-    .nav-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-title {
-      font-family: 'Nasalization V2', sans-serif;
-      font-size: 1.2rem;
-      letter-spacing: 0.08em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color var(--transition-fast);
-      position: relative;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--quantum-blue);
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--quantum-blue);
-      transition: width var(--transition-smooth);
-    }
-
-    .nav-links a.active::after,
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    /* === Header === */
-    .header {
-      text-align: center;
-      margin-bottom: 80px;
-      padding: 60px 20px;
-    }
-
-    .header h1 {
-      font-family: 'Nasalization V2', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      margin-bottom: 20px;
-      animation: breathe 4s ease-in-out infinite;
-      background: linear-gradient(135deg, var(--star-white), var(--quantum-blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    @keyframes breathe {
-      0%, 100% {
-        text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
-        letter-spacing: 0.12em;
-      }
-      50% {
-        text-shadow: 0 0 40px rgba(0, 240, 255, 0.6);
-        letter-spacing: 0.14em;
-      }
-    }
-
-    .header .subtitle {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      color: rgba(255, 255, 255, 0.7);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-
-    /* === Section === */
-    .section {
-      margin-bottom: 60px;
-    }
-
-    .section-title {
-      font-family: 'Nasalization V2', sans-serif;
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      margin-bottom: 30px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid var(--glass-border);
-      animation: breathe-subtle 5s ease-in-out infinite;
-    }
-
-    @keyframes breathe-subtle {
-      0%, 100% {
-        text-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
-      }
-      50% {
-        text-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-      }
-    }
-
-    .section-description {
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 40px;
-      font-size: 1.1rem;
-    }
-
-    /* === Glass Panel === */
-    .glass-panel {
-      background: var(--glass-bg);
-      backdrop-filter: blur(var(--glass-blur));
-      -webkit-backdrop-filter: blur(var(--glass-blur));
-      border: 1px solid var(--glass-border);
-      border-radius: 24px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
-                  inset 0 0 40px rgba(255, 255, 255, 0.03);
-      transition: all var(--transition-smooth);
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .glass-panel::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity var(--transition-smooth);
-      pointer-events: none;
-    }
-
-    .glass-panel:hover::before {
-      opacity: 1;
-    }
-
-    .glass-panel:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.18);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
-                  inset 0 0 50px rgba(255, 255, 255, 0.05);
-    }
-
-    /* === Glass Button === */
-    .glass-btn {
-      padding: 14px 32px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      color: #fff;
-      font-size: 16px;
-      border-radius: 999px;
-      cursor: pointer;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: all var(--transition-smooth);
-      text-decoration: none;
-      display: inline-block;
-      letter-spacing: 0.03em;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .glass-btn::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-
-    .glass-btn:active::before {
-      width: 300px;
-      height: 300px;
-    }
-
-    .glass-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
-    }
-
-    .glass-btn.primary {
-      background: rgba(0, 240, 255, 0.25);
-      border-color: var(--quantum-blue);
-      color: var(--star-white);
-    }
-
-    .glass-btn.primary:hover {
-      background: rgba(0, 240, 255, 0.35);
-      border-color: var(--quantum-blue);
-      box-shadow: 0 8px 24px rgba(0, 240, 255, 0.3);
-    }
-
-    .glass-btn.danger {
-      background: rgba(236, 72, 153, 0.25);
-      border-color: var(--quantum-pink);
-    }
-
-    .glass-btn.danger:hover {
-      background: rgba(236, 72, 153, 0.35);
-      border-color: var(--quantum-pink);
-      box-shadow: 0 8px 24px rgba(236, 72, 153, 0.3);
-    }
-
-    /* === Grid Layout === */
-    .component-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-bottom: 40px;
-    }
-
-    /* === List Items === */
-    .glass-list {
-      list-style: none;
-      display: grid;
-      gap: 12px;
-    }
-
-    .glass-list-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .glass-list-item::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(0, 240, 255, 0.2);
-      transform: translate(-50%, -50%);
-      transition: width 0.5s, height 0.5s;
-    }
-
-    .glass-list-item.ripple::before {
-      width: 500px;
-      height: 500px;
-    }
-
-    .glass-list-item:hover {
-      background: rgba(255, 255, 255, 0.14);
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateX(8px);
-    }
-
-    .glass-list-item.active {
-      background: rgba(0, 240, 255, 0.15);
-      border-color: var(--quantum-blue);
-    }
-
-    /* === Code Block === */
-    .code-block {
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 20px;
-      margin: 20px 0;
-      overflow-x: auto;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      position: relative;
-      transition: all var(--transition-smooth);
-    }
-
-    .code-block:hover {
-      border-color: var(--quantum-blue);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
-    }
-
-    .code-block code {
-      font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
-      font-size: 14px;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .code-block .comment {
-      color: rgba(255, 255, 255, 0.5);
-    }
-
-    .code-block .tag {
-      color: var(--quantum-blue);
-    }
-
-    .code-block .attr {
-      color: #a6e22e;
-    }
-
-    .code-block .value {
-      color: var(--cosmic-gold);
-    }
-
-    .copy-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      padding: 8px 16px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: var(--star-white);
-      font-size: 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      font-family: 'Nasalization V2', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .copy-btn:hover {
-      background: var(--quantum-blue);
-      color: var(--void-black);
-      border-color: var(--quantum-blue);
-    }
-
-    .copy-btn.copied {
-      background: #10b981;
-      border-color: #10b981;
-      color: white;
-    }
-
-    /* === Philosophy Cards === */
-    .philosophy-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-top: 40px;
-    }
-
-    .philosophy-card {
-      background: radial-gradient(120% 120% at 50% 0%, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04) 70%);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      padding: 30px;
-      text-align: center;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      transform-style: preserve-3d;
-      transition: all var(--transition-smooth);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .philosophy-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity var(--transition-smooth);
-      pointer-events: none;
-    }
-
-    .philosophy-card:hover::before {
-      opacity: 1;
-    }
-
-    .philosophy-card h3 {
-      font-family: 'Nasalization V2', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 400;
-      margin-bottom: 15px;
-      letter-spacing: 0.05em;
-    }
-
-    .philosophy-card p {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.95rem;
-    }
-
-    .philosophy-icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      opacity: 0.8;
-    }
-
-    /* === Button Showcase === */
-    .button-showcase {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      align-items: center;
-    }
-
-    /* === Feature Badge === */
-    .feature-badge {
-      display: inline-block;
-      padding: 6px 14px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      font-size: 0.85rem;
-      margin: 5px;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    /* === Scroll Reveal Animations === */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease-out;
-    }
-
-    .reveal.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-stagger {
-      transition-delay: calc(var(--stagger-index) * 0.1s);
-    }
-
-    /* === Footer === */
-    .footer {
-      text-align: center;
-      padding: 60px 20px 40px;
-      color: rgba(255, 255, 255, 0.5);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      margin-top: 100px;
-    }
-
-    /* === Responsive === */
-    @media (max-width: 768px) {
-      .container {
-        padding: 20px 15px;
-      }
-
-      .header {
-        margin-bottom: 50px;
-        padding: 30px 15px;
-      }
-
-      .component-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .philosophy-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .button-showcase {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .glass-btn {
-        width: 100%;
-        text-align: center;
-      }
-
-      .theme-toggle {
-        top: 10px;
-        right: 10px;
-        flex-direction: column;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      #cursor-particles {
-        display: none;
-      }
-    }
-  </style>
-</head>
-<body data-theme="dark-glass">
-  <!-- Starfield Canvas -->
-  <canvas id="starfield"></canvas>
-  
-  <!-- Cursor Particles Container -->
-  <div id="cursor-particles"></div>
-
-  <!-- Theme Toggle -->
-  <div class="theme-toggle">
-    <button class="theme-btn active" data-theme="dark-glass">Dark</button>
-    <button class="theme-btn" data-theme="cosmic-glass">Cosmic</button>
-    <button class="theme-btn" data-theme="deep-space">Deep</button>
-  </div>
-
-  <!-- Sticky Navigation -->
-  <nav class="sticky-nav" id="stickyNav">
-    <div class="nav-content">
-      <div class="nav-title">DARK GLASS</div>
-      <ul class="nav-links">
-        <li><a href="#philosophy">Philosophy</a></li>
-        <li><a href="#components">Components</a></li>
-        <li><a href="#tokens">Tokens</a></li>
-        <li><a href="#usage">Usage</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <div class="container">
-    <!-- Header Section -->
-    <header class="header reveal">
-      <h1>Dark Glass Design System</h1>
-      <p class="subtitle">
-        Ein minimalistisches Design-System inspiriert von Weltraum-Ästhetik, 
-        das Transparenz, Tiefe und Eleganz durch moderne Glasmorphismus-Effekte vereint.
-      </p>
-    </header>
-
-    <!-- Philosophy Section -->
-    <section class="section" id="philosophy">
-      <h2 class="section-title reveal">Philosophie</h2>
-      <p class="section-description reveal">
-        Dark Glass verbindet die Reinheit des Minimalismus mit der visuellen Tiefe moderner UI-Patterns.
-        Inspiriert von der Unendlichkeit des Weltraums, schafft es eine Ästhetik, die gleichzeitig futuristisch und zeitlos ist.
-      </p>
-      
-      <div class="philosophy-grid">
-        <div class="philosophy-card reveal">
-          <div class="philosophy-icon">✨</div>
-          <h3>Minimalismus</h3>
-          <p>Reduzierte Formen und klare Strukturen schaffen Fokus auf das Wesentliche.</p>
-        </div>
-        
-        <div class="philosophy-card reveal">
-          <div class="philosophy-icon">🔮</div>
-          <h3>Transparenz</h3>
-          <p>Glaseffekte mit Backdrop-Blur erzeugen Tiefe und räumliche Hierarchie.</p>
-        </div>
-        
-        <div class="philosophy-card reveal">
-          <div class="philosophy-icon">🌌</div>
-          <h3>Weltraum-Ästhetik</h3>
-          <p>Dunkle Farbpalette mit subtilen Gradienten erinnert an die Weiten des Kosmos.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Components Section -->
-    <section class="section" id="components">
-      <h2 class="section-title reveal">Komponenten</h2>
-
-      <!-- Buttons -->
-      <div class="glass-panel reveal">
-        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Buttons</h3>
-        <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 25px;">
-          Pill-förmige Buttons mit Glaseffekt und Hover-Animationen. 
-          Runde Ecken (border-radius: 999px) erzeugen die charakteristische weiche Form.
-        </p>
-        
-        <div class="button-showcase">
-          <button class="glass-btn">Standard Button</button>
-          <button class="glass-btn primary">Primary Button</button>
-          <button class="glass-btn danger">Danger Button</button>
-        </div>
-
-        <div class="code-block">
-          <button class="copy-btn">Copy</button>
-          <code><span class="comment">/* Glass Button */</span>
-<span class="tag">.glass-btn</span> {
-  padding: <span class="value">14px 32px</span>;
-  background: <span class="value">rgba(255, 255, 255, 0.12)</span>;
-  border: <span class="value">1px solid rgba(255, 255, 255, 0.18)</span>;
-  border-radius: <span class="value">999px</span>;
-  backdrop-filter: <span class="attr">blur</span>(<span class="value">12px</span>);
-  transition: <span class="value">all 0.3s ease</span>;
-}
-
-<span class="tag">.glass-btn:hover</span> {
-  background: <span class="value">rgba(255, 255, 255, 0.2)</span>;
-  transform: <span class="attr">translateY</span>(<span class="value">-2px</span>);
-}</code>
-        </div>
-      </div>
-
-      <!-- Cards/Panels -->
-      <div class="glass-panel reveal">
-        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Glass Panels</h3>
-        <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 25px;">
-          Container-Elemente mit Glaseffekt für Inhalte. Nutzen backdrop-filter für Unschärfe,
-          halbtransparente Hintergründe und subtile Schatten für räumliche Tiefe.
-        </p>
-
-        <div class="component-grid">
-          <div class="glass-panel" style="margin-bottom: 0;">
-            <h4 style="font-weight: 300; margin-bottom: 10px;">Content Panel</h4>
-            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">
-              Dies ist ein Beispiel für einen Glass-Panel Container. 
-              Er eignet sich perfekt für Karten, Dialoge oder Informationsboxen.
-            </p>
-          </div>
-
-          <div class="glass-panel" style="margin-bottom: 0; background: radial-gradient(120% 120% at 50% 0%, rgba(255,255,255,0.18), rgba(255,255,255,0.06) 70%);">
-            <h4 style="font-weight: 300; margin-bottom: 10px;">Gradient Variant</h4>
-            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">
-              Mit radialen Gradienten können interessante Licht-Effekte erzeugt werden,
-              die dem Panel mehr visuelles Interesse verleihen.
-            </p>
-          </div>
-        </div>
-
-        <div class="code-block">
-          <button class="copy-btn">Copy</button>
-          <code><span class="comment">/* Glass Panel */</span>
-<span class="tag">.glass-panel</span> {
-  background: <span class="value">rgba(255, 255, 255, 0.06)</span>;
-  backdrop-filter: <span class="attr">blur</span>(<span class="value">24px</span>);
-  border: <span class="value">1px solid rgba(255, 255, 255, 0.12)</span>;
-  border-radius: <span class="value">24px</span>;
-  box-shadow: <span class="value">0 8px 32px rgba(0, 0, 0, 0.3)</span>,
-              <span class="value">inset 0 0 40px rgba(255, 255, 255, 0.03)</span>;
-}</code>
-        </div>
-      </div>
-
-      <!-- List Items -->
-      <div class="glass-panel reveal">
-        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Interactive List Items</h3>
-        <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 25px;">
-          Listen-Elemente mit Hover-Effekten und Active-States. 
-          Perfekt für Navigationen, Auswahllisten oder Menüs.
-        </p>
-
-        <ul class="glass-list">
-          <li class="glass-list-item reveal-stagger" style="--stagger-index: 0">
-            <span>🚀 Warp Navigation</span>
-            <span style="color: rgba(255, 255, 255, 0.5);">→</span>
-          </li>
-          <li class="glass-list-item active reveal-stagger" style="--stagger-index: 1">
-            <span>⚡ Quick Actions</span>
-            <span style="color: rgba(255, 255, 255, 0.5);">→</span>
-          </li>
-          <li class="glass-list-item reveal-stagger" style="--stagger-index: 2">
-            <span>🌟 Settings</span>
-            <span style="color: rgba(255, 255, 255, 0.5);">→</span>
-          </li>
-          <li class="glass-list-item reveal-stagger" style="--stagger-index: 3">
-            <span>📊 Analytics</span>
-            <span style="color: rgba(255, 255, 255, 0.5);">→</span>
-          </li>
-        </ul>
-
-        <div class="code-block">
-          <button class="copy-btn">Copy</button>
-          <code><span class="comment">/* Glass List Item */</span>
-<span class="tag">.glass-list-item</span> {
-  padding: <span class="value">16px 20px</span>;
-  background: <span class="value">rgba(255, 255, 255, 0.08)</span>;
-  border: <span class="value">1px solid rgba(255, 255, 255, 0.12)</span>;
-  border-radius: <span class="value">16px</span>;
-  transition: <span class="value">all 0.3s ease</span>;
-}
-
-<span class="tag">.glass-list-item:hover</span> {
-  background: <span class="value">rgba(255, 255, 255, 0.14)</span>;
-  transform: <span class="attr">translateX</span>(<span class="value">8px</span>);
-}
-
-<span class="tag">.glass-list-item.active</span> {
-  background: <span class="value">rgba(86, 156, 255, 0.22)</span>;
-  border-color: <span class="value">rgba(86, 156, 255, 0.45)</span>;
-}</code>
-        </div>
-      </div>
-    </section>
-
-    <!-- Design Tokens Section -->
-    <section class="section" id="tokens">
-      <h2 class="section-title reveal">Design Tokens</h2>
-      
-      <div class="glass-panel reveal">
-        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Kern-Werte</h3>
-        
-        <div style="display: grid; gap: 20px;">
-          <div>
-            <h4 style="font-weight: 300; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9);">Hintergrund</h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-              <span class="feature-badge">linear-gradient(135deg, #0a0e27, #16213e, #0f1419)</span>
-            </div>
-          </div>
-
-          <div>
-            <h4 style="font-weight: 300; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9);">Glass Effekt</h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-              <span class="feature-badge">backdrop-filter: blur(24px)</span>
-              <span class="feature-badge">background: rgba(255, 255, 255, 0.06)</span>
-              <span class="feature-badge">border: 1px solid rgba(255, 255, 255, 0.12)</span>
-            </div>
-          </div>
-
-          <div>
-            <h4 style="font-weight: 300; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9);">Border Radius</h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-              <span class="feature-badge">Pills: 999px</span>
-              <span class="feature-badge">Panels: 24px</span>
-              <span class="feature-badge">Cards: 20px</span>
-              <span class="feature-badge">Items: 16px</span>
-            </div>
-          </div>
-
-          <div>
-            <h4 style="font-weight: 300; margin-bottom: 10px; color: rgba(255, 255, 255, 0.9);">Schatten</h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-              <span class="feature-badge">box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3)</span>
-              <span class="feature-badge">inset 0 0 40px rgba(255, 255, 255, 0.03)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Usage Section -->
-    <section class="section" id="usage">
-      <h2 class="section-title reveal">Verwendung</h2>
-      
-      <div class="glass-panel reveal">
-        <h3 style="margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Schnellstart</h3>
-        <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 25px;">
-          Kopiere die CSS-Klassen in dein Projekt und verwende sie auf deinen Elementen.
-          Alle Komponenten sind responsiv und funktionieren auf allen modernen Browsern mit backdrop-filter Support.
-        </p>
-
-        <div class="code-block">
-          <button class="copy-btn">Copy</button>
-          <code><span class="comment">&lt;!-- Button Beispiel --&gt;</span>
-<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="value">"glass-btn"</span><span class="tag">&gt;</span>
-  Click me
-<span class="tag">&lt;/button&gt;</span>
-
-<span class="comment">&lt;!-- Panel Beispiel --&gt;</span>
-<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"glass-panel"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;h3&gt;</span>Panel Title<span class="tag">&lt;/h3&gt;</span>
-  <span class="tag">&lt;p&gt;</span>Panel content goes here...<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;/div&gt;</span>
-
-<span class="comment">&lt;!-- List Beispiel --&gt;</span>
-<span class="tag">&lt;ul</span> <span class="attr">class</span>=<span class="value">"glass-list"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;li</span> <span class="attr">class</span>=<span class="value">"glass-list-item"</span><span class="tag">&gt;</span>Item 1<span class="tag">&lt;/li&gt;</span>
-  <span class="tag">&lt;li</span> <span class="attr">class</span>=<span class="value">"glass-list-item active"</span><span class="tag">&gt;</span>Item 2<span class="tag">&lt;/li&gt;</span>
-<span class="tag">&lt;/ul&gt;</span></code>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <p>Dark Glass Design System · Inspiriert von der Unendlichkeit des Weltraums</p>
-      <p style="margin-top: 10px; font-size: 0.9rem;">
-        Built with ✨ Glassmorphism · 🌌 Space Aesthetics · 💎 Minimal Design
-      </p>
-    </footer>
-  </div>
-
-  <script>
-    // ========== STARFIELD ANIMATION ==========
-    class Starfield {
-      constructor() {
-        this.canvas = document.getElementById('starfield');
-        this.ctx = this.canvas.getContext('2d');
-        this.stars = [];
-        this.shootingStars = [];
-        this.resize();
-        this.init();
-        
-        window.addEventListener('resize', () => this.resize());
-      }
-
-      resize() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-      }
-
-      init() {
-        // Create static stars
-        for (let i = 0; i < 200; i++) {
-          this.stars.push({
-            x: Math.random() * this.canvas.width,
-            y: Math.random() * this.canvas.height,
-            size: Math.random() * 2,
-            opacity: Math.random(),
-            twinkleSpeed: Math.random() * 0.02 + 0.01,
-            depth: Math.random() * 3
-          });
-        }
-      }
-
-      animate() {
-        this.ctx.fillStyle = 'rgba(3, 0, 20, 0.1)';
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-
-        // Draw and update stars
-        this.stars.forEach(star => {
-          star.opacity += star.twinkleSpeed;
-          if (star.opacity > 1 || star.opacity < 0) {
-            star.twinkleSpeed = -star.twinkleSpeed;
-          }
-
-          this.ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(star.opacity)})`;
-          this.ctx.beginPath();
-          this.ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-          this.ctx.fill();
-        });
-
-        // Shooting stars
-        if (Math.random() < 0.002) {
-          this.shootingStars.push({
-            x: Math.random() * this.canvas.width,
-            y: Math.random() * this.canvas.height / 2,
-            length: Math.random() * 80 + 40,
-            speed: Math.random() * 10 + 5,
-            angle: Math.PI / 4,
-            opacity: 1
-          });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARK GLASS - A Design System from the Future</title>
+    <style>
+        @font-face {
+            font-family: 'Nasalization';
+            src: url('https://professorengineergit.github.io/Bahrian_Novotny_My_Universe/Nasalization%20V2.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
         }
 
-        this.shootingStars = this.shootingStars.filter(star => {
-          star.x += Math.cos(star.angle) * star.speed;
-          star.y += Math.sin(star.angle) * star.speed;
-          star.opacity -= 0.015;
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap');
 
-          if (star.opacity > 0) {
-            const gradient = this.ctx.createLinearGradient(
-              star.x, star.y,
-              star.x - Math.cos(star.angle) * star.length,
-              star.y - Math.sin(star.angle) * star.length
-            );
-            gradient.addColorStop(0, `rgba(0, 240, 255, ${star.opacity})`);
-            gradient.addColorStop(1, 'rgba(0, 240, 255, 0)');
-
-            this.ctx.strokeStyle = gradient;
-            this.ctx.lineWidth = 2;
-            this.ctx.beginPath();
-            this.ctx.moveTo(star.x, star.y);
-            this.ctx.lineTo(
-              star.x - Math.cos(star.angle) * star.length,
-              star.y - Math.sin(star.angle) * star.length
-            );
-            this.ctx.stroke();
-            return true;
-          }
-          return false;
-        });
-
-        requestAnimationFrame(() => this.animate());
-      }
-    }
-
-    const starfield = new Starfield();
-    starfield.animate();
-
-    // ========== CURSOR PARTICLE TRAIL ==========
-    const particleContainer = document.getElementById('cursor-particles');
-    let lastParticleTime = 0;
-    const particleThrottle = 30; // ms
-
-    function createParticle(x, y) {
-      const now = Date.now();
-      if (now - lastParticleTime < particleThrottle) return;
-      lastParticleTime = now;
-
-      const particle = document.createElement('div');
-      particle.className = 'cursor-particle';
-      
-      const colors = ['#00f0ff', '#a855f7', '#ec4899'];
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      
-      const size = Math.random() * 4 + 3;
-      const tx = (Math.random() - 0.5) * 30;
-      const ty = (Math.random() - 0.5) * 30;
-      
-      particle.style.left = x + 'px';
-      particle.style.top = y + 'px';
-      particle.style.width = size + 'px';
-      particle.style.height = size + 'px';
-      particle.style.background = color;
-      particle.style.boxShadow = `0 0 ${size * 2}px ${color}`;
-      particle.style.setProperty('--tx', tx + 'px');
-      particle.style.setProperty('--ty', ty + 'px');
-      
-      particleContainer.appendChild(particle);
-      
-      setTimeout(() => particle.remove(), 800);
-    }
-
-    document.addEventListener('mousemove', (e) => {
-      if (window.innerWidth > 768) {
-        createParticle(e.clientX, e.clientY);
-      }
-    });
-
-    // ========== 3D TILT EFFECT ==========
-    function add3DTilt(element) {
-      element.addEventListener('mousemove', (e) => {
-        const rect = element.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-        
-        // Update glow position
-        const glowX = (x / rect.width) * 100;
-        const glowY = (y / rect.height) * 100;
-        if (element.querySelector('::before') || true) {
-          element.style.setProperty('--glow-x', glowX + '%');
-          element.style.setProperty('--glow-y', glowY + '%');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-      });
-      
-      element.addEventListener('mouseleave', () => {
-        element.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-      });
-    }
 
-    document.querySelectorAll('.glass-panel, .philosophy-card').forEach(add3DTilt);
-
-    // ========== MAGNETIC BUTTONS ==========
-    document.querySelectorAll('.glass-btn').forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        
-        const distance = Math.sqrt(x * x + y * y);
-        const maxDistance = 100;
-        
-        if (distance < maxDistance) {
-          const pull = (maxDistance - distance) / maxDistance;
-          const moveX = x * pull * 0.3;
-          const moveY = y * pull * 0.3;
-          
-          btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        :root {
+            --preview-blur: 10px;
+            --preview-alpha: 0.5;
+            --preview-border: 0.2;
         }
-      });
-      
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'translate(0, 0)';
-      });
-    });
 
-    // ========== SCROLL REVEAL ANIMATIONS ==========
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
         }
-      });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
-      revealObserver.observe(el);
-    });
-
-    // ========== INTERACTIVE CODE BLOCKS ==========
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const codeBlock = btn.nextElementSibling;
-        const code = codeBlock.textContent;
-        
-        navigator.clipboard.writeText(code).then(() => {
-          const originalText = btn.textContent;
-          btn.textContent = 'Copied!';
-          btn.classList.add('copied');
-          
-          setTimeout(() => {
-            btn.textContent = originalText;
-            btn.classList.remove('copied');
-          }, 2000);
-        });
-      });
-    });
-
-    // ========== INTERACTIVE LIST ITEMS ==========
-    document.querySelectorAll('.glass-list-item').forEach(item => {
-      item.addEventListener('click', () => {
-        // Toggle active state
-        const wasActive = item.classList.contains('active');
-        document.querySelectorAll('.glass-list-item').forEach(i => {
-          i.classList.remove('active');
-        });
-        if (!wasActive) {
-          item.classList.add('active');
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
-        
-        // Ripple effect
-        item.classList.add('ripple');
-        setTimeout(() => {
-          item.classList.remove('ripple');
-        }, 500);
-      });
-    });
 
-    // ========== THEME VARIANTS TOGGLE ==========
-    document.querySelectorAll('.theme-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const theme = btn.dataset.theme;
-        document.body.dataset.theme = theme;
-        
-        document.querySelectorAll('.theme-btn').forEach(b => {
-          b.classList.remove('active');
-        });
-        btn.classList.add('active');
-      });
-    });
-
-    // ========== STICKY NAVIGATION ==========
-    const stickyNav = document.getElementById('stickyNav');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      
-      if (currentScroll > 300) {
-        stickyNav.classList.add('visible');
-      } else {
-        stickyNav.classList.remove('visible');
-      }
-      
-      lastScroll = currentScroll;
-    });
-
-    // ========== SMOOTH SCROLL TO SECTIONS ==========
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+        .content {
+            position: relative;
+            z-index: 1;
         }
-      });
-    });
 
-    // ========== ACTIVE SECTION INDICATOR ==========
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
 
-    function highlightNavigation() {
-      const scrollPos = window.pageYOffset + 100;
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-          navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${sectionId}`) {
-              link.classList.add('active');
+        .hero h1 {
+            font-family: 'Nasalization', sans-serif;
+            font-size: clamp(60px, 12vw, 150px);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px #ffffff,
+                         0 0 20px #ffffff,
+                         0 0 30px #ffffff,
+                         0 0 40px #00f3ff;
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% {
+                text-shadow: 0 0 10px #ffffff,
+                             0 0 20px #ffffff,
+                             0 0 30px #ffffff,
+                             0 0 40px #00f3ff;
             }
-          });
+            50% {
+                text-shadow: 0 0 15px #ffffff,
+                             0 0 30px #ffffff,
+                             0 0 45px #ffffff,
+                             0 0 60px #00f3ff,
+                             0 0 80px #00f3ff;
+            }
         }
-      });
-    }
 
-    window.addEventListener('scroll', highlightNavigation);
-    highlightNavigation();
+        .hero h2 {
+            font-family: 'Exo 2', sans-serif;
+            font-size: clamp(20px, 3vw, 36px);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            opacity: 0.9;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
 
-    // ========== PERFORMANCE OPTIMIZATION ==========
-    // Use will-change on hover for performance
-    document.querySelectorAll('.glass-panel, .philosophy-card, .glass-btn').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        el.style.willChange = 'transform';
-      });
-      
-      el.addEventListener('mouseleave', () => {
-        el.style.willChange = 'auto';
-      });
-    });
-  </script>
+        /* Section Styling */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-family: 'Nasalization', sans-serif;
+            font-size: clamp(32px, 5vw, 48px);
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Glass Card Styling */
+        .glass-card {
+            background: rgba(30, 30, 30, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.2);
+        }
+
+        /* Draggable Cards Gallery */
+        .cards-container {
+            position: relative;
+            min-height: 600px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .draggable-card {
+            cursor: move;
+            user-select: none;
+            padding: 2rem;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .draggable-card.dragging {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(0, 243, 255, 0.4);
+            z-index: 1000;
+        }
+
+        .draggable-card h3 {
+            font-family: 'Nasalization', sans-serif;
+            font-size: 20px;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .draggable-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .card-light {
+            background: rgba(30, 30, 30, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .card-medium {
+            background: rgba(30, 30, 30, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .card-strong {
+            background: rgba(30, 30, 30, 0.5);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .card-ultra {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .card-cyan {
+            background: rgba(0, 243, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-color: rgba(0, 243, 255, 0.3);
+        }
+
+        .card-purple {
+            background: rgba(168, 85, 247, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+
+        /* Button Showcase */
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .button-group h3 {
+            font-family: 'Nasalization', sans-serif;
+            font-size: 18px;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .glass-button {
+            background: rgba(30, 30, 30, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            cursor: pointer;
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+        }
+
+        .glass-button:hover {
+            background: rgba(50, 50, 50, 0.6);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 5px 20px rgba(0, 243, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .glass-button:active {
+            transform: translateY(0);
+        }
+
+        .btn-small {
+            padding: 0.5rem 1.5rem;
+            font-size: 14px;
+        }
+
+        .btn-medium {
+            padding: 0.75rem 2rem;
+            font-size: 16px;
+        }
+
+        .btn-large {
+            padding: 1rem 2.5rem;
+            font-size: 18px;
+        }
+
+        .btn-icon {
+            padding: 0.75rem;
+            font-size: 24px;
+            border-radius: 16px;
+            width: 56px;
+            height: 56px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Live Customization */
+        .customization-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .customization-panel {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .control-group label {
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .control-group input[type="range"] {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .control-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #00f3ff;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        .control-group input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #00f3ff;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            border: none;
+        }
+
+        .preview-panel {
+            background: rgba(30, 30, 30, var(--preview-alpha));
+            backdrop-filter: blur(var(--preview-blur));
+            -webkit-backdrop-filter: blur(var(--preview-blur));
+            border: 1px solid rgba(255, 255, 255, var(--preview-border));
+            border-radius: 25px;
+            padding: 2rem;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .preview-panel h3 {
+            font-family: 'Nasalization', sans-serif;
+            font-size: 24px;
+            margin-bottom: 1rem;
+        }
+
+        /* Toggle Switch */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 22px;
+            height: 22px;
+            background: #fff;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .toggle-switch.active {
+            background: rgba(0, 243, 255, 0.3);
+            border-color: #00f3ff;
+        }
+
+        .toggle-switch.active::after {
+            left: 33px;
+            background: #00f3ff;
+            box-shadow: 0 2px 10px rgba(0, 243, 255, 0.5);
+        }
+
+        /* Checkbox */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            cursor: pointer;
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox.checked {
+            background: rgba(0, 243, 255, 0.3);
+            border-color: #00f3ff;
+        }
+
+        .checkbox.checked::after {
+            content: '✓';
+            color: #00f3ff;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Transparency Demo */
+        .transparency-demo {
+            position: relative;
+            min-height: 600px;
+            background: linear-gradient(135deg, 
+                #667eea 0%, 
+                #764ba2 25%, 
+                #f093fb 50%, 
+                #4facfe 75%, 
+                #00f2fe 100%);
+            border-radius: 25px;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .demo-panel {
+            position: absolute;
+            background: rgba(30, 30, 30, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            cursor: move;
+            user-select: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .demo-panel.dragging {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+        }
+
+        .demo-panel h4 {
+            font-family: 'Nasalization', sans-serif;
+            font-size: 16px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Code Snippet */
+        .code-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .code-block {
+            position: relative;
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .code-header h4 {
+            font-family: 'Nasalization', sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+        }
+
+        .copy-btn {
+            background: rgba(0, 243, 255, 0.2);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            color: #00f3ff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+        }
+
+        .copy-btn.copied {
+            background: rgba(0, 255, 100, 0.3);
+            border-color: rgba(0, 255, 100, 0.5);
+            color: #0f0;
+        }
+
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .code-keyword { color: #ff79c6; }
+        .code-property { color: #8be9fd; }
+        .code-value { color: #50fa7b; }
+        .code-comment { color: #6272a4; font-style: italic; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            opacity: 0.6;
+            font-size: 14px;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 32px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+
+    <div class="content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>DARK GLASS</h1>
+            <h2>A Design System from the Future</h2>
+            <div class="scroll-indicator"></div>
+        </section>
+
+        <!-- Draggable Cards Gallery -->
+        <section id="cards">
+            <h2>INTERACTIVE GLASS CARDS</h2>
+            <p style="text-align: center; opacity: 0.7; margin-bottom: 2rem;">Drag and drop these cards anywhere! Each demonstrates a different blur intensity.</p>
+            <div class="cards-container">
+                <div class="draggable-card card-light">
+                    <h3>LIGHT BLUR</h3>
+                    <p>Subtle glass effect with 5px blur and 30% opacity. Perfect for minimal overlay elements that need to maintain background visibility.</p>
+                </div>
+                <div class="draggable-card card-medium">
+                    <h3>MEDIUM BLUR</h3>
+                    <p>Balanced glass effect with 10px blur and 40% opacity. Ideal for most UI components like cards, modals, and panels.</p>
+                </div>
+                <div class="draggable-card card-strong">
+                    <h3>STRONG BLUR</h3>
+                    <p>Enhanced glass effect with 15px blur and 50% opacity. Great for prominent elements that need more depth and separation.</p>
+                </div>
+                <div class="draggable-card card-ultra">
+                    <h3>ULTRA BLUR</h3>
+                    <p>Maximum glass effect with 20px blur and 60% opacity. Best for hero sections and focal point elements requiring maximum impact.</p>
+                </div>
+                <div class="draggable-card card-cyan">
+                    <h3>CYAN TINTED</h3>
+                    <p>Futuristic cyan-tinted glass with 12px blur. Adds a sci-fi aesthetic perfect for tech-forward designs and digital interfaces.</p>
+                </div>
+                <div class="draggable-card card-purple">
+                    <h3>PURPLE TINTED</h3>
+                    <p>Elegant purple-tinted glass with 12px blur. Creates a premium, luxurious feel ideal for creative and artistic applications.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Button Showcase -->
+        <section id="buttons">
+            <h2>BUTTON SHOWCASE</h2>
+            <div class="buttons-grid">
+                <div class="button-group">
+                    <h3>SMALL BUTTONS</h3>
+                    <button class="glass-button btn-small">Click Me</button>
+                    <button class="glass-button btn-small">Action</button>
+                    <button class="glass-button btn-small">Submit</button>
+                </div>
+                <div class="button-group">
+                    <h3>MEDIUM BUTTONS</h3>
+                    <button class="glass-button btn-medium">Get Started</button>
+                    <button class="glass-button btn-medium">Learn More</button>
+                    <button class="glass-button btn-medium">Contact Us</button>
+                </div>
+                <div class="button-group">
+                    <h3>LARGE BUTTONS</h3>
+                    <button class="glass-button btn-large">Download Now</button>
+                    <button class="glass-button btn-large">Start Free Trial</button>
+                </div>
+                <div class="button-group">
+                    <h3>ICON BUTTONS</h3>
+                    <div style="display: flex; gap: 1rem;">
+                        <button class="glass-button btn-icon">⚙️</button>
+                        <button class="glass-button btn-icon">🔍</button>
+                        <button class="glass-button btn-icon">❤️</button>
+                        <button class="glass-button btn-icon">🚀</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Customization -->
+        <section id="customization">
+            <h2>LIVE CUSTOMIZATION</h2>
+            <div class="customization-panel">
+                <div class="controls">
+                    <div class="control-group">
+                        <label>
+                            <span>Blur Intensity</span>
+                            <span id="blur-value">10px</span>
+                        </label>
+                        <input type="range" id="blur-slider" min="5" max="30" value="10" step="1">
+                    </div>
+                    <div class="control-group">
+                        <label>
+                            <span>Transparency</span>
+                            <span id="alpha-value">0.50</span>
+                        </label>
+                        <input type="range" id="alpha-slider" min="0.05" max="0.9" value="0.5" step="0.05">
+                    </div>
+                    <div class="control-group">
+                        <label>
+                            <span>Border Opacity</span>
+                            <span id="border-value">0.20</span>
+                        </label>
+                        <input type="range" id="border-slider" min="0.1" max="0.5" value="0.2" step="0.05">
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <h4 style="margin-bottom: 1rem; font-family: 'Nasalization', sans-serif;">Toggle Switches</h4>
+                        <div class="toggle-container">
+                            <div class="toggle-switch" data-toggle="1"></div>
+                            <span>Enable Feature A</span>
+                        </div>
+                        <div class="toggle-container">
+                            <div class="toggle-switch" data-toggle="2"></div>
+                            <span>Enable Feature B</span>
+                        </div>
+                        <div class="toggle-container">
+                            <div class="toggle-switch active" data-toggle="3"></div>
+                            <span>Enable Feature C</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <h4 style="margin-bottom: 1rem; font-family: 'Nasalization', sans-serif;">Checkboxes</h4>
+                        <div class="checkbox-container">
+                            <div class="checkbox" data-checkbox="1"></div>
+                            <span>Option One</span>
+                        </div>
+                        <div class="checkbox-container">
+                            <div class="checkbox checked" data-checkbox="2"></div>
+                            <span>Option Two</span>
+                        </div>
+                        <div class="checkbox-container">
+                            <div class="checkbox" data-checkbox="3"></div>
+                            <span>Option Three</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-panel">
+                    <h3>LIVE PREVIEW</h3>
+                    <p>Adjust the sliders to see real-time changes to the glass effect. This panel updates instantly as you move the controls.</p>
+                    <p style="margin-top: 1rem; opacity: 0.7;">Experiment with different combinations to find your perfect glass aesthetic!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transparency Demo -->
+        <section id="transparency">
+            <h2>LIVE TRANSPARENCY DEMO</h2>
+            <p style="text-align: center; opacity: 0.7; margin-bottom: 2rem;">Drag these glass panels over the colorful background to see how the blur and transparency effects work!</p>
+            <div class="transparency-demo">
+                <div class="demo-panel" style="top: 50px; left: 50px; width: 200px;">
+                    <h4>Panel Alpha</h4>
+                    <p style="font-size: 14px; opacity: 0.8;">Drag me around!</p>
+                </div>
+                <div class="demo-panel" style="top: 150px; right: 50px; width: 220px;">
+                    <h4>Panel Beta</h4>
+                    <p style="font-size: 14px; opacity: 0.8;">See the blur effect!</p>
+                </div>
+                <div class="demo-panel" style="bottom: 50px; left: 100px; width: 200px;">
+                    <h4>Panel Gamma</h4>
+                    <p style="font-size: 14px; opacity: 0.8;">Move me too!</p>
+                </div>
+                <div class="demo-panel" style="top: 50%; right: 100px; width: 180px;">
+                    <h4>Panel Delta</h4>
+                    <p style="font-size: 14px; opacity: 0.8;">I'm draggable!</p>
+                </div>
+                <div class="demo-panel" style="bottom: 120px; right: 50%; width: 200px;">
+                    <h4>Panel Epsilon</h4>
+                    <p style="font-size: 14px; opacity: 0.8;">Try dragging me!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Snippets -->
+        <section id="code">
+            <h2>CODE SNIPPETS</h2>
+            <div class="code-section">
+                <div class="code-block">
+                    <div class="code-header">
+                        <h4>GLASS CARD CSS</h4>
+                        <button class="copy-btn" data-copy="1">COPY</button>
+                    </div>
+                    <pre><code><span class="code-comment">/* Perfect Glass Card Effect */</span>
+<span class="code-keyword">.glass-card</span> {
+  <span class="code-property">background</span>: <span class="code-value">rgba(30, 30, 30, 0.5)</span>;
+  <span class="code-property">backdrop-filter</span>: <span class="code-value">blur(10px)</span>;
+  <span class="code-property">-webkit-backdrop-filter</span>: <span class="code-value">blur(10px)</span>;
+  <span class="code-property">border</span>: <span class="code-value">1px solid rgba(255, 255, 255, 0.1)</span>;
+  <span class="code-property">border-radius</span>: <span class="code-value">25px</span>;
+  <span class="code-property">padding</span>: <span class="code-value">2rem</span>;
+  <span class="code-property">transition</span>: <span class="code-value">all 0.3s ease</span>;
+}
+
+<span class="code-keyword">.glass-card:hover</span> {
+  <span class="code-property">border-color</span>: <span class="code-value">rgba(255, 255, 255, 0.2)</span>;
+  <span class="code-property">transform</span>: <span class="code-value">translateY(-5px)</span>;
+  <span class="code-property">box-shadow</span>: <span class="code-value">0 10px 40px rgba(0, 243, 255, 0.2)</span>;
+}</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <h4>GLASS BUTTON CSS</h4>
+                        <button class="copy-btn" data-copy="2">COPY</button>
+                    </div>
+                    <pre><code><span class="code-comment">/* Sleek Glass Button */</span>
+<span class="code-keyword">.glass-button</span> {
+  <span class="code-property">background</span>: <span class="code-value">rgba(30, 30, 30, 0.5)</span>;
+  <span class="code-property">backdrop-filter</span>: <span class="code-value">blur(10px)</span>;
+  <span class="code-property">-webkit-backdrop-filter</span>: <span class="code-value">blur(10px)</span>;
+  <span class="code-property">border</span>: <span class="code-value">1px solid rgba(255, 255, 255, 0.2)</span>;
+  <span class="code-property">border-radius</span>: <span class="code-value">50px</span>;
+  <span class="code-property">color</span>: <span class="code-value">#fff</span>;
+  <span class="code-property">padding</span>: <span class="code-value">0.75rem 2rem</span>;
+  <span class="code-property">cursor</span>: <span class="code-value">pointer</span>;
+  <span class="code-property">transition</span>: <span class="code-value">all 0.3s ease</span>;
+}
+
+<span class="code-keyword">.glass-button:hover</span> {
+  <span class="code-property">background</span>: <span class="code-value">rgba(50, 50, 50, 0.6)</span>;
+  <span class="code-property">box-shadow</span>: <span class="code-value">0 5px 20px rgba(0, 243, 255, 0.3)</span>;
+  <span class="code-property">transform</span>: <span class="code-value">translateY(-2px)</span>;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>DARK GLASS © 2024 - Designed for the Future</p>
+            <p style="margin-top: 0.5rem;">Made with ✨ and cutting-edge web technologies</p>
+        </footer>
+    </div>
+
+    <script>
+        // ============================================
+        // STARFIELD ANIMATION
+        // ============================================
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        const starCount = 200; // Reduced for better performance
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initStars();
+        }
+
+        function initStars() {
+            stars = [];
+            for (let i = 0; i < starCount; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 1.5,
+                    opacity: Math.random(),
+                    twinkleSpeed: Math.random() * 0.02 + 0.01,
+                    twinkleDirection: Math.random() > 0.5 ? 1 : -1
+                });
+            }
+        }
+
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            stars.forEach(star => {
+                star.opacity += star.twinkleSpeed * star.twinkleDirection;
+                
+                if (star.opacity <= 0 || star.opacity >= 1) {
+                    star.twinkleDirection *= -1;
+                }
+                
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                ctx.fill();
+            });
+            
+            requestAnimationFrame(animateStars);
+        }
+
+        // Use debounced resize for performance
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(resizeCanvas, 150);
+        });
+        
+        resizeCanvas();
+        animateStars();
+
+        // ============================================
+        // DRAG AND DROP FUNCTIONALITY
+        // ============================================
+        function makeDraggable(element) {
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            let isDragging = false;
+
+            element.addEventListener('mousedown', dragMouseDown);
+            element.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+            function dragMouseDown(e) {
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                isDragging = true;
+                element.classList.add('dragging');
+                document.addEventListener('mouseup', closeDragElement);
+                document.addEventListener('mousemove', elementDrag);
+            }
+
+            function dragTouchStart(e) {
+                e.preventDefault();
+                const touch = e.touches[0];
+                pos3 = touch.clientX;
+                pos4 = touch.clientY;
+                isDragging = true;
+                element.classList.add('dragging');
+                document.addEventListener('touchend', closeDragElement);
+                document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+            }
+
+            function elementDrag(e) {
+                if (!isDragging) return;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                moveElement();
+            }
+
+            function elementTouchDrag(e) {
+                if (!isDragging) return;
+                e.preventDefault();
+                const touch = e.touches[0];
+                pos1 = pos3 - touch.clientX;
+                pos2 = pos4 - touch.clientY;
+                pos3 = touch.clientX;
+                pos4 = touch.clientY;
+                moveElement();
+            }
+
+            function moveElement() {
+                let newTop = element.offsetTop - pos2;
+                let newLeft = element.offsetLeft - pos1;
+
+                // Keep within viewport bounds
+                const maxX = window.innerWidth - element.offsetWidth - 20;
+                const maxY = window.innerHeight - element.offsetHeight - 20;
+                
+                newLeft = Math.max(20, Math.min(newLeft, maxX));
+                newTop = Math.max(20, Math.min(newTop, maxY));
+
+                element.style.position = 'fixed';
+                element.style.top = newTop + "px";
+                element.style.left = newLeft + "px";
+            }
+
+            function closeDragElement() {
+                isDragging = false;
+                element.classList.remove('dragging');
+                document.removeEventListener('mouseup', closeDragElement);
+                document.removeEventListener('mousemove', elementDrag);
+                document.removeEventListener('touchend', closeDragElement);
+                document.removeEventListener('touchmove', elementTouchDrag);
+            }
+        }
+
+        // Make all draggable cards draggable
+        document.querySelectorAll('.draggable-card').forEach(card => {
+            makeDraggable(card);
+        });
+
+        // Make all demo panels draggable
+        document.querySelectorAll('.demo-panel').forEach(panel => {
+            makeDraggable(panel);
+        });
+
+        // ============================================
+        // LIVE CUSTOMIZATION SLIDERS
+        // ============================================
+        const blurSlider = document.getElementById('blur-slider');
+        const alphaSlider = document.getElementById('alpha-slider');
+        const borderSlider = document.getElementById('border-slider');
+        const blurValue = document.getElementById('blur-value');
+        const alphaValue = document.getElementById('alpha-value');
+        const borderValue = document.getElementById('border-value');
+        const previewPanel = document.querySelector('.preview-panel');
+
+        blurSlider.addEventListener('input', (e) => {
+            const value = e.target.value;
+            blurValue.textContent = value + 'px';
+            previewPanel.style.setProperty('--preview-blur', value + 'px');
+        });
+
+        alphaSlider.addEventListener('input', (e) => {
+            const value = parseFloat(e.target.value);
+            alphaValue.textContent = value.toFixed(2);
+            previewPanel.style.setProperty('--preview-alpha', value);
+        });
+
+        borderSlider.addEventListener('input', (e) => {
+            const value = parseFloat(e.target.value);
+            borderValue.textContent = value.toFixed(2);
+            previewPanel.style.setProperty('--preview-border', value);
+        });
+
+        // ============================================
+        // TOGGLE SWITCHES
+        // ============================================
+        document.querySelectorAll('.toggle-switch').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('active');
+            });
+        });
+
+        // ============================================
+        // CHECKBOXES
+        // ============================================
+        document.querySelectorAll('.checkbox-container').forEach(container => {
+            const checkbox = container.querySelector('.checkbox');
+            container.addEventListener('click', () => {
+                checkbox.classList.toggle('checked');
+            });
+        });
+
+        // ============================================
+        // COPY TO CLIPBOARD
+        // ============================================
+        const codeSnippets = {
+            1: `.glass-card {
+  background: rgba(30, 30, 30, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(0, 243, 255, 0.2);
+}`,
+            2: `.glass-button {
+  background: rgba(30, 30, 30, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  color: #fff;
+  padding: 0.75rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.glass-button:hover {
+  background: rgba(50, 50, 50, 0.6);
+  box-shadow: 0 5px 20px rgba(0, 243, 255, 0.3);
+  transform: translateY(-2px);
+}`
+        };
+
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.getAttribute('data-copy');
+                const code = codeSnippets[id];
+                
+                navigator.clipboard.writeText(code).then(() => {
+                    btn.textContent = 'COPIED!';
+                    btn.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        btn.textContent = 'COPY';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        });
+
+        // ============================================
+        // SMOOTH SCROLL
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Button click animations
+        document.querySelectorAll('.glass-button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 100);
+            });
+        });
+    </script>
 </body>
 </html>

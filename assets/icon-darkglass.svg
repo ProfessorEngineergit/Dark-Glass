@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Dark Glass">
+  <defs>
+    <linearGradient id="bg" x1="24" y1="14" x2="231" y2="241"><stop stop-color="#19283b"/><stop offset=".5" stop-color="#090d16"/><stop offset="1" stop-color="#03050a"/></linearGradient>
+    <linearGradient id="edge" x1="63" y1="48" x2="197" y2="208"><stop stop-color="#5ee7ff"/><stop offset=".52" stop-color="#8b7cff"/><stop offset="1" stop-color="#ff6ad5"/></linearGradient>
+    <linearGradient id="face" x1="74" y1="61" x2="176" y2="198"><stop stop-color="#fff" stop-opacity=".2"/><stop offset=".42" stop-color="#5ee7ff" stop-opacity=".06"/><stop offset="1" stop-color="#05070d" stop-opacity=".44"/></linearGradient>
+    <filter id="glow" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="256" height="256" rx="58" fill="url(#bg)"/>
+  <rect x="1" y="1" width="254" height="254" rx="57" fill="none" stroke="#fff" stroke-opacity=".13" stroke-width="2"/>
+  <path d="m128 48 67 39v79l-67 42-67-42V87l67-39Z" fill="none" stroke="#5ee7ff" stroke-opacity=".16" stroke-width="16" filter="url(#glow)"/>
+  <path d="m128 48 67 39v79l-67 42-67-42V87l67-39Z" fill="url(#face)" stroke="url(#edge)" stroke-width="3"/>
+  <path d="m61 87 67 42 67-42M128 129v79" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="2"/>
+  <path d="m79 97 49-30 49 30-49 31-49-31Z" fill="#fff" fill-opacity=".055" stroke="#fff" stroke-opacity=".12"/>
+  <path d="m82 151 46 28 46-28" fill="none" stroke="url(#edge)" stroke-opacity=".68" stroke-width="2"/>
+  <circle cx="83" cy="102" r="4" fill="#5ee7ff" filter="url(#glow)"/><circle cx="174" cy="151" r="4" fill="#ff6ad5" filter="url(#glow)"/><circle cx="128" cy="179" r="4" fill="#8b7cff" filter="url(#glow)"/>
+</svg>

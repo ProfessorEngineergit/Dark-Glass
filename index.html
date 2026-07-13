@@ -1,183 +1,415 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-accent="aurora">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DARK GLASS - Design System from the Future</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070d">
+  <meta name="description" content="Dark Glass 2.0 — an optical interface material and production-ready component system.">
+  <meta property="og:title" content="Dark Glass 2.0 — Interface Material">
+  <meta property="og:description" content="A spatial interface material for precise software, science and engineering products.">
+  <meta property="og:type" content="website">
+  <title>Dark Glass 2.0 — Interface Material</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dark-glass.css">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
-    <!-- Terminal Loading Screen -->
-    <div class="terminal-loading">
-        <div id="terminal-lines"></div>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <div class="world" aria-hidden="true">
+    <div class="world__grid"></div>
+    <div class="world__orb world__orb--cyan"></div>
+    <div class="world__orb world__orb--violet"></div>
+    <div class="world__orb world__orb--warm"></div>
+    <div class="world__noise"></div>
+  </div>
+
+  <header class="site-header dg-glass dg-glass--quiet" data-site-header>
+    <a class="brand-lockup" href="#top" aria-label="Dark Glass home">
+      <img src="assets/icon-darkglass.svg" alt="" width="36" height="36">
+      <span class="brand-lockup__text">
+        <strong>Dark Glass</strong>
+        <small>Interface material / 2.0</small>
+      </span>
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+      <a href="#material">Material</a>
+      <a href="#components">Components</a>
+      <a href="#products">Products</a>
+      <a href="#brand">Brand</a>
+      <a href="#tokens">Tokens</a>
+    </nav>
+
+    <div class="site-header__actions">
+      <a class="dg-button dg-button--quiet dg-button--sm header-github" href="https://github.com/ProfessorEngineergit/Dark-Glass" aria-label="Open Dark Glass on GitHub">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2.75a9.25 9.25 0 0 0-2.93 18.03c.46.08.63-.2.63-.45v-1.8c-2.56.56-3.1-1.08-3.1-1.08-.42-1.06-1.02-1.34-1.02-1.34-.83-.57.06-.56.06-.56.92.07 1.4.95 1.4.95.82 1.4 2.15 1 2.68.77.08-.6.32-1 .58-1.23-2.04-.23-4.19-1.02-4.19-4.57 0-1.01.36-1.84.95-2.49-.1-.23-.41-1.17.09-2.45 0 0 .78-.25 2.54.95A8.8 8.8 0 0 1 12 7.16a8.8 8.8 0 0 1 2.31.31c1.77-1.2 2.54-.95 2.54-.95.5 1.28.19 2.22.1 2.45.59.65.95 1.48.95 2.49 0 3.56-2.16 4.33-4.21 4.56.33.29.62.85.62 1.71v2.6c0 .25.17.54.63.45A9.25 9.25 0 0 0 12 2.75Z"/></svg>
+        <span>GitHub</span>
+      </a>
+      <button class="menu-toggle dg-icon-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7.5h16M4 12h16M4 16.5h16"/></svg>
+      </button>
     </div>
+  </header>
 
-    <!-- Space Background -->
-    <div class="space-background"></div>
-
-    <!-- Background Image Overlay -->
-    <div class="background-overlay"></div>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1 class="hero-title scramble-text glitch">DARK GLASS</h1>
-            <p class="hero-subtitle scramble-text">A Design System from the Future</p>
-            <div class="flex-center mt-2">
-                <button class="glass-button">EXPLORE</button>
-                <button class="glass-button">LEARN MORE</button>
-            </div>
-        </section>
-
-        <!-- Showcase Section -->
-        <section class="showcase-section">
-            <h2 class="showcase-title scramble-text">EXPERIENCE GLASSMORPHISM</h2>
-            
-            <div class="info-panel glass-panel">
-                <h3 class="panel-header">What is Dark Glass?</h3>
-                <div class="panel-content">
-                    <p>Dark Glass is a cutting-edge design system that combines the elegance of glassmorphism with the mystery of the cosmos. Featuring semi-transparent backgrounds, backdrop blur effects, and interactive elements that respond to your every move.</p>
-                    <p class="mt-2"><strong>Key Features:</strong></p>
-                    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
-                        <li>🌌 Space-themed aesthetics</li>
-                        <li>✨ Glassmorphism effects with backdrop blur</li>
-                        <li>🎯 Fully draggable interface elements</li>
-                        <li>⚡ Intensive hover and interaction effects</li>
-                        <li>🎨 Terminal-inspired loading experience</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Draggable Panels Section -->
-        <section class="showcase-section">
-            <h2 class="showcase-title scramble-text">DRAG & EXPLORE</h2>
-            <p class="text-center" style="opacity: 0.8; margin-bottom: 2rem; font-size: 18px;">
-                Click and drag the panels below to see the blur effects in action
-            </p>
-        </section>
-    </div>
-
-    <!-- Draggable Glass Panels -->
-    <div class="draggable-panel glass-panel" style="opacity: 0; transform: scale(0.8); transition: all 0.5s ease;">
-        <h3 class="panel-header">Panel Alpha</h3>
-        <div class="panel-content">
-            <p>This panel demonstrates the glassmorphism effect. Drag it around to see how the backdrop blur creates a frosted glass appearance over the background.</p>
-            <button class="glass-button mt-2" style="padding: 0.5rem 1.5rem; font-size: 14px;">INTERACT</button>
+  <main id="content">
+    <section class="hero section" id="top">
+      <div class="hero__copy reveal">
+        <div class="dg-kicker"><span class="dg-status-dot"></span> Interface material / brand system / component library</div>
+        <h1>Make software feel<br><span class="aurora-text">engineered from light.</span></h1>
+        <p class="hero__lede">Dark Glass is a visual operating system for ambitious products — precise enough for scientific tools, dimensional enough to make every app memorable.</p>
+        <div class="hero__actions">
+          <a class="dg-button dg-button--primary dg-button--lg" href="#components">
+            Explore the system
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg>
+          </a>
+          <a class="dg-button dg-button--secondary dg-button--lg" href="#starter">Use the material</a>
         </div>
-    </div>
+        <dl class="hero__metrics" aria-label="Dark Glass system metrics">
+          <div><dt>05</dt><dd>material depths</dd></div>
+          <div><dt>28</dt><dd>component patterns</dd></div>
+          <div><dt>01</dt><dd>recognizable language</dd></div>
+        </dl>
+      </div>
 
-    <div class="draggable-panel glass-panel" style="opacity: 0; transform: scale(0.8); transition: all 0.5s ease;">
-        <h3 class="panel-header">Panel Beta</h3>
-        <div class="panel-content">
-            <p>Notice the subtle border and shadow effects. The glass panels maintain readability while allowing the background to shine through with beautiful blur.</p>
-            <button class="glass-button mt-2" style="padding: 0.5rem 1.5rem; font-size: 14px;">CLICK ME</button>
+      <div class="hero__stage reveal" data-tilt-stage>
+        <div class="app-canvas dg-glass dg-glass--hero dg-glow" data-glow>
+          <div class="app-canvas__bar">
+            <div class="window-controls" aria-hidden="true"><i></i><i></i><i></i></div>
+            <span>Dark Glass / product constellation</span>
+            <span class="system-live"><i></i> live</span>
+          </div>
+
+          <div class="constellation" aria-label="Dark Glass product constellation">
+            <div class="orbit orbit--one" aria-hidden="true"></div>
+            <div class="orbit orbit--two" aria-hidden="true"></div>
+            <article class="app-object app-object--looksmith">
+              <img src="assets/icon-looksmith.svg" alt="Looksmith app icon">
+              <div><strong>Looksmith</strong><span>visual engineering</span></div>
+            </article>
+            <article class="app-object app-object--caelum">
+              <img src="assets/icon-caelum.svg" alt="Caelum app icon">
+              <div><strong>Caelum</strong><span>orbital ambience</span></div>
+            </article>
+            <article class="app-object app-object--labeler">
+              <img src="assets/icon-openimagelabeler.svg" alt="OpenImageLabeler app icon">
+              <div><strong>OpenImageLabeler</strong><span>dataset tooling</span></div>
+            </article>
+            <article class="app-object app-object--glass">
+              <img src="assets/icon-darkglass.svg" alt="Dark Glass app icon">
+              <div><strong>Dark Glass</strong><span>interface material</span></div>
+            </article>
+            <div class="constellation__core" aria-hidden="true">
+              <span></span>
+            </div>
+          </div>
+
+          <div class="app-canvas__command dg-glass dg-glass--raised">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>
+            <span><strong>One material.</strong> Distinct product identities.</span>
+            <kbd>⌘ K</kbd>
+          </div>
         </div>
+        <p class="stage-caption"><span>01</span> Apps as crafted objects, floating inside one coherent spatial world.</p>
+      </div>
+    </section>
+
+    <div class="signal-strip" aria-label="Brand principles">
+      <div><span>OBSIDIAN</span><i></i><span>OPTICAL DEPTH</span><i></i><span>SCIENTIFIC PRECISION</span><i></i><span>HUMAN CONTROL</span><i></i><span>POINTER LIGHT</span></div>
     </div>
 
-    <div class="draggable-panel glass-panel" style="opacity: 0; transform: scale(0.8); transition: all 0.5s ease;">
-        <h3 class="panel-header">Panel Gamma</h3>
-        <div class="panel-content">
-            <p>Hover effects intensify the visual experience. Each interaction creates a sense of depth and dimension in the flat digital space.</p>
-            <div class="flex-center mt-2">
-                <button class="glass-button" style="padding: 0.5rem 1.5rem; font-size: 14px;">ACTION</button>
-            </div>
+    <section class="section principles" id="system">
+      <div class="section-heading reveal">
+        <div><span class="section-index">01 / System</span><h2>Not glassmorphism.<br>A material with rules.</h2></div>
+        <p>Decoration becomes a brand only when it is repeatable. Dark Glass defines the geometry, optical behavior, hierarchy and motion shared by every interface in the system.</p>
+      </div>
+
+      <div class="principle-grid">
+        <article class="principle-card dg-glass dg-glow reveal" data-glow>
+          <span class="principle-card__number">01</span>
+          <div class="principle-card__glyph glyph-depth" aria-hidden="true"><i></i><i></i><i></i></div>
+          <h3>Depth communicates role</h3>
+          <p>Quiet surfaces organize. Raised surfaces invite. Luminous surfaces focus. Blur is hierarchy, never wallpaper.</p>
+        </article>
+        <article class="principle-card dg-glass dg-glow reveal" data-glow>
+          <span class="principle-card__number">02</span>
+          <div class="principle-card__glyph glyph-light" aria-hidden="true"><i></i></div>
+          <h3>Light follows intent</h3>
+          <p>Edges brighten exactly where the pointer approaches. The material acknowledges attention before a click.</p>
+        </article>
+        <article class="principle-card dg-glass dg-glow reveal" data-glow>
+          <span class="principle-card__number">03</span>
+          <div class="principle-card__glyph glyph-grid" aria-hidden="true"><i></i></div>
+          <h3>Precision remains visible</h3>
+          <p>Measured spacing, restrained radii and monospaced metadata keep expressive visuals credible.</p>
+        </article>
+        <article class="principle-card dg-glass dg-glow reveal" data-glow>
+          <span class="principle-card__number">04</span>
+          <div class="principle-card__glyph glyph-motion" aria-hidden="true"><i></i><i></i></div>
+          <h3>Motion proves physics</h3>
+          <p>Elements accelerate quickly and settle softly. Nothing glitches, blocks or performs without purpose.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section material" id="material">
+      <div class="section-heading reveal">
+        <div><span class="section-index">02 / Material</span><h2>Five depths.<br>One optical logic.</h2></div>
+        <p>Each level changes fill, saturation, blur and edge intensity together. That keeps a dense engineering interface legible without turning it into a wall of rectangles.</p>
+      </div>
+
+      <div class="material-scale reveal">
+        <article class="material-sample material-sample--air dg-glow" data-glow>
+          <span>00 / Air</span><strong>Ambient structure</strong><small>0% fill · no blur</small>
+        </article>
+        <article class="material-sample material-sample--quiet dg-glass dg-glass--quiet dg-glow" data-glow>
+          <span>01 / Quiet</span><strong>Navigation & grouping</strong><small>4% fill · 16px blur</small>
+        </article>
+        <article class="material-sample dg-glass dg-glow" data-glow>
+          <span>02 / Base</span><strong>Cards & controls</strong><small>6% fill · 24px blur</small>
+        </article>
+        <article class="material-sample dg-glass dg-glass--raised dg-glow" data-glow>
+          <span>03 / Raised</span><strong>Menus & inspectors</strong><small>8% fill · 32px blur</small>
+        </article>
+        <article class="material-sample material-sample--focus dg-glass dg-glass--focus dg-glow" data-glow>
+          <span>04 / Focus</span><strong>Active decisions</strong><small>10% fill · 40px blur</small>
+        </article>
+      </div>
+
+      <div class="material-lab dg-glass dg-glass--raised reveal">
+        <div class="material-lab__controls">
+          <span class="section-index">Live material lab</span>
+          <h3>Tune the surface,<br>keep the physics.</h3>
+          <p>The defaults are the standard. The lab shows how fill, blur and radius work as a coordinated material.</p>
+
+          <label class="dg-range-field" for="lab-blur">
+            <span>Backdrop blur <output data-blur-output>24px</output></span>
+            <input id="lab-blur" type="range" min="8" max="48" value="24" step="1" data-lab-blur>
+          </label>
+          <label class="dg-range-field" for="lab-fill">
+            <span>Surface fill <output data-fill-output>6%</output></span>
+            <input id="lab-fill" type="range" min="2" max="16" value="6" step="1" data-lab-fill>
+          </label>
+          <label class="dg-range-field" for="lab-radius">
+            <span>Corner radius <output data-radius-output>18px</output></span>
+            <input id="lab-radius" type="range" min="8" max="32" value="18" step="1" data-lab-radius>
+          </label>
+
+          <div class="accent-picker" aria-label="Choose interface accent">
+            <button type="button" class="accent-chip is-active" data-accent-choice="aurora" aria-label="Aurora accent"><i></i>Aurora</button>
+            <button type="button" class="accent-chip" data-accent-choice="cyan" aria-label="Cyan accent"><i></i>Cyan</button>
+            <button type="button" class="accent-chip" data-accent-choice="mint" aria-label="Mint accent"><i></i>Mint</button>
+          </div>
         </div>
-    </div>
 
-    <div class="draggable-panel glass-panel" style="opacity: 0; transform: scale(0.8); transition: all 0.5s ease;">
-        <h3 class="panel-header">Panel Delta</h3>
-        <div class="panel-content">
-            <p>The Dark Glass design system brings together modern aesthetics with functional interactivity. Every element is crafted for both beauty and usability.</p>
-            <button class="glass-button mt-2" style="padding: 0.5rem 1.5rem; font-size: 14px;">DISCOVER</button>
+        <div class="material-lab__viewport">
+          <div class="lab-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="lab-panel dg-glow" data-lab-panel data-glow>
+            <div class="lab-panel__header"><span><i></i>OPTICAL SENSOR / A-17</span><button class="dg-icon-button dg-icon-button--sm" aria-label="More sensor options"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></button></div>
+            <div class="sensor-readout">
+              <div><span>WAVELENGTH</span><strong>5.82<small>nm</small></strong></div>
+              <div><span>PHASE</span><strong>+0.04<small>rad</small></strong></div>
+            </div>
+            <div class="waveform" aria-hidden="true"><svg viewBox="0 0 440 86" preserveAspectRatio="none"><defs><linearGradient id="wave-gradient" x1="0" x2="1"><stop stop-color="#5ee7ff"/><stop offset=".5" stop-color="#8b7cff"/><stop offset="1" stop-color="#ff6ad5"/></linearGradient></defs><path d="M0 46 C24 46 28 17 51 17 S79 71 105 71 133 32 157 32 181 55 204 55 232 9 260 9 286 73 314 73 343 28 369 28 392 49 440 49" fill="none" stroke="url(#wave-gradient)" stroke-width="2"/></svg></div>
+            <div class="lab-panel__footer"><span class="dg-badge dg-badge--success">Stable</span><button class="dg-button dg-button--primary dg-button--sm">Calibrate</button></div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section components" id="components">
+      <div class="section-heading reveal">
+        <div><span class="section-index">03 / Components</span><h2>Standard parts.<br>Signature behavior.</h2></div>
+        <p>The recurring controls below are ready to copy into products. Every state uses the same spacing, focus treatment, motion curve and pointer-reactive edge.</p>
+      </div>
+
+      <div class="component-workbench dg-glass dg-glass--quiet reveal">
+        <div class="workbench-tabs" role="tablist" aria-label="Component categories">
+          <button role="tab" aria-selected="true" aria-controls="panel-buttons" id="tab-buttons" data-component-tab="buttons">Buttons</button>
+          <button role="tab" aria-selected="false" aria-controls="panel-navigation" id="tab-navigation" data-component-tab="navigation">Menus</button>
+          <button role="tab" aria-selected="false" aria-controls="panel-inputs" id="tab-inputs" data-component-tab="inputs">Inputs</button>
+          <button role="tab" aria-selected="false" aria-controls="panel-feedback" id="tab-feedback" data-component-tab="feedback">Feedback</button>
+        </div>
+
+        <div class="workbench-panel" id="panel-buttons" role="tabpanel" aria-labelledby="tab-buttons" data-component-panel="buttons">
+          <div class="component-spec">
+            <span class="component-spec__label">Action hierarchy</span>
+            <div class="component-row">
+              <button class="dg-button dg-button--primary" data-glow>Primary action</button>
+              <button class="dg-button dg-button--secondary" data-glow>Secondary</button>
+              <button class="dg-button dg-button--quiet" data-glow>Quiet</button>
+              <button class="dg-button dg-button--danger" data-glow>Destructive</button>
+              <button class="dg-button dg-button--secondary" disabled>Disabled</button>
+            </div>
+          </div>
+          <div class="component-spec component-spec--split">
+            <div><span class="component-spec__label">Sizes</span><div class="component-row component-row--end"><button class="dg-button dg-button--primary dg-button--sm">Small</button><button class="dg-button dg-button--primary">Default</button><button class="dg-button dg-button--primary dg-button--lg">Large</button></div></div>
+            <div><span class="component-spec__label">Icon controls</span><div class="component-row"><button class="dg-icon-button" aria-label="Add item"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button><button class="dg-icon-button" aria-label="Favorite"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg></button><button class="dg-icon-button dg-icon-button--accent" aria-label="Run"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7V5Z"/></svg></button></div></div>
+          </div>
+          <aside class="usage-note"><span>RULE</span><p>One primary action per decision area. Use sentence case. Reserve danger red for irreversible outcomes.</p></aside>
+        </div>
+
+        <div class="workbench-panel" id="panel-navigation" role="tabpanel" aria-labelledby="tab-navigation" data-component-panel="navigation" hidden>
+          <div class="navigation-demo">
+            <div class="command-menu dg-glass dg-glass--raised dg-glow" data-glow>
+              <div class="command-search"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg><span>Search commands</span><kbd>⌘ K</kbd></div>
+              <div class="menu-group"><span>Workspace</span><button><i class="menu-icon menu-icon--cyan"></i>New experiment<kbd>N</kbd></button><button><i class="menu-icon menu-icon--violet"></i>Open inspector<kbd>I</kbd></button><button><i class="menu-icon menu-icon--mint"></i>Export result<kbd>E</kbd></button></div>
+              <div class="menu-group"><span>System</span><button><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 2.5"/></svg>Activity history</button><button><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="m19 13.5 1.2 1-.9 2-1.6-.1-1.2 1.2.1 1.6-2 .9-1-1.2h-1.7l-1 1.2-2-.9.1-1.6-1.2-1.2-1.6.1-.9-2 1.2-1v-1.7l-1.2-1 .9-2 1.6.1L9 7.7l-.1-1.6 2-.9 1 1.2h1.7l1-1.2 2 .9-.1 1.6 1.2 1.2 1.6-.1.9 2-1.2 1v1.7Z"/></svg>Preferences</button></div>
+            </div>
+            <div class="navigation-patterns">
+              <div><span class="component-spec__label">Segmented control</span><div class="dg-segmented" role="group" aria-label="View mode"><button class="is-active">Visual</button><button>Data</button><button>Code</button></div></div>
+              <div><span class="component-spec__label">Breadcrumb</span><nav class="dg-breadcrumb" aria-label="Breadcrumb"><a href="#components">Projects</a><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg><a href="#components">Caelum</a><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg><span>Atmosphere</span></nav></div>
+              <div><span class="component-spec__label">Compact toolbar</span><div class="dg-toolbar"><button class="dg-icon-button dg-icon-button--sm" aria-label="Undo"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 7-5 5 5 5"/><path d="M4 12h9a6 6 0 0 1 6 6"/></svg></button><button class="dg-icon-button dg-icon-button--sm" aria-label="Redo"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 7 5 5-5 5"/><path d="M20 12h-9a6 6 0 0 0-6 6"/></svg></button><i></i><button class="dg-button dg-button--quiet dg-button--sm">Preview</button><button class="dg-button dg-button--primary dg-button--sm">Publish</button></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="workbench-panel" id="panel-inputs" role="tabpanel" aria-labelledby="tab-inputs" data-component-panel="inputs" hidden>
+          <form class="input-demo" action="#components" onsubmit="return false">
+            <label class="dg-field"><span>Experiment name <small>Required</small></span><input type="text" value="Orbital material study" aria-describedby="name-hint"><small id="name-hint">Use a short, descriptive noun phrase.</small></label>
+            <label class="dg-field"><span>Runtime profile</span><select><option>Balanced / local</option><option>Precision / cloud</option><option>Fast preview</option></select></label>
+            <label class="dg-field dg-field--search"><span>Dataset</span><div><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg><input type="search" placeholder="Search datasets"></div></label>
+            <fieldset class="choice-stack"><legend>Processing</legend><label><input type="checkbox" checked><span><i></i></span><b>Preserve metadata<small>Keep labels and source history attached.</small></b></label><label><input type="checkbox"><span><i></i></span><b>Normalize output<small>Apply the shared export profile.</small></b></label></fieldset>
+            <div class="switch-row"><div><strong>Background processing</strong><span>Continue when the window closes.</span></div><label class="dg-switch"><input type="checkbox" checked><span></span><em>Enabled</em></label></div>
+          </form>
+        </div>
+
+        <div class="workbench-panel" id="panel-feedback" role="tabpanel" aria-labelledby="tab-feedback" data-component-panel="feedback" hidden>
+          <div class="feedback-demo">
+            <div class="dg-alert dg-alert--info"><i><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></i><div><strong>New calibration available</strong><span>Sensor profile A-17 can be improved with the latest reference frame.</span></div><button class="dg-button dg-button--quiet dg-button--sm">Review</button></div>
+            <div class="dg-alert dg-alert--success"><i><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></i><div><strong>Export complete</strong><span>128 labelled frames were written without validation errors.</span></div><button class="dg-icon-button dg-icon-button--sm" aria-label="Dismiss"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+            <div class="status-card dg-glass dg-glass--raised"><div class="status-card__top"><div><span class="dg-badge dg-badge--working"><i></i>Processing</span><strong>Model inference</strong></div><span>74%</span></div><div class="dg-progress"><i style="width:74%"></i></div><div class="status-card__meta"><span>ETA 00:18</span><span>94 / 128 frames</span></div></div>
+            <div class="toast-stack"><div class="dg-toast"><img src="assets/icon-openimagelabeler.svg" alt=""><div><strong>Labels synchronized</strong><span>OpenImageLabeler · now</span></div><button class="dg-icon-button dg-icon-button--sm" aria-label="Close notification"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section products" id="products">
+      <div class="section-heading reveal">
+        <div><span class="section-index">04 / Products</span><h2>A family,<br>not a uniform.</h2></div>
+        <p>Every product gets a distinct object, accent and purpose. Dark Glass supplies the shared atmosphere, optical edge and typographic voice.</p>
+      </div>
+
+      <div class="product-grid">
+        <article class="product-card product-card--looksmith dg-glass dg-glow reveal" data-glow>
+          <div class="product-card__visual"><div class="product-halo"></div><img src="assets/icon-looksmith.svg" alt="Looksmith icon"></div>
+          <div class="product-card__body"><span>VISUAL ENGINEERING / 01</span><h3>Looksmith</h3><p>Shape, inspect and communicate visual systems with the warmth of a crafted optical instrument.</p><div><i>#CC785C</i><i>#F6EBDD</i><i>#17120F</i></div></div>
+        </article>
+        <article class="product-card product-card--caelum dg-glass dg-glow reveal" data-glow>
+          <div class="product-card__visual"><div class="product-halo"></div><img src="assets/icon-caelum.svg" alt="Caelum icon"></div>
+          <div class="product-card__body"><span>ORBITAL AMBIENCE / 02</span><h3>Caelum</h3><p>A calm astronomical instrument with luminous orbit geometry and deep-space atmospheric color.</p><div><i>#5EE7FF</i><i>#8B7CFF</i><i>#06070D</i></div></div>
+        </article>
+        <article class="product-card product-card--labeler dg-glass dg-glow reveal" data-glow>
+          <div class="product-card__visual"><div class="product-halo"></div><img src="assets/icon-openimagelabeler.svg" alt="OpenImageLabeler icon"></div>
+          <div class="product-card__body"><span>DATASET TOOLING / 03</span><h3>OpenImageLabeler</h3><p>High-density annotation tooling made clear through technical blue, glass depth and precise overlays.</p><div><i>#68B8FF</i><i>#5FF0BC</i><i>#07111E</i></div></div>
+        </article>
+        <article class="product-card product-card--glass dg-glass dg-glow reveal" data-glow>
+          <div class="product-card__visual"><div class="product-halo"></div><img src="assets/icon-darkglass.svg" alt="Dark Glass icon"></div>
+          <div class="product-card__body"><span>INTERFACE MATERIAL / 00</span><h3>Dark Glass</h3><p>The connective material: obsidian surfaces, pointer light and a controlled aurora spectrum.</p><div><i>#F4F7FB</i><i>#5EE7FF</i><i>#05070D</i></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section brand-system" id="brand">
+      <div class="section-heading reveal">
+        <div><span class="section-index">05 / Brand</span><h2>Dark Glass,<br>made systematic.</h2></div>
+        <p>The identity is built from an optical prism, exact typography and a controlled aurora spectrum. It belongs to the material — never to a person, portrait or profile.</p>
+      </div>
+
+      <div class="brand-grid">
+        <article class="brand-mark-card dg-glass dg-glass--raised dg-glow reveal" data-glow>
+          <div class="brand-mark-card__art"><img src="assets/icon-darkglass.svg" alt="Dark Glass optical prism mark"></div>
+          <div class="brand-mark-card__copy"><span>MATERIAL MARK / DG-00</span><h3>The optical prism</h3><p>A transparent spatial cube turns a technical grid into an object made from light. Cyan, violet and magenta edges reveal depth without tying the system to a person or a single product.</p><div class="mark-lockups"><span><img src="assets/icon-darkglass.svg" alt="">Dark Glass</span><span class="mark-lockups--mono"><img src="assets/icon-darkglass.svg" alt="">DG / MATERIAL</span></div></div>
+        </article>
+
+        <article class="type-card dg-glass reveal">
+          <span class="component-spec__label">Typography</span>
+          <div class="type-display"><small>DISPLAY / SPACE GROTESK 600</small><strong>Measure the<br>impossible.</strong></div>
+          <div class="type-body"><small>BODY / INTER 400–600</small><p>Clear enough for instructions. Calm enough for long sessions. Neutral enough to let each product carry its own personality.</p></div>
+          <div class="type-mono"><small>DATA / JETBRAINS MONO 500</small><code>ORBITAL_PHASE +0.042 RAD</code></div>
+          <aside><strong>Nasalization</strong><span>Not part of the Dark Glass product UI. It remains reserved for owner signatures in separate brand guidelines.</span></aside>
+        </article>
+
+        <article class="color-card dg-glass reveal">
+          <span class="component-spec__label">Core spectrum</span>
+          <div class="swatch swatch--obsidian"><span>Obsidian 00</span><b>#05070D</b></div>
+          <div class="swatch swatch--paper"><span>Signal white</span><b>#F4F7FB</b></div>
+          <div class="swatch swatch--cyan"><span>Photon cyan</span><b>#5EE7FF</b></div>
+          <div class="swatch swatch--violet"><span>Field violet</span><b>#8B7CFF</b></div>
+          <div class="swatch swatch--mint"><span>Valid mint</span><b>#5FF0BC</b></div>
+          <div class="swatch swatch--warm"><span>Human warmth</span><b>#FFE2A6</b></div>
+        </article>
+
+        <article class="naming-card dg-glass reveal">
+          <span class="component-spec__label">System nomenclature</span>
+          <dl>
+            <div><dt>Material</dt><dd>Dark Glass</dd><small>Always two words. Capitalize both in titles.</small></div>
+            <div><dt>Depths</dt><dd>Quiet · Raised</dd><small>Short physical terms that communicate hierarchy.</small></div>
+            <div><dt>Components</dt><dd>Button · Menu</dd><small>Direct functional nouns in documentation and code.</small></div>
+            <div><dt>Applications</dt><dd>Caelum · Looksmith</dd><small>Distinct product names inherit the material, not its name.</small></div>
+          </dl>
+          <p><strong>Voice:</strong> precise, spatial, quietly confident. Describe the behavior and result before describing the visual effect.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section token-section" id="tokens">
+      <div class="section-heading reveal">
+        <div><span class="section-index">06 / Tokens</span><h2>Decisions,<br>already made.</h2></div>
+        <p>Tokens remove visual guesswork. They are available as CSS custom properties and a machine-readable JSON file for tools, models and collaborators.</p>
+      </div>
+
+      <div class="token-grid reveal">
+        <div class="token-card dg-glass"><span>Radius</span><div class="radius-scale"><i>8</i><i>12</i><i>18</i><i>28</i><i>∞</i></div><code>--dg-radius-1 … --dg-radius-pill</code></div>
+        <div class="token-card dg-glass"><span>Spacing / 4px base</span><div class="space-scale"><i style="width:4px"></i><i style="width:8px"></i><i style="width:12px"></i><i style="width:16px"></i><i style="width:24px"></i><i style="width:32px"></i><i style="width:48px"></i></div><code>4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 96</code></div>
+        <div class="token-card dg-glass"><span>Blur</span><div class="blur-scale"><i>16</i><i>24</i><i>32</i><i>40</i></div><code>quiet · base · raised · focus</code></div>
+        <div class="token-card dg-glass"><span>Motion</span><div class="motion-scale"><i>90</i><i>160</i><i>280</i><i>420</i><i>700</i></div><code>cubic-bezier(.2,.8,.2,1)</code></div>
+      </div>
+
+      <div class="token-actions reveal">
+        <a class="dg-button dg-button--primary" href="design-tokens.json" download>Download JSON tokens</a>
+        <a class="dg-button dg-button--secondary" href="dark-glass.css" download>Download CSS system</a>
+        <a class="dg-button dg-button--quiet" href="BRAND_SYSTEM.md">Read brand rules</a>
+      </div>
+    </section>
+
+    <section class="section starter" id="starter">
+      <div class="starter-card dg-glass dg-glass--focus dg-glow reveal" data-glow>
+        <div class="starter-card__copy">
+          <span class="section-index">07 / Starter</span>
+          <h2>Build the next product<br>from the same light.</h2>
+          <p>Link the core stylesheet, add a glass depth and opt into pointer light. The component vocabulary stays available without forcing a framework.</p>
+          <a class="dg-button dg-button--primary dg-button--lg" href="https://github.com/ProfessorEngineergit/Dark-Glass">View repository</a>
+        </div>
+        <div class="code-window">
+          <div class="code-window__bar"><span>surface.html</span><button type="button" data-copy-code>Copy</button></div>
+          <pre><code data-code-snippet>&lt;link rel=&quot;stylesheet&quot; href=&quot;dark-glass.css&quot;&gt;
+
+&lt;article class=&quot;dg-glass dg-glass--raised dg-glow&quot;
+         data-glow&gt;
+  &lt;span class=&quot;dg-badge dg-badge--success&quot;&gt;Stable&lt;/span&gt;
+  &lt;h2&gt;Optical sensor&lt;/h2&gt;
+  &lt;button class=&quot;dg-button dg-button--primary&quot;&gt;
+    Calibrate
+  &lt;/button&gt;
+&lt;/article&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__top">
+      <a class="brand-lockup" href="#top"><img src="assets/icon-darkglass.svg" alt="" width="42" height="42"><span class="brand-lockup__text"><strong>Dark Glass</strong><small>Optical interface material</small></span></a>
+      <p>Dark Glass is designed as a living interface material — recognizable across products, flexible across problems.</p>
     </div>
+    <div class="site-footer__bottom"><span>Dark Glass 2.0</span><span>A ProfessorEngineer material system.</span><a href="#top">Back to top ↑</a></div>
+  </footer>
 
-    <!-- Additional Content Section -->
-    <div class="main-content" style="margin-top: 100vh;">
-        <section class="showcase-section">
-            <h2 class="showcase-title scramble-text">DESIGN TOKENS</h2>
-            
-            <div class="panels-container">
-                <div class="glass-panel">
-                    <h3 class="panel-header">Glass Background</h3>
-                    <div class="panel-content">
-                        <code style="background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 5px; display: block;">
-                            rgba(30, 30, 30, 0.5)
-                        </code>
-                        <p class="mt-2">Semi-transparent dark background that allows the cosmos to peek through</p>
-                    </div>
-                </div>
-
-                <div class="glass-panel">
-                    <h3 class="panel-header">Backdrop Blur</h3>
-                    <div class="panel-content">
-                        <code style="background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 5px; display: block;">
-                            backdrop-filter: blur(12px)
-                        </code>
-                        <p class="mt-2">Creates the signature frosted glass effect</p>
-                    </div>
-                </div>
-
-                <div class="glass-panel">
-                    <h3 class="panel-header">Glass Border</h3>
-                    <div class="panel-content">
-                        <code style="background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 5px; display: block;">
-                            1px solid rgba(255, 255, 255, 0.1)
-                        </code>
-                        <p class="mt-2">Subtle white border adds definition to the glass panels</p>
-                    </div>
-                </div>
-
-                <div class="glass-panel">
-                    <h3 class="panel-header">Glow Shadow</h3>
-                    <div class="panel-content">
-                        <code style="background: rgba(0,0,0,0.3); padding: 0.5rem; border-radius: 5px; display: block;">
-                            box-shadow: 0 0 15px rgba(0,0,0,0.5)
-                        </code>
-                        <p class="mt-2">Deep shadows create depth and dimension</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="showcase-section" style="padding-bottom: 4rem;">
-            <h2 class="showcase-title scramble-text">INTERACTIVE ELEMENTS</h2>
-            
-            <div class="glass-panel info-panel text-center">
-                <h3 class="panel-header">Buttons & Controls</h3>
-                <div class="panel-content">
-                    <p class="mb-2">Experience the intensive hover effects on our round buttons</p>
-                    <div class="flex-center" style="flex-wrap: wrap; margin-top: 2rem;">
-                        <button class="glass-button">PRIMARY</button>
-                        <button class="glass-button">SECONDARY</button>
-                        <button class="glass-button">TERTIARY</button>
-                    </div>
-                    <div class="flex-center" style="flex-wrap: wrap; margin-top: 1.5rem;">
-                        <button class="glass-button">EXPLORE</button>
-                        <button class="glass-button">DOWNLOAD</button>
-                        <button class="glass-button">CONTACT</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="showcase-section" style="padding-bottom: 6rem;">
-            <div class="glass-panel info-panel text-center">
-                <h3 class="panel-header scramble-text">WELCOME TO THE FUTURE</h3>
-                <div class="panel-content">
-                    <p style="font-size: 18px; line-height: 1.8;">
-                        Dark Glass represents the evolution of digital design. Where transparency meets technology, 
-                        where interaction becomes art, and where every pixel serves a purpose in creating 
-                        experiences that transcend the screen.
-                    </p>
-                    <button class="glass-button mt-2" style="padding: 1.2rem 3rem; font-size: 20px;">BEGIN YOUR JOURNEY</button>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

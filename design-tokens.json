@@ -1,0 +1,95 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "meta": {
+    "name": "Dark Glass 2.0",
+    "owner": "ProfessorEngineer",
+    "version": "2.0.0"
+  },
+  "color": {
+    "obsidian": {
+      "0": { "$type": "color", "$value": "#05070D" },
+      "1": { "$type": "color", "$value": "#090D16" },
+      "2": { "$type": "color", "$value": "#101725" },
+      "3": { "$type": "color", "$value": "#172033" }
+    },
+    "ink": {
+      "primary": { "$type": "color", "$value": "#F4F7FB" },
+      "secondary": { "$type": "color", "$value": "#AEB8C8" },
+      "muted": { "$type": "color", "$value": "#6F7B90" }
+    },
+    "signal": {
+      "cyan": { "$type": "color", "$value": "#5EE7FF" },
+      "violet": { "$type": "color", "$value": "#8B7CFF" },
+      "magenta": { "$type": "color", "$value": "#FF6AD5" },
+      "mint": { "$type": "color", "$value": "#5FF0BC" },
+      "warm": { "$type": "color", "$value": "#FFE2A6" },
+      "danger": { "$type": "color", "$value": "#FF7085" }
+    }
+  },
+  "font": {
+    "family": {
+      "display": { "$type": "fontFamily", "$value": "Space Grotesk" },
+      "body": { "$type": "fontFamily", "$value": "Inter" },
+      "data": { "$type": "fontFamily", "$value": "JetBrains Mono" },
+      "signature": { "$type": "fontFamily", "$value": "Nasalization" }
+    },
+    "weight": {
+      "regular": { "$type": "fontWeight", "$value": 400 },
+      "medium": { "$type": "fontWeight", "$value": 500 },
+      "semibold": { "$type": "fontWeight", "$value": 600 },
+      "bold": { "$type": "fontWeight", "$value": 700 }
+    }
+  },
+  "space": {
+    "1": { "$type": "dimension", "$value": "4px" },
+    "2": { "$type": "dimension", "$value": "8px" },
+    "3": { "$type": "dimension", "$value": "12px" },
+    "4": { "$type": "dimension", "$value": "16px" },
+    "5": { "$type": "dimension", "$value": "24px" },
+    "6": { "$type": "dimension", "$value": "32px" },
+    "7": { "$type": "dimension", "$value": "48px" },
+    "8": { "$type": "dimension", "$value": "64px" },
+    "9": { "$type": "dimension", "$value": "96px" }
+  },
+  "radius": {
+    "control": { "$type": "dimension", "$value": "8px" },
+    "compact": { "$type": "dimension", "$value": "12px" },
+    "surface": { "$type": "dimension", "$value": "18px" },
+    "feature": { "$type": "dimension", "$value": "28px" },
+    "pill": { "$type": "dimension", "$value": "999px" }
+  },
+  "material": {
+    "air": {
+      "fill": { "$type": "number", "$value": 0 },
+      "blur": { "$type": "dimension", "$value": "0px" }
+    },
+    "quiet": {
+      "fill": { "$type": "number", "$value": 0.04 },
+      "blur": { "$type": "dimension", "$value": "16px" }
+    },
+    "base": {
+      "fill": { "$type": "number", "$value": 0.06 },
+      "blur": { "$type": "dimension", "$value": "24px" }
+    },
+    "raised": {
+      "fill": { "$type": "number", "$value": 0.08 },
+      "blur": { "$type": "dimension", "$value": "32px" }
+    },
+    "focus": {
+      "fill": { "$type": "number", "$value": 0.1 },
+      "blur": { "$type": "dimension", "$value": "40px" }
+    }
+  },
+  "motion": {
+    "instant": { "$type": "duration", "$value": "90ms" },
+    "control": { "$type": "duration", "$value": "160ms" },
+    "shift": { "$type": "duration", "$value": "280ms" },
+    "reveal": { "$type": "duration", "$value": "420ms" },
+    "atmosphere": { "$type": "duration", "$value": "700ms" },
+    "ease": { "$type": "cubicBezier", "$value": [0.2, 0.8, 0.2, 1] }
+  },
+  "size": {
+    "targetMinimum": { "$type": "dimension", "$value": "44px" },
+    "contentMaximum": { "$type": "dimension", "$value": "1280px" }
+  }
+}

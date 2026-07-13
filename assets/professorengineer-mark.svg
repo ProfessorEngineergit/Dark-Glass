@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">ProfessorEngineer mark</title>
+  <desc id="desc">A human silhouette surrounded by mathematics, physics, software and hardware symbols.</desc>
+  <defs>
+    <linearGradient id="bg" x1="30" y1="18" x2="226" y2="238" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#18263a"/>
+      <stop offset=".48" stop-color="#080d17"/>
+      <stop offset="1" stop-color="#05070d"/>
+    </linearGradient>
+    <linearGradient id="figure" x1="128" y1="72" x2="128" y2="221" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset=".52" stop-color="#d9e3f2"/>
+      <stop offset="1" stop-color="#8490a3"/>
+    </linearGradient>
+    <linearGradient id="orbit" x1="42" y1="62" x2="218" y2="172" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5ee7ff"/>
+      <stop offset=".52" stop-color="#8b7cff"/>
+      <stop offset="1" stop-color="#ff6ad5"/>
+    </linearGradient>
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="256" height="256" rx="62" fill="url(#bg)"/>
+  <rect x="1" y="1" width="254" height="254" rx="61" fill="none" stroke="#fff" stroke-opacity=".13" stroke-width="2"/>
+  <ellipse cx="126" cy="119" rx="91" ry="55" fill="none" stroke="#5ee7ff" stroke-opacity=".14" stroke-width="13" filter="url(#soft)" transform="rotate(-13 126 119)"/>
+  <ellipse cx="126" cy="119" rx="91" ry="55" fill="none" stroke="url(#orbit)" stroke-width="2.5" transform="rotate(-13 126 119)"/>
+  <path d="M51 134c18 36 55 49 91 42 31-6 53-25 63-47" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="1.5" stroke-dasharray="3 6"/>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <circle cx="51" cy="121" r="5.5" fill="#5ee7ff" stroke="#d9fbff" stroke-width="1.5"/>
+    <circle cx="199" cy="81" r="5" fill="#ff6ad5" stroke="#ffe1f7" stroke-width="1.5"/>
+    <circle cx="188" cy="163" r="4.5" fill="#5ff0bc" stroke="#ddfff3" stroke-width="1.5"/>
+  </g>
+
+  <g fill="#dfe8f7" font-family="JetBrains Mono,ui-monospace,monospace" font-weight="500" text-anchor="middle">
+    <text x="70" y="73" font-size="25">Σ</text>
+    <text x="126" y="55" font-size="22">λ</text>
+    <text x="177" y="69" font-size="18">{ }</text>
+  </g>
+
+  <g transform="translate(194 96)" fill="none" stroke="#ffe2a6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <rect x="-10" y="-10" width="20" height="20" rx="4"/>
+    <path d="M-4-14v4M4-14v4M-4 10v4M4 10v4M-14-4h4M-14 4h4M10-4h4M10 4h4"/>
+    <path d="M-4-3h8v6h-8z"/>
+  </g>
+
+  <g transform="translate(54 91)" fill="none" stroke="#5ff0bc" stroke-linecap="round" stroke-width="2">
+    <path d="M-12 0h7l4-7 6 14 4-7h8"/>
+  </g>
+
+  <circle cx="126" cy="111" r="29" fill="#04070c" stroke="#fff" stroke-opacity=".16" stroke-width="2"/>
+  <path d="M68 218c6-41 27-65 58-65s52 24 59 65H68Z" fill="url(#figure)"/>
+  <path d="M126 153c-19 0-38 11-48 30 15 10 31 15 48 15s34-5 49-15c-10-19-29-30-49-30Z" fill="#0a101a" fill-opacity=".25"/>
+  <path d="M79 217c8-30 24-46 47-46 22 0 39 16 48 46" fill="none" stroke="#fff" stroke-opacity=".15" stroke-width="2"/>
+  <circle cx="126" cy="111" r="21" fill="url(#figure)"/>
+
+  <path d="M93 225h66" stroke="url(#orbit)" stroke-linecap="round" stroke-width="4" filter="url(#glow)"/>
+</svg>

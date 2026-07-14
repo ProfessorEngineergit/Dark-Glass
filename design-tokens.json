@@ -112,10 +112,15 @@
     "softBurst": { "$type": "string", "$value": "MaterialShapes.SoftBurst | #shape-softburst" }
   },
   "glyph": {
-    "$description": "Original Dark Glass 24px orbital glyphs. Rounded open strokes, 1.65–1.8px, no filled decoration.",
+    "$description": "Dark Glass Arrow Font: typographic navigation and history glyphs with one construction law.",
     "grid": { "$type": "dimension", "$value": "24px" },
-    "stroke": { "$type": "dimension", "$value": "1.65px" },
-    "set": { "$type": "string", "$value": "orbit-arrow, fold-arrow, thrust, phase-rails, aperture, waypoint, transfer, telemetry, scan, constellation, dock, split, pulse, axis, portal, relay" }
+    "stroke": { "$type": "dimension", "$value": "1.7px" },
+    "terminal": { "$type": "string", "$value": "square" },
+    "join": { "$type": "string", "$value": "miter" },
+    "arrowHead": { "$type": "string", "$value": "5px at 45 degrees for straight arrows; tangent-aligned for curved history arrows" },
+    "minimumSize": { "$type": "dimension", "$value": "16px" },
+    "families": { "$type": "string", "$value": "direction, flow, history, system" },
+    "set": { "$type": "string", "$value": "arrow-right, arrow-left, arrow-up, arrow-down, arrow-up-right, arrow-up-left, arrow-down-right, arrow-down-left, turn-left, turn-right, return-left, return-right, swap-horizontal, swap-vertical, enter, exit, undo, redo, revert-left, revert-right, refresh, restart, step-back, step-forward, external, expand, contract, download, upload, loop, collapse-horizontal, collapse-vertical" }
   },
   "material": {
     "$description": "Optical depth tokens. Glass must reveal real content behind the plane.",

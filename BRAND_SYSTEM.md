@@ -167,9 +167,18 @@ At rest, controls are still. Hover reveals material; press confirms contact; rel
 
 Respect `prefers-reduced-motion`: remove shape morphs and spatial parallax while preserving instant state, focus and contrast feedback. Magnetic movement is never part of Dark Glass.
 
-## Dark Glass Space Glyphs
+## Dark Glass Arrow Font
 
-The original 24px glyph set uses open 1.65–1.8px rounded strokes, clipped orbit arcs, phase rails and deliberate breaks. The named set is Orbit Arrow, Fold Arrow, Thrust, Phase Rails, Aperture, Waypoint, Transfer, Telemetry, Scan Frame, Constellation, Dock, Split Relay, Pulse, Axis, Portal and Relay. `Phase Rails` is the signature marker before command and search inputs.
+Navigation is drawn like a companion typeface, not an illustration set. Every glyph uses a 24px grid, a 1.7px optical stroke, square terminals and miter joins. Straight arrows share the same 5px head at exactly 45 degrees; curved history arrows use tangent-aligned heads with the same optical mass. This makes the marks align with the engineered rhythm of Space Grotesk instead of looking like unrelated Unicode characters.
+
+The 32-glyph set is divided into four functional families:
+
+- **Direction:** four cardinal and four diagonal arrows.
+- **Flow:** turn, return, horizontal/vertical swap, enter and exit.
+- **History:** undo, redo, revert, reapply, refresh, restart and step navigation.
+- **System:** external, expand, contract, download, upload, loop and convergence.
+
+Use the same SVG symbol everywhere, including large editorial arrows, inline link marks and 16px toolbar controls. Do not substitute Unicode arrows, mix rounded and square terminals, add orbital decoration or place routine glyphs inside decorative colored tiles.
 
 ## Dimensionality ladder
 

@@ -55,13 +55,15 @@ Use no more than three levels in one viewport. Dimensionality should progress th
 - One primary action per decision area. Labels use sentence case and start with a concrete verb.
 - One liquid plane per local composition. Never stack glass on glass.
 
-## Dark Glass Space Glyphs
+## Dark Glass Arrow Font
 
-Use the original 24px inline symbols from `index.html`: `orbit-arrow`, `fold-arrow`, `thrust`, `phase-rails`, `aperture`, `waypoint`, `transfer`, `telemetry`, `scan`, `constellation`, `dock`, `split`, `pulse`, `axis`, `portal` and `relay`.
+Use the 32 inline symbols from `index.html` for direction, flow, history and system actions. The reusable class is `.dg-arrow-icon`.
 
-- 1.65–1.8px rounded open stroke.
-- No filled ornament in routine UI.
-- `phase-rails` is the signature input marker: two or three clipped rails before a search or command field.
+- 24px grid, 1.7px optical stroke.
+- Square terminals and miter joins. Straight arrows use 5px heads at 45 degrees; curved heads follow the tangent with equal optical mass.
+- Minimum rendered size: 16px. Standard UI: 18–24px. Editorial arrows: 32px or larger.
+- Use `arrow-*` for direction; `turn-*`, `return-*`, `swap-*`, `enter` and `exit` for flow; `undo`, `redo`, `revert-*`, `refresh` and `restart` for history.
+- Use the exact same symbol in the cover, links and controls. Never replace it with a Unicode arrow or an unrelated icon library glyph.
 - Keep icon-only controls accessible with a name and product tooltip.
 
 ## Reuse recipe
@@ -89,4 +91,5 @@ If pointer-reactive light is used, copy the glow controller from `script.js`. Do
 - No more than one liquid plane per composition and three depth levels per viewport.
 - Body copy remains Inter; status and measurements remain JetBrains Mono.
 - Nasalization and NotesESA are not shipped as webfont files without licenses.
+- Navigation uses `.dg-arrow-icon`; no Unicode arrows or ornamental space glyphs.
 - Keyboard focus, semantic labels, reduced motion and a non-blur fallback remain intact.

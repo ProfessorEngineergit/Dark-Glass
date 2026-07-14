@@ -629,6 +629,22 @@ html[data-theme="lux"] {
 .dg-progress { background: rgba(255,255,255,.07); border-radius: 3px; height: 5px; overflow: hidden; }
 .dg-progress i { background: var(--dg-aurora); border-radius: inherit; box-shadow: 0 0 12px rgba(var(--dg-accent-rgb),.4); display: block; height: 100%; }
 
+/* Arrow Font: one typographic construction for navigation and history. */
+svg.dg-arrow-icon {
+  --dg-icon-size: 1.25em;
+  --dg-icon-stroke: 1.7;
+  fill: none;
+  flex: 0 0 auto;
+  height: var(--dg-icon-size);
+  overflow: visible;
+  shape-rendering: geometricPrecision;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: var(--dg-icon-stroke);
+  width: var(--dg-icon-size);
+}
+
 kbd {
   background: rgba(255,255,255,.055);
   border: 1px solid rgba(255,255,255,.1);

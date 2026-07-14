@@ -1,29 +1,63 @@
 {
   "$schema": "https://tr.designtokens.org/format/",
   "meta": {
-    "name": "Dark Glass 2.1",
+    "name": "Dark Glass 2.2",
     "owner": "ProfessorEngineer",
-    "version": "2.1.0"
+    "version": "2.2.0",
+    "thesis": "A dark precision instrument that reveals light through intent.",
+    "defaultTheme": "aurora"
+  },
+  "theme": {
+    "aurora": {
+      "$description": "Primary brand. A near-black optical field with a cyan-violet-magenta signal spectrum.",
+      "canvas": { "$type": "color", "$value": "#05060A" },
+      "surface": { "$type": "color", "$value": "#0A0E18" },
+      "surfaceRaised": { "$type": "color", "$value": "#111827" },
+      "text": { "$type": "color", "$value": "#F5F7FC" },
+      "textMuted": { "$type": "color", "$value": "#9AA5B7" },
+      "accent": { "$type": "color", "$value": "#5EE7FF" },
+      "accentSecondary": { "$type": "color", "$value": "#8B7CFF" },
+      "accentTertiary": { "$type": "color", "$value": "#FF6AD5" },
+      "gradient": { "$type": "string", "$value": "linear-gradient(120deg, #5EE7FF, #8B7CFF 52%, #FF6AD5)" },
+      "glassTintRgb": { "$type": "string", "$value": "8, 13, 24" }
+    },
+    "obsidian": {
+      "$description": "Pure-black instrument mode. Restrained silver light, maximum focus and minimum chroma.",
+      "canvas": { "$type": "color", "$value": "#000000" },
+      "surface": { "$type": "color", "$value": "#09090A" },
+      "surfaceRaised": { "$type": "color", "$value": "#131315" },
+      "text": { "$type": "color", "$value": "#F4F4F2" },
+      "textMuted": { "$type": "color", "$value": "#A0A0A0" },
+      "accent": { "$type": "color", "$value": "#F4F4F2" },
+      "accentSecondary": { "$type": "color", "$value": "#858589" },
+      "accentTertiary": { "$type": "color", "$value": "#56565B" },
+      "gradient": { "$type": "string", "$value": "linear-gradient(120deg, #FFFFFF, #A8A8AC 52%, #56565B)" },
+      "glassTintRgb": { "$type": "string", "$value": "7, 7, 8" }
+    },
+    "lux": {
+      "$description": "Warm luxury mode. Smoked glass, parchment light and clay accents; calm rather than nostalgic.",
+      "canvas": { "$type": "color", "$value": "#17130F" },
+      "surface": { "$type": "color", "$value": "#211A15" },
+      "surfaceRaised": { "$type": "color", "$value": "#30241D" },
+      "text": { "$type": "color", "$value": "#F5EEE5" },
+      "textMuted": { "$type": "color", "$value": "#B9A99A" },
+      "accent": { "$type": "color", "$value": "#EFB47F" },
+      "accentSecondary": { "$type": "color", "$value": "#C87859" },
+      "accentTertiary": { "$type": "color", "$value": "#DC9C89" },
+      "gradient": { "$type": "string", "$value": "linear-gradient(120deg, #F2D2AD, #D58B68 52%, #A95D48)" },
+      "glassTintRgb": { "$type": "string", "$value": "35, 25, 19" }
+    }
   },
   "color": {
-    "obsidian": {
-      "0": { "$type": "color", "$value": "#05070D" },
-      "1": { "$type": "color", "$value": "#090D16" },
-      "2": { "$type": "color", "$value": "#101725" },
-      "3": { "$type": "color", "$value": "#172033" }
-    },
-    "ink": {
-      "primary": { "$type": "color", "$value": "#F4F7FB" },
-      "secondary": { "$type": "color", "$value": "#AEB8C8" },
-      "muted": { "$type": "color", "$value": "#6F7B90" }
-    },
-    "signal": {
-      "cyan": { "$type": "color", "$value": "#5EE7FF" },
-      "violet": { "$type": "color", "$value": "#8B7CFF" },
-      "magenta": { "$type": "color", "$value": "#FF6AD5" },
-      "mint": { "$type": "color", "$value": "#5FF0BC" },
-      "warm": { "$type": "color", "$value": "#FFE2A6" },
+    "status": {
+      "valid": { "$type": "color", "$value": "#5FF0BC" },
+      "working": { "$type": "color", "$value": "#5EE7FF" },
+      "warning": { "$type": "color", "$value": "#FFE2A6" },
       "danger": { "$type": "color", "$value": "#FF7085" }
+    },
+    "line": {
+      "quiet": { "$type": "string", "$value": "rgba(255, 255, 255, 0.12)" },
+      "strong": { "$type": "string", "$value": "rgba(255, 255, 255, 0.20)" }
     }
   },
   "font": {
@@ -52,6 +86,7 @@
     "9": { "$type": "dimension", "$value": "96px" }
   },
   "radius": {
+    "$description": "Core geometry for 80–90% of the interface.",
     "control": { "$type": "dimension", "$value": "8px" },
     "compact": { "$type": "dimension", "$value": "12px" },
     "surface": { "$type": "dimension", "$value": "18px" },
@@ -59,14 +94,18 @@
     "pill": { "$type": "dimension", "$value": "999px" }
   },
   "shape": {
-    "orbit": { "$type": "string", "$value": "50%" },
-    "flow": { "$type": "string", "$value": "999px" },
-    "bloom": { "$type": "string", "$value": "38% 62% 58% 42% / 48% 36% 64% 52%" },
-    "bloomActive": { "$type": "string", "$value": "58% 42% 36% 64% / 44% 58% 42% 56%" },
-    "dock": { "$type": "string", "$value": "28px 10px 28px 10px" },
-    "beacon": { "$type": "string", "$value": "50% 50% 18% 50% / 50% 50% 18% 50%" }
+    "$description": "Named Material 3 Expressive geometry for 10–20% of the interface. Use normalized SVG symbols; never synthesize percentage-radius blobs.",
+    "coreShare": { "$type": "number", "$value": 0.85 },
+    "expressiveShare": { "$type": "number", "$value": 0.15 },
+    "square": { "$type": "string", "$value": "MaterialShapes.Square | #shape-square" },
+    "pill": { "$type": "string", "$value": "MaterialShapes.Pill | #shape-pill" },
+    "arch": { "$type": "string", "$value": "MaterialShapes.Arch | #shape-arch" },
+    "diamond": { "$type": "string", "$value": "MaterialShapes.Diamond | #shape-diamond" },
+    "cookie4": { "$type": "string", "$value": "MaterialShapes.Cookie4Sided | #shape-cookie" },
+    "softBurst": { "$type": "string", "$value": "MaterialShapes.SoftBurst | #shape-softburst" }
   },
   "material": {
+    "$description": "Optical depth tokens. Glass must reveal real content behind the plane.",
     "air": {
       "fill": { "$type": "number", "$value": 0 },
       "blur": { "$type": "dimension", "$value": "0px" }
@@ -90,9 +129,20 @@
     "liquid": {
       "fill": { "$type": "number", "$value": 0.075 },
       "blur": { "$type": "dimension", "$value": "28px" },
-      "saturation": { "$type": "number", "$value": 1.55 },
-      "edgeLight": { "$type": "number", "$value": 0.17 }
+      "saturation": { "$type": "number", "$value": 1.65 },
+      "contrast": { "$type": "number", "$value": 1.08 },
+      "brightness": { "$type": "number", "$value": 1.04 },
+      "refraction": { "$type": "number", "$value": 0.62 },
+      "edgeLight": { "$type": "number", "$value": 0.2 }
     }
+  },
+  "interaction": {
+    "hoverLift": { "$type": "dimension", "$value": "-2px" },
+    "hoverScale": { "$type": "number", "$value": 1.015 },
+    "pressScale": { "$type": "number", "$value": 0.975 },
+    "magneticMaximum": { "$type": "dimension", "$value": "2px" },
+    "buttonLensRadius": { "$type": "dimension", "$value": "90px" },
+    "surfaceLensRadius": { "$type": "dimension", "$value": "180px" }
   },
   "motion": {
     "instant": { "$type": "duration", "$value": "90ms" },

@@ -1,14 +1,16 @@
-# ProfessorEngineer / Dark Glass 2.1
+# ProfessorEngineer / Dark Glass 2.2
 
-Dark Glass is the shared interface material for ProfessorEngineer products. It should make software feel precise, dimensional and human without looking like a copy of another operating system or AI product.
+Dark Glass is a dark precision instrument that reveals light through intent. It is the shared interface material for ProfessorEngineer products: measured enough for engineering software, expressive enough to feel authored, and quiet enough to keep the work—not the chrome—at the center.
 
 ## Brand idea
 
-**Engineered from light.** ProfessorEngineer connects software, science and physical engineering. Interfaces should therefore combine three qualities:
+**Light is evidence of intent.** The interface starts restrained. It gains color, edge light, depth and motion only when a person focuses, points, selects or commits.
 
-1. **Scientific precision** — measured layouts, clear hierarchy, legible data.
-2. **Optical depth** — glass is a functional material that communicates elevation.
-3. **Human curiosity** — warm details and expressive product objects prevent sterile “tech” aesthetics.
+1. **Precision** — layouts are measured, hierarchy is explicit and data remains legible.
+2. **Optical material** — glass communicates depth, grouping and control elevation.
+3. **Directed expression** — gradient, shape and motion mark meaningful moments instead of decorating every surface.
+
+The result should feel like an instrument coming alive under a hand: calm at rest, luminous in use, exact after the action.
 
 ## Identity architecture
 
@@ -16,15 +18,16 @@ Dark Glass is the shared interface material for ProfessorEngineer products. It s
 - **Evocative products:** short, ownable names such as `Caelum` and `Looksmith`.
 - **Descriptive utilities:** direct capability names such as `OpenImageLabeler`.
 - **Systems and materials:** short two-word names such as `Dark Glass`.
-- Do not add `AI`, `Pro`, `X`, `Ultra` or version numbers to names unless they describe a real product tier.
+- Do not add `AI`, `Pro`, `X`, `Ultra` or version numbers unless they describe a real product tier.
 
 ## Voice
 
 - Precise, curious, calm and confident.
-- Lead with what a product enables, then explain the technology.
+- Lead with what the product enables, then explain the technology.
 - Prefer concrete verbs: inspect, label, measure, render, calibrate, export.
 - Avoid empty superlatives such as “revolutionary”, “futuristic” and “next-gen”.
 - Button labels use sentence case and begin with a verb when possible.
+- Do not describe the interface as “magical”. Show the capability and let the interaction prove it.
 
 ## Mark
 
@@ -35,7 +38,7 @@ The ProfessorEngineer mark shows a thinking human surrounded by an orbit of disc
 - `{ }` — software systems.
 - Chip and pulse — hardware and engineering.
 
-Use `assets/professorengineer-mark.svg` only in the personal portfolio and in owner-brand guidelines. It must not appear in the public Dark Glass product site. The compact favicon belongs to the portfolio repository, not to Dark Glass. Keep clear space equal to one quarter of the mark width. Do not recolor individual symbols, distort the square or place the mark directly on a visually busy photograph.
+Use `assets/professorengineer-mark.svg` only in the personal portfolio and owner-brand guidelines. It must not appear in the public Dark Glass product site. The compact favicon belongs to the portfolio repository, not to Dark Glass. Keep clear space equal to one quarter of the mark width. Do not recolor individual symbols, distort the square or place the mark directly on a visually busy photograph.
 
 ## Typography
 
@@ -44,17 +47,51 @@ Use `assets/professorengineer-mark.svg` only in the personal portfolio and in ow
 - **JetBrains Mono 400–500:** measurements, labels, statuses and keyboard commands.
 - **Nasalization:** ProfessorEngineer signature and rare campaign moments only. Never use it for controls, paragraphs or dense product UI.
 
-Display text may use tight tracking down to `-0.055em`. Body text stays between `1.5` and `1.75` line height. Uppercase is reserved for short monospaced metadata.
+Display text may use tight tracking down to `-0.055em`. Body text stays between `1.5` and `1.75` line height. Uppercase is reserved for short monospaced metadata. The type system does not change between themes.
 
-## Color
+## Three themes, one system
 
-The core canvas is Obsidian `#05070D`. Signal white `#F4F7FB` is the primary text color. Photon cyan `#5EE7FF` is the default interactive light, field violet `#8B7CFF` carries spatial depth, and magenta `#FF6AD5` completes the aurora spectrum.
+Theme changes color temperature, not component structure. Layout, typography, radii, behavior, accessibility and material depth remain identical.
 
-Mint `#5FF0BC` means valid, stable or connected. Warm `#FFE2A6` provides human emphasis. Danger `#FF7085` is reserved for destructive or failed states.
+| Theme | Role | Canvas | Signal | Character |
+| --- | --- | --- | --- | --- |
+| **Aurora** | Primary brand | `#05060A` | Cyan → violet → magenta | Experimental, spatial, unmistakably Dark Glass |
+| **Obsidian** | Pure-black mode | `#000000` | White → silver → graphite | Severe, focused, technical |
+| **Lux** | Warm mode | `#17130F` | Parchment → amber → clay | Tactile, composed, quietly luxurious |
 
-Product skins may add one ownable accent, but the Obsidian base, signal white and Dark Glass elevation system remain shared.
+Aurora is the default in the website, product launches and general brand communication. Obsidian is for maximum focus and high-density technical work. Lux suits editorial, creative and conversational products. Do not mix theme palettes inside one interface. Status colors retain their meaning across all three.
 
-## Material rules
+White is a signal and text color, not a page or navigation background. Navigation always belongs to the active dark theme.
+
+## Geometry: core first
+
+Dark Glass uses **80–90% core geometry** and **10–20% expressive geometry**. Consistency comes from the core; character comes from a few deliberate exceptions.
+
+### Core geometry
+
+- 8px for controls, 12px for compact groups, 18px for standard surfaces and 28px for feature surfaces.
+- Pill geometry is allowed for segmented navigation, tags, switches and short compact actions.
+- Text buttons remain clean rectangles or pills. A button must never distort its label to advertise expressiveness.
+- Dense data, forms, menus, cards and repeated lists always use core geometry.
+
+### Expressive geometry
+
+Use named, normalized SVG shapes from the Material 3 Expressive shape family. The approved Dark Glass set is **Square, Pill, Arch, Diamond, Cookie 4 and Soft Burst**. These are constructed paths, not arbitrary CSS percentage radii.
+
+| Shape | Character | Approved uses |
+| --- | --- | --- |
+| Square | Stable | neutral icon fields, anchors, system state |
+| Pill | Continuous | modes, ranges, compact navigation |
+| Arch | Open | entry points, discover, launch |
+| Diamond | Exact | focus, precision, selected tools |
+| Cookie 4 | Generative | creative tools, transformation, feature moments |
+| Soft Burst | Signal | attention, success, rare emphasis |
+
+Use expressive shapes for icon containers, key feature objects and selected states. Use no more than one expressive family in a local decision area. Do not place paragraphs inside them, turn every icon into one, or animate them continuously. Never invent blobs with percentage-based `border-radius` values.
+
+## Material and Liquid Glass
+
+Glass is a functional control layer, not a translucent wallpaper. It must reveal a structured scene behind it so blur and refraction have visible meaning.
 
 | Depth | Use | Fill | Blur |
 | --- | --- | ---: | ---: |
@@ -64,59 +101,31 @@ Product skins may add one ownable accent, but the Obsidian base, signal white an
 | Raised | Menus and inspectors | 8% | 32px |
 | Focus | Active decisions and hero surfaces | 10% | 40px |
 
-- Every surface needs visible content behind it; otherwise blur has no material meaning.
-- Use no more than three material depths in one viewport.
-- The nearest edge brightens around the pointer. The whole card must not glow uniformly.
-- Prefer one-pixel hairlines with 10–18% white rather than heavy borders.
-- Radius communicates scale: 8px controls, 12px compact groups, 18px standard surfaces and 28px feature surfaces. Expressive contours are reserved for the semantic roles defined below.
+### Liquid rules
 
-## Field Geometry
+- Use one floating liquid control plane per local composition. Never stack glass on glass.
+- The plane combines backdrop blur, saturation, slight contrast and brightness, a translucent theme tint, a one-pixel inner edge and an adaptive shadow.
+- Pointer position drives a local lens: the nearest border and internal highlight brighten while the center remains quiet and readable.
+- Refraction responds to interaction; it does not run as a decorative loop.
+- Larger controls may appear optically thicker through deeper shadow and stronger lensing, never through lower text contrast.
+- Navigation is Quiet or Liquid and always uses the current dark theme. It is never an opaque white bar.
+- Provide an opaque theme-surface fallback when `backdrop-filter` is unavailable.
+- Use no more than three depth levels in one viewport.
 
-Field Geometry is the ownable Dark Glass shape language. It combines **mass** and **charge** so that form communicates interface meaning instead of acting as decoration.
-
-- **Mass** expresses hierarchy through size, blur, elevation, shadow and apparent material thickness. Quiet objects have low mass; a consequential focus control may have high mass.
-- **Charge** expresses live state through accent, edge light and contour tension. Neutral, intent, valid and alert states must each differ through more than color.
-- A shape may flex to fit content, but its semantic role must remain recognizable.
-- Prefer one expressive object per decision area. Standard geometry remains the default for dense data and repeated content.
-
-| Shape | Meaning | Primary uses |
-| --- | --- | --- |
-| Orbit | Observe | Inspection, identity, spatial focus |
-| Flow | Continue | Navigation, ranges, ongoing processes |
-| Bloom | Create | Primary creation and transformation |
-| Dock | Group | Attached tools and related actions |
-| Beacon | Signal | Direction, notification and time-sensitive attention |
-
-### Shape behavior
-
-- Rest states are compact and visually balanced.
-- Intent may shift the nearest edge, increase charge and open an asymmetric contour.
-- Commit resolves into the role-specific shape and confirms with motion, text or icon—not color alone.
-- Shape morphs use the spring curve `cubic-bezier(.34,1.56,.64,1)` and normally settle within 280ms.
-- Never randomize border radii. Avoid unrelated blobs, inflated pills and decorative morphing behind reading content.
-
-### Liquid control plane
-
-Liquid Glass is a functional control layer above content. It lenses the environment with blur, saturation, inner highlights and adaptive shadow while keeping labels immediately legible.
-
-- Keep one floating liquid plane in a local composition. Do not stack glass on glass.
-- Content surfaces remain stable; navigation and controls may float above them.
-- The edge nearest the pointer may brighten. The center stays quiet so text does not lose contrast.
-- Larger, more consequential controls may use deeper shadow and stronger refraction to appear thicker.
-- A liquid component needs a solid-color fallback when `backdrop-filter` is unavailable.
-- Use Flow for floating docks, Bloom for creation, Dock for attached actions and Orbit for inspection controls.
+CSS backdrop filtering approximates optical refraction. If a product has access to a native material or GPU shader, preserve the same hierarchy and interaction law rather than adding stronger distortion.
 
 ## Components
 
 ### Buttons
 
-- One primary button per decision area.
-- Secondary buttons support the primary path.
-- Quiet buttons are for optional or reversible actions.
-- Danger buttons are only for irreversible actions.
-- Minimum target size is 44 × 44px; small buttons are allowed in dense desktop toolbars only when the toolbar itself provides sufficient spacing.
-- Icon-only controls always need an accessible name and a tooltip in product interfaces.
-- Bloom buttons are reserved for creation or transformation. Do not use the expressive primary shape for ordinary confirmation.
+- One primary button per decision area; the Aurora gradient is its default signal treatment.
+- Secondary buttons support the primary path. Quiet buttons are for optional or reversible actions. Danger buttons are only for irreversible actions.
+- Hover follows one law: local edge light tracks the pointer, gradient position shifts, the control rises up to 2px and may scale to `1.015`.
+- Magnetic movement is subtle and capped at 2px. The label must remain visually stable.
+- Press settles immediately to approximately `0.975` scale and restores elevation on release.
+- Minimum target size is 44 × 44px. Small desktop-toolbar controls need equivalent surrounding hit space.
+- Icon-only controls require an accessible name and a tooltip in product interfaces.
+- Expressive SVG contours may sit behind icon-only feature actions, but never replace the standard text-button silhouette.
 
 ### Menus and navigation
 
@@ -124,41 +133,44 @@ Liquid Glass is a functional control layer above content. It lenses the environm
 - Group commands by user intent, not implementation module.
 - Keyboard shortcuts are displayed in JetBrains Mono.
 - Keep navigation labels to one or two words.
-- Floating navigation uses one Flow-shaped liquid dock. Selected items gain charge without creating a second glass layer.
+- Selected items gain localized light or accent. Do not create a second glass layer.
 
 ### Inputs
 
 - Labels stay visible; placeholders are examples, never replacements for labels.
-- Focus uses the current product accent plus a soft three-pixel ring.
+- Focus uses the active theme accent plus a soft three-pixel ring.
 - Validation appears beside the field and never depends on color alone.
+- Inputs retain core geometry in every state.
 
 ### Feedback
 
-- Stable/success uses mint, active work uses cyan, warnings use warm, errors use danger.
-- Progress indicators show a numeric value when the duration is knowable.
-- Do not block the interface with a decorative loader. If an operation lasts longer than 800ms, show useful progress or allow background execution.
+- Stable/success uses mint, active work uses cyan, warnings use warm and errors use danger.
+- Progress indicators show a numeric value when duration is knowable.
+- Do not block the interface with a decorative loader. After 800ms, show useful progress or allow background execution.
 
-## Motion
+## Motion law
 
-Use `cubic-bezier(.2,.8,.2,1)` as the shared settling curve.
+Use `cubic-bezier(.2,.8,.2,1)` as the shared settling curve and `cubic-bezier(.34,1.56,.64,1)` only for short expressive emphasis.
 
-- 90ms: instant acknowledgment.
-- 160ms: buttons, switches and control state.
-- 280ms: menus, inspectors and layout shifts.
-- 420ms: section reveal.
-- 700ms: ambient motion only.
+- **90ms:** contact acknowledgment and press.
+- **160ms:** button, switch and focus state.
+- **280ms:** menu, inspector, gradient or spatial shift.
+- **420ms:** section reveal.
+- **700ms:** sparse ambient scene movement only.
 
-Respect `prefers-reduced-motion`. Motion must explain state, hierarchy or physics; it must not delay access.
+At rest, controls are still. Hover reveals material; press confirms contact; release settles. Shape changes happen only when they explain a real state transition. No permanent wobble, breathing buttons, random morphing or decorative movement behind reading content.
+
+Respect `prefers-reduced-motion`: remove magnetic movement, shape morphs and spatial parallax while preserving instant state, focus and contrast feedback.
 
 ## Accessibility
 
-- Maintain WCAG AA contrast for text and controls.
-- Keep all interactive targets at least 44px where practical.
+- Maintain WCAG AA contrast for text and controls in all three themes.
+- Keep interactive targets at least 44px where practical.
 - Support keyboard navigation, visible focus and semantic HTML.
 - Never disable browser zoom.
 - Glass surfaces must remain understandable when `backdrop-filter` is unsupported.
-- Do not encode status through color alone.
+- Do not encode status through color, glow, motion or shape alone.
 
 ## Reuse
 
-`dark-glass.css` contains the tokens and framework-independent components. `design-tokens.json` is the machine-readable source for models, design tools and other codebases. The live website is the visual reference for intended hierarchy and behavior.
+`dark-glass.css` contains the framework-independent implementation. `design-tokens.json` is the machine-readable source for models, design tools and other codebases. `BRAND_SYSTEM.md` defines the decisions that must survive framework changes. The live website is the visual and interactive reference.

@@ -1,14 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="aurora">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111214">
-  <meta name="description" content="Dark Glass 2.1 brand guidelines — identity, Field Geometry, liquid material, typography and expressive interface components.">
-  <meta property="og:title" content="Dark Glass 2.1 — Brand Guidelines">
+  <meta name="theme-color" content="#05060A">
+  <meta name="description" content="Dark Glass 2.2 brand guidelines — three brand modes, expressive Material shapes, liquid optics, typography and interactive components.">
+  <meta property="og:title" content="Dark Glass 2.2 — Brand Guidelines">
   <meta property="og:description" content="The complete visual, spatial and interaction standard for the Dark Glass interface material.">
   <meta property="og:type" content="website">
-  <title>Dark Glass 2.1 — Brand Guidelines</title>
+  <title>Dark Glass 2.2 — Brand Guidelines</title>
+  <script>
+    try {
+      const savedTheme = localStorage.getItem('dark-glass-theme');
+      if (['aurora', 'obsidian', 'lux'].includes(savedTheme)) document.documentElement.dataset.theme = savedTheme;
+    } catch {}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -16,12 +22,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <svg class="shape-library" aria-hidden="true" width="0" height="0">
+    <defs>
+      <symbol id="shape-square" viewBox="0 0 100 100"><path d="M29 10H71C83 10 90 17 90 29V71C90 83 83 90 71 90H29C17 90 10 83 10 71V29C10 17 17 10 29 10Z"/></symbol>
+      <symbol id="shape-arch" viewBox="0 0 100 100"><path d="M14 82V51C14 28 30 10 50 10S86 28 86 51V82C86 87 82 90 77 90H23C18 90 14 87 14 82Z"/></symbol>
+      <symbol id="shape-diamond" viewBox="0 0 100 100"><path d="M50 8C55 8 58 11 62 16L85 43C90 49 90 53 85 59L62 86C58 91 55 94 50 94S42 91 38 86L15 59C10 53 10 49 15 43L38 16C42 11 45 8 50 8Z"/></symbol>
+      <symbol id="shape-cookie" viewBox="0 0 100 100"><path d="M75 11Q100 0 89 25Q78 50 89 75Q100 100 75 89Q50 78 25 89Q0 100 11 75Q22 50 11 25Q0 0 25 11Q50 22 75 11Z"/></symbol>
+      <symbol id="shape-softburst" viewBox="0 0 100 100"><path d="M45.36 14.23Q50 7 54.64 14.23Q59.27 21.47 67.27 18.34Q75.27 15.21 74.77 23.79Q74.27 32.37 82.58 34.54Q90.9 36.71 85.45 43.36Q80 50 85.45 56.64Q90.9 63.29 82.58 65.46Q74.27 67.63 74.77 76.21Q75.27 84.79 67.27 81.66Q59.27 78.53 54.64 85.77Q50 93 45.36 85.77Q40.73 78.53 32.73 81.66Q24.73 84.79 25.23 76.21Q25.73 67.63 17.42 65.46Q9.1 63.29 14.55 56.64Q20 50 14.55 43.36Q9.1 36.71 17.42 34.54Q25.73 32.37 25.23 23.79Q24.73 15.21 32.73 18.34Q40.73 21.47 45.36 14.23Z"/></symbol>
+      <symbol id="shape-pill" viewBox="0 0 160 100"><path d="M50 10H110C134 10 150 26 150 50S134 90 110 90H50C26 90 10 74 10 50S26 10 50 10Z"/></symbol>
+    </defs>
+  </svg>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="guide-nav" data-guide-nav>
+  <header class="guide-nav dg-liquid dg-glow" data-guide-nav data-glow data-liquid>
     <a class="guide-nav__brand" href="#cover" aria-label="Dark Glass brand guidelines home">
       <img src="assets/icon-darkglass.svg" alt="" width="30" height="30">
-      <span><strong>Dark Glass</strong><small>Brand Guidelines / 2.1</small></span>
+      <span><strong>Dark Glass</strong><small>Brand Guidelines / 2.2</small></span>
     </a>
     <nav id="guide-menu" aria-label="Guideline chapters">
       <a href="#brand-idea">Brand</a>
@@ -33,6 +49,11 @@
       <a href="#shapes">Shapes</a>
       <a href="#components">Components</a>
     </nav>
+    <div class="theme-switcher" role="group" aria-label="Brand mode">
+      <button class="is-active" type="button" data-theme-switch="aurora" aria-pressed="true" aria-label="Use Aurora theme"><i></i></button>
+      <button type="button" data-theme-switch="obsidian" aria-pressed="false" aria-label="Use Obsidian theme"><i></i></button>
+      <button type="button" data-theme-switch="lux" aria-pressed="false" aria-label="Use Lux theme"><i></i></button>
+    </div>
     <button class="guide-nav__toggle" type="button" aria-controls="guide-menu" aria-expanded="false" aria-label="Open chapters" data-menu-toggle>
       <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7.5h16M4 12h16M4 16.5h16"/></svg>
     </button>
@@ -57,7 +78,7 @@
           <img class="contents-visual__app contents-visual__app--one" src="assets/icon-caelum.svg" alt="">
           <img class="contents-visual__app contents-visual__app--two" src="assets/icon-looksmith.svg" alt="">
           <img class="contents-visual__app contents-visual__app--three" src="assets/icon-openimagelabeler.svg" alt="">
-          <span>OPTICAL INTERFACE MATTER / 2.1</span>
+          <span>OPTICAL INTERFACE MATTER / 2.2</span>
         </div>
         <ol class="contents-list">
           <li><a href="#brand-idea"><i>I.</i><span>Brand idea</span></a></li>
@@ -67,7 +88,7 @@
           <li><a href="#colors"><i>V.</i><span>Colors</span></a></li>
           <li><a href="#typography"><i>VI.</i><span>Typography</span></a></li>
           <li><a href="#material"><i>VII.</i><span>Material &amp; motion</span></a></li>
-          <li><a href="#shapes"><i>VIII.</i><span>Field Geometry</span></a></li>
+          <li><a href="#shapes"><i>VIII.</i><span>Expressive shapes</span></a></li>
           <li><a href="#components"><i>IX.</i><span>Components &amp; applications</span></a></li>
         </ol>
       </div>
@@ -207,16 +228,24 @@
     </section>
 
     <section class="guide-page page-light" data-page="12">
-      <div class="page-topline"><span>Dark Glass</span><span>Primary colors</span><span>12</span></div>
-      <div class="page-intro-row"><h2 class="page-title page-title--small">Primary colors</h2><p>The palette combines optical clarity with deep spatial contrast. Aurora is an emphasis spectrum, never a background replacement.</p><p>Signal white, mist grey and Obsidian keep dense interfaces legible.</p></div>
-      <div class="color-board">
-        <button class="color-swatch color-swatch--gradient" data-copy="#5EE7FF · #8B7CFF · #FF6AD5"><strong>Aurora spectrum</strong><span>#5EE7FF · #8B7CFF · #FF6AD5</span></button>
-        <button class="color-swatch color-swatch--obsidian" data-copy="#05070D"><strong>Obsidian 00</strong><span>#05070D</span></button>
-        <button class="color-swatch color-swatch--cyan" data-copy="#5EE7FF"><strong>Photon cyan</strong><span>#5EE7FF</span></button>
-        <button class="color-swatch color-swatch--violet" data-copy="#8B7CFF"><strong>Field violet</strong><span>#8B7CFF</span></button>
-        <button class="color-swatch color-swatch--ink" data-copy="#F4F7FB"><strong>Signal white</strong><span>#F4F7FB</span></button>
-        <button class="color-swatch color-swatch--mist" data-copy="#AEB8C8"><strong>Mist grey</strong><span>#AEB8C8</span></button>
-        <button class="color-swatch color-swatch--mint" data-copy="#5FF0BC"><strong>Valid mint</strong><span>#5FF0BC</span></button>
+      <div class="page-topline"><span>Dark Glass</span><span>Brand modes</span><span>12</span></div>
+      <div class="page-intro-row"><h2 class="page-title page-title--small">Three modes</h2><p>Aurora is the primary signature. Obsidian removes every nonessential color. Lux adds warm, crafted tactility.</p><p>The component geometry, typography and motion remain identical in all three.</p></div>
+      <div class="theme-showcase" aria-label="Interactive Dark Glass brand modes">
+        <button class="theme-card theme-card--aurora is-active" type="button" data-theme-switch="aurora" aria-pressed="true">
+          <span class="theme-card__meta"><i>01 / PRIMARY</i><b>Aurora</b></span>
+          <span class="theme-card__preview"><i></i><strong>Calibrate field</strong><small>Photon · Field · Spectrum</small></span>
+          <span class="theme-card__palette"><i></i><i></i><i></i><i></i></span>
+        </button>
+        <button class="theme-card theme-card--obsidian" type="button" data-theme-switch="obsidian" aria-pressed="false">
+          <span class="theme-card__meta"><i>02 / MONO</i><b>Obsidian</b></span>
+          <span class="theme-card__preview"><i></i><strong>Inspect signal</strong><small>Black · Silver · White</small></span>
+          <span class="theme-card__palette"><i></i><i></i><i></i><i></i></span>
+        </button>
+        <button class="theme-card theme-card--lux" type="button" data-theme-switch="lux" aria-pressed="false">
+          <span class="theme-card__meta"><i>03 / WARM</i><b>Lux</b></span>
+          <span class="theme-card__preview"><i></i><strong>Shape material</strong><small>Ink · Clay · Amber</small></span>
+          <span class="theme-card__palette"><i></i><i></i><i></i><i></i></span>
+        </button>
       </div>
     </section>
 
@@ -295,53 +324,50 @@
 
     <section class="guide-page chapter-page field-chapter" id="shapes" data-page="20">
       <span class="chapter-page__index">VIII / 20</span>
-      <h2>FIELD<br>GEOMETRY</h2>
+      <h2>EXPRESSIVE<br>SHAPES</h2>
       <div class="chapter-field-shapes" aria-hidden="true">
-        <i class="field-shape field-shape--orbit"></i>
-        <i class="field-shape field-shape--bloom"></i>
-        <i class="field-shape field-shape--beacon"></i>
+        <svg class="chapter-shape chapter-shape--arch" viewBox="0 0 100 100"><use href="#shape-arch"/></svg>
+        <svg class="chapter-shape chapter-shape--cookie" viewBox="0 0 100 100"><use href="#shape-cookie"/></svg>
+        <svg class="chapter-shape chapter-shape--diamond" viewBox="0 0 100 100"><use href="#shape-diamond"/></svg>
       </div>
     </section>
 
     <section class="guide-page page-light" data-page="21">
-      <div class="page-topline"><span>Dark Glass</span><span>Field Geometry / Vocabulary</span><span>21</span></div>
-      <div class="page-intro-row"><h2 class="page-title page-title--small">Shape vocabulary</h2><p>Every contour carries a role. Geometry may flex with content and state, but its meaning stays stable.</p><p>Use expressive forms at moments of intent—not as ambient decoration.</p></div>
+      <div class="page-topline"><span>Dark Glass</span><span>Expressive shapes / Atlas</span><span>21</span></div>
+      <div class="page-intro-row"><h2 class="page-title page-title--small">Shape atlas</h2><p>Dark Glass reconstructs a restrained subset of Google’s published RoundedPolygon recipes as reusable SVG geometry.</p><p>These shapes frame icons and moments—not paragraphs, inputs or ordinary text buttons.</p></div>
       <div class="shape-vocabulary">
-        <article class="shape-specimen shape-specimen--orbit"><div><i></i></div><span>01 / OBSERVE</span><h3>Orbit</h3><p>Inspection, identity and spatial focus. Circular because the state has no preferred direction.</p></article>
-        <article class="shape-specimen shape-specimen--flow"><div><i></i></div><span>02 / CONTINUE</span><h3>Flow</h3><p>Navigation, ranges and ongoing processes. A continuous path with calm momentum.</p></article>
-        <article class="shape-specimen shape-specimen--bloom"><div><i></i></div><span>03 / CREATE</span><h3>Bloom</h3><p>Primary creation and transformation. It opens toward the action as intent increases.</p></article>
-        <article class="shape-specimen shape-specimen--dock"><div><i></i></div><span>04 / GROUP</span><h3>Dock</h3><p>Related tools and attached actions. The asymmetric corners expose the grouping direction.</p></article>
-        <article class="shape-specimen shape-specimen--beacon"><div><i></i></div><span>05 / SIGNAL</span><h3>Beacon</h3><p>Notifications, direction and time-sensitive attention. The tapered edge points to consequence.</p></article>
+        <article class="shape-specimen dg-glow" data-glow><div><svg viewBox="0 0 100 100"><use href="#shape-square"/></svg></div><span>01 / FOUNDATION</span><h3>Square</h3><p>Stable icon containers and compact tools. The default expressive anchor.</p></article>
+        <article class="shape-specimen dg-glow" data-glow><div><svg viewBox="0 0 100 100"><use href="#shape-arch"/></svg></div><span>02 / FEATURE</span><h3>Arch</h3><p>Entrances, feature frames and content that opens into a larger space.</p></article>
+        <article class="shape-specimen dg-glow" data-glow><div><svg viewBox="0 0 100 100"><use href="#shape-diamond"/></svg></div><span>03 / DIRECTION</span><h3>Diamond</h3><p>Directional tools, spatial nodes and decisive icon-only actions.</p></article>
+        <article class="shape-specimen dg-glow" data-glow><div><svg viewBox="0 0 100 100"><use href="#shape-cookie"/></svg></div><span>04 / EXPRESS</span><h3>Cookie 4</h3><p>Selected creative tools and short-lived expressive states.</p></article>
+        <article class="shape-specimen dg-glow" data-glow><div><svg viewBox="0 0 100 100"><use href="#shape-softburst"/></svg></div><span>05 / SIGNAL</span><h3>Soft burst</h3><p>Celebration, generation and high-energy status—never routine navigation.</p></article>
       </div>
     </section>
 
     <section class="guide-page page-light" data-page="22">
-      <div class="page-topline"><span>Dark Glass</span><span>Field Geometry / Grammar</span><span>22</span></div>
-      <div class="page-intro-row"><h2 class="page-title page-title--small">Mass &amp; charge</h2><p><b>Mass</b> is visual gravity: size, blur, shadow and thickness express importance.</p><p><b>Charge</b> is live intent: color, edge light and asymmetry express state.</p></div>
-      <div class="field-grammar">
-        <article class="mass-system">
-          <span class="eyebrow">MASS / HIERARCHY</span>
-          <div class="mass-stack" aria-label="Three levels of visual mass">
-            <i><b>Quiet</b><small>16 blur</small></i>
-            <i><b>Base</b><small>24 blur</small></i>
-            <i><b>Focus</b><small>40 blur</small></i>
+      <div class="page-topline"><span>Dark Glass</span><span>Expressive shapes / Use</span><span>22</span></div>
+      <div class="page-intro-row"><h2 class="page-title page-title--small">Core first</h2><p>Most of the interface uses calm, repeatable geometry. Expressive shapes appear only where recognition matters.</p><p>Motion adds energy to intent; it must never deform a text label.</p></div>
+      <div class="shape-rules-board">
+        <article class="shape-rule shape-rule--core">
+          <span class="eyebrow">80–90% / CORE GEOMETRY</span>
+          <div class="core-geometry-demo">
+            <button class="dg-button dg-button--primary dg-glow" type="button" data-glow>Run calibration</button>
+            <button class="dg-button dg-button--secondary dg-glow" type="button" data-glow>Compare</button>
+            <label class="manual-field"><span>Experiment name</span><input value="Prism study 04"></label>
           </div>
-          <p>Thicker material belongs to fewer, more consequential controls. Never raise every object at once.</p>
+          <p>Buttons, fields, cards, menus and data surfaces stay legible, symmetric and predictable.</p>
         </article>
-        <article class="charge-system">
-          <span class="eyebrow">CHARGE / STATE</span>
-          <div class="charge-states">
-            <i class="charge-neutral"><b>0</b><small>Rest</small></i>
-            <i class="charge-intent"><b>1</b><small>Intent</small></i>
-            <i class="charge-valid"><b>2</b><small>Valid</small></i>
-            <i class="charge-alert"><b>3</b><small>Alert</small></i>
+        <article class="shape-rule shape-rule--accent">
+          <span class="eyebrow">10–20% / EXPRESSIVE ACCENT</span>
+          <div class="expressive-icon-demo" aria-label="Expressive icon containers">
+            <button type="button" aria-label="Open space"><svg viewBox="0 0 100 100"><use href="#shape-arch"/></svg><i>↗</i></button>
+            <button type="button" aria-label="Locate node"><svg viewBox="0 0 100 100"><use href="#shape-diamond"/></svg><i>⌖</i></button>
+            <button type="button" aria-label="Generate variation"><svg viewBox="0 0 100 100"><use href="#shape-cookie"/></svg><i>＋</i></button>
           </div>
-          <p>Color never works alone: each charged state also changes edge, shadow or contour.</p>
+          <p>Use the atlas for large icon actions, feature moments and persistent selected states.</p>
         </article>
-        <article class="morph-system">
-          <span class="eyebrow">MORPH / INTENT</span>
-          <div class="morph-sequence" aria-label="Shape progression from rest to commit"><i></i><span>→</span><i></i><span>→</span><i></i></div>
-          <div class="morph-labels"><small>REST</small><small>INTENT</small><small>COMMIT</small></div>
+        <article class="shape-policy">
+          <span><b>01</b>Text controls stay stable</span><span><b>02</b>One expressive focal point</span><span><b>03</b>Morph only between named shapes</span><span><b>04</b>Reduced motion stays static</span>
         </article>
       </div>
     </section>
@@ -358,10 +384,10 @@
       <div class="component-manual">
         <div class="component-column">
           <span class="eyebrow">BUTTON HIERARCHY</span>
-          <button class="dg-button dg-button--primary">Primary action</button>
-          <button class="dg-button dg-button--secondary">Secondary</button>
-          <button class="dg-button dg-button--quiet">Quiet action</button>
-          <button class="dg-button dg-button--danger">Destructive</button>
+          <button class="dg-button dg-button--primary dg-glow" type="button" data-glow>Primary action</button>
+          <button class="dg-button dg-button--secondary dg-glow" type="button" data-glow>Secondary</button>
+          <button class="dg-button dg-button--quiet dg-glow" type="button" data-glow>Quiet action</button>
+          <button class="dg-button dg-button--danger dg-glow" type="button" data-glow>Destructive</button>
           <p><b>Rule:</b> one primary action per decision area. Use sentence case and begin with a verb.</p>
         </div>
         <div class="component-column">
@@ -386,23 +412,33 @@
     <section class="guide-page page-light" data-page="25">
       <div class="page-topline"><span>Dark Glass</span><span>Expressive components</span><span>25</span></div>
       <div class="page-intro-row"><h2 class="page-title page-title--small">Liquid controls</h2><p>One floating control plane bends light above the content. Pointer proximity brightens only the nearest edge.</p><p>Shape morphing is reserved for intent, selection and commitment.</p></div>
-      <div class="expressive-stage">
-        <div class="expressive-atmosphere" aria-hidden="true"><i></i><i></i><i></i></div>
-        <nav class="dg-liquid dg-liquid-dock dg-glow" data-glow aria-label="Material preview modes">
-          <button class="is-active" type="button" aria-pressed="true" data-dock-item><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M3 12h3m12 0h3M12 3v3m0 12v3"/></svg><span>Field</span></button>
-          <button type="button" aria-pressed="false" data-dock-item><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17 9 6l4 8 3-5 4 8H4Z"/></svg><span>Depth</span></button>
-          <button type="button" aria-pressed="false" data-dock-item><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"/><circle cx="9" cy="7" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="11" cy="17" r="1.5"/></svg><span>Signal</span></button>
-        </nav>
-        <div class="expressive-stage__statement"><span>FIELD / 08:42</span><strong>Form follows<br>intent.</strong><p>A single optical layer. Responsive edges. Geometry with meaning.</p></div>
+      <div class="expressive-stage" data-material-lab data-demo-mode="field">
+        <div class="lab-scene" aria-hidden="true">
+          <i class="lab-scene__orbit"></i><i class="lab-scene__orbit"></i><i class="lab-scene__orbit"></i>
+          <span class="lab-scene__sample lab-scene__sample--one">A-17</span>
+          <span class="lab-scene__sample lab-scene__sample--two">λ 0.042</span>
+          <span class="lab-scene__sample lab-scene__sample--three">128 FR</span>
+        </div>
+        <div class="dg-liquid dg-liquid-dock dg-glow" role="group" data-glow data-liquid aria-label="Material preview modes">
+          <button class="is-active" type="button" aria-pressed="true" data-dock-item data-mode="field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M3 12h3m12 0h3M12 3v3m0 12v3"/></svg><span>Field</span></button>
+          <button type="button" aria-pressed="false" data-dock-item data-mode="depth"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17 9 6l4 8 3-5 4 8H4Z"/></svg><span>Depth</span></button>
+          <button type="button" aria-pressed="false" data-dock-item data-mode="signal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"/><circle cx="9" cy="7" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="11" cy="17" r="1.5"/></svg><span>Signal</span></button>
+        </div>
+        <div class="expressive-stage__statement" aria-live="polite" aria-atomic="true"><span data-lab-kicker>FIELD / OPTICAL RESPONSE</span><strong data-lab-title>Light follows<br>intent.</strong><p data-lab-copy>Move through the material. The nearest edge catches light while content remains still.</p></div>
         <div class="expressive-controls">
-          <button class="dg-field-button dg-field-button--bloom dg-glow" type="button" data-glow><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Create field</span></button>
-          <div class="dg-action-cluster" role="group" aria-label="View controls">
+          <button class="dg-button dg-button--primary dg-button--lg dg-glow" type="button" data-glow data-magnetic data-create-field><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Create field</span></button>
+          <div class="dg-action-cluster dg-glow" role="group" aria-label="View controls" data-glow>
             <button type="button" aria-label="Inspect field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg></button>
             <button type="button" aria-label="Center field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M4 12h3m10 0h3M12 4v3m0 10v3"/></svg></button>
             <button type="button" aria-label="Open field menu"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="18" cy="12" r="1"/></svg></button>
           </div>
-          <label class="dg-liquid-toggle"><input type="checkbox" checked><span aria-hidden="true"><i></i></span><em>Live lens</em></label>
+          <label class="dg-liquid-toggle"><input type="checkbox" checked data-live-lens><span aria-hidden="true"><i></i></span><em>Live lens</em></label>
         </div>
+      </div>
+      <div class="material-controls" aria-label="Liquid material controls">
+        <label><span>Blur <output data-blur-output>28px</output></span><input type="range" min="12" max="48" value="28" data-material-blur></label>
+        <label><span>Refraction <output data-lens-output>62%</output></span><input type="range" min="20" max="100" value="62" data-material-lens></label>
+        <button type="button" data-material-reset>Reset material</button>
       </div>
       <div class="expressive-rules"><span><b>01</b>One liquid plane</span><span><b>02</b>Edge follows pointer</span><span><b>03</b>Shape confirms state</span><span><b>04</b>Content stays still</span></div>
     </section>
@@ -427,11 +463,10 @@
         <a href="BRAND_SYSTEM.md">Written standard ↗</a>
         <a href="https://github.com/ProfessorEngineergit/Dark-Glass">Repository ↗</a>
       </div>
-      <div class="cover-lockup"><img src="assets/icon-darkglass.svg" alt="" width="64" height="64"><span><strong>Dark Glass</strong><small>INTERFACE MATERIAL / 2.1</small></span></div>
+      <div class="cover-lockup"><img src="assets/icon-darkglass.svg" alt="" width="64" height="64"><span><strong>Dark Glass</strong><small>INTERFACE MATERIAL / 2.2</small></span></div>
     </section>
   </main>
 
-  <div class="copy-toast" role="status" aria-live="polite" data-copy-toast>Copied</div>
   <script src="script.js"></script>
 </body>
 </html>

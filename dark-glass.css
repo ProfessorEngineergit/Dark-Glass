@@ -1,5 +1,5 @@
 /*
- * Dark Glass 2.1 — ProfessorEngineer interface material
+ * Dark Glass 2.2 — ProfessorEngineer interface material
  * Framework-agnostic tokens and components.
  */
 
@@ -14,6 +14,17 @@
   --dg-ink-2: #aeb8c8;
   --dg-ink-3: #6f7b90;
 
+  --dg-canvas: #05060a;
+  --dg-canvas-rgb: 5, 6, 10;
+  --dg-surface: #0a0e18;
+  --dg-surface-rgb: 10, 14, 24;
+  --dg-surface-2: #111827;
+  --dg-text: #f5f7fc;
+  --dg-muted: #9aa5b7;
+  --dg-line: rgba(255, 255, 255, .12);
+  --dg-line-strong: rgba(255, 255, 255, .2);
+  --dg-glass-tint: 8, 13, 24;
+
   --dg-cyan: #5ee7ff;
   --dg-violet: #8b7cff;
   --dg-magenta: #ff6ad5;
@@ -23,8 +34,10 @@
 
   --dg-accent: var(--dg-cyan);
   --dg-accent-2: var(--dg-violet);
+  --dg-accent-3: var(--dg-magenta);
   --dg-accent-rgb: 94, 231, 255;
   --dg-accent-2-rgb: 139, 124, 255;
+  --dg-accent-3-rgb: 255, 106, 213;
   --dg-aurora: linear-gradient(120deg, var(--dg-cyan), var(--dg-violet) 52%, var(--dg-magenta));
 
   --dg-font-display: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
@@ -47,12 +60,8 @@
   --dg-radius-4: 28px;
   --dg-radius-pill: 999px;
 
-  --dg-shape-orbit: 50%;
-  --dg-shape-flow: 999px;
-  --dg-shape-bloom: 38% 62% 58% 42% / 48% 36% 64% 52%;
-  --dg-shape-bloom-active: 58% 42% 36% 64% / 44% 58% 42% 56%;
-  --dg-shape-dock: 28px 10px 28px 10px;
-  --dg-shape-beacon: 50% 50% 18% 50% / 50% 50% 18% 50%;
+  --dg-shape-circle: 50%;
+  --dg-shape-pill: 999px;
 
   --dg-blur-quiet: 16px;
   --dg-blur-base: 24px;
@@ -67,27 +76,61 @@
   --dg-ease: cubic-bezier(.2, .8, .2, 1);
   --dg-spring: cubic-bezier(.34, 1.56, .64, 1);
 
-  --dg-hairline: rgba(255, 255, 255, .1);
-  --dg-hairline-strong: rgba(255, 255, 255, .18);
+  --dg-hairline: var(--dg-line);
+  --dg-hairline-strong: var(--dg-line-strong);
   --dg-shadow-low: 0 16px 44px rgba(0, 0, 0, .24);
   --dg-shadow-high: 0 28px 90px rgba(0, 0, 0, .48);
   --dg-focus-ring: 0 0 0 3px rgba(var(--dg-accent-rgb), .2);
 }
 
-html[data-accent="cyan"] {
-  --dg-accent: #5ee7ff;
-  --dg-accent-2: #71b7ff;
-  --dg-accent-rgb: 94, 231, 255;
-  --dg-accent-2-rgb: 113, 183, 255;
-  --dg-aurora: linear-gradient(120deg, #d7f9ff, #5ee7ff 45%, #718cff);
+html[data-theme="obsidian"] {
+  --dg-canvas: #000;
+  --dg-canvas-rgb: 0, 0, 0;
+  --dg-surface: #09090a;
+  --dg-surface-rgb: 9, 9, 10;
+  --dg-surface-2: #131315;
+  --dg-text: #f4f4f2;
+  --dg-muted: #a0a0a0;
+  --dg-ink: #f4f4f2;
+  --dg-ink-2: #b3b3b0;
+  --dg-ink-3: #747474;
+  --dg-cyan: #f4f4f2;
+  --dg-violet: #a8a8ac;
+  --dg-magenta: #66666b;
+  --dg-mint: #c8c8c6;
+  --dg-warm: #deded9;
+  --dg-accent: #f4f4f2;
+  --dg-accent-2: #858589;
+  --dg-accent-3: #66666b;
+  --dg-accent-rgb: 244, 244, 242;
+  --dg-accent-2-rgb: 133, 133, 137;
+  --dg-accent-3-rgb: 102, 102, 107;
+  --dg-aurora: linear-gradient(120deg, #fff, #a8a8ac 52%, #56565b);
+  --dg-glass-tint: 7, 7, 8;
 }
 
-html[data-accent="mint"] {
-  --dg-accent: #5ff0bc;
-  --dg-accent-2: #5ee7ff;
-  --dg-accent-rgb: 95, 240, 188;
-  --dg-accent-2-rgb: 94, 231, 255;
-  --dg-aurora: linear-gradient(120deg, #d8ffef, #5ff0bc 45%, #5ee7ff);
+html[data-theme="lux"] {
+  --dg-canvas: #17130f;
+  --dg-canvas-rgb: 23, 19, 15;
+  --dg-surface: #211a15;
+  --dg-surface-rgb: 33, 26, 21;
+  --dg-surface-2: #30241d;
+  --dg-text: #f5eee5;
+  --dg-muted: #b9a99a;
+  --dg-ink: #f5eee5;
+  --dg-ink-2: #cbb9a8;
+  --dg-ink-3: #8f7c6d;
+  --dg-cyan: #efb47f;
+  --dg-violet: #c87859;
+  --dg-magenta: #dc9c89;
+  --dg-accent: #efb47f;
+  --dg-accent-2: #c87859;
+  --dg-accent-3: #dc9c89;
+  --dg-accent-rgb: 239, 180, 127;
+  --dg-accent-2-rgb: 200, 120, 89;
+  --dg-accent-3-rgb: 220, 156, 137;
+  --dg-aurora: linear-gradient(120deg, #f2d2ad, #d58b68 52%, #a95d48);
+  --dg-glass-tint: 35, 25, 19;
 }
 
 .dg-glass {
@@ -97,7 +140,7 @@ html[data-accent="mint"] {
   position: relative;
   background:
     linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,0) 38%),
-    rgba(9, 13, 22, var(--dg-surface-fill));
+    rgba(var(--dg-surface-rgb), var(--dg-surface-fill));
   border: 1px solid var(--dg-hairline);
   box-shadow: var(--dg-shadow-low), inset 0 1px 0 rgba(255, 255, 255, .045);
   -webkit-backdrop-filter: blur(var(--dg-surface-blur)) saturate(var(--dg-surface-saturation));
@@ -130,6 +173,7 @@ html[data-accent="mint"] {
   --mx: 50%;
   --my: 50%;
   --glow-opacity: 0;
+  --lens-radius: 180px;
   isolation: isolate;
   position: relative;
 }
@@ -143,29 +187,29 @@ html[data-accent="mint"] {
   border-radius: inherit;
   pointer-events: none;
   opacity: var(--glow-opacity);
-  background: radial-gradient(240px circle at var(--mx) var(--my), rgba(255,255,255,.88), rgba(var(--dg-accent-rgb),.48) 25%, transparent 68%);
+  background: radial-gradient(var(--lens-radius) circle at var(--mx) var(--my), rgba(255,255,255,.92), rgba(var(--dg-accent-rgb),.52) 24%, transparent 68%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   transition: opacity var(--dg-control) var(--dg-ease);
 }
 
-/* Field Geometry: semantic contours for observation, flow, creation and signal. */
+/* Expressive SVG shapes are defined as normalized paths in the consuming UI. */
 .dg-shape { display: block; }
-.dg-shape--orbit { border-radius: var(--dg-shape-orbit); }
-.dg-shape--flow { border-radius: var(--dg-shape-flow); }
-.dg-shape--bloom { border-radius: var(--dg-shape-bloom); }
-.dg-shape--dock { border-radius: var(--dg-shape-dock); }
-.dg-shape--beacon { border-radius: var(--dg-shape-beacon); }
+.dg-shape--circle { border-radius: var(--dg-shape-circle); }
+.dg-shape--pill { border-radius: var(--dg-shape-pill); }
 
 /* Liquid is a single functional plane above content, never a content texture. */
 .dg-liquid {
   --dg-liquid-fill: .075;
   --dg-liquid-blur: 28px;
+  --dg-liquid-lens: .62;
+  --lens-radius: 150px;
   background:
-    linear-gradient(135deg, rgba(255,255,255,.11), rgba(255,255,255,.025) 38%, rgba(var(--dg-accent-2-rgb),.055)),
-    rgba(7, 10, 17, var(--dg-liquid-fill));
-  border: 1px solid rgba(255,255,255,.17);
+    radial-gradient(140px circle at var(--mx) var(--my), rgba(255,255,255,calc(var(--dg-liquid-lens) * .14)), transparent 66%),
+    linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.025) 38%, rgba(var(--dg-accent-2-rgb),.07)),
+    rgba(var(--dg-glass-tint), var(--dg-liquid-fill));
+  border: 1px solid var(--dg-line-strong);
   box-shadow:
     0 24px 64px rgba(0,0,0,.4),
     0 2px 10px rgba(0,0,0,.28),
@@ -174,26 +218,29 @@ html[data-accent="mint"] {
   isolation: isolate;
   overflow: hidden;
   position: relative;
-  -webkit-backdrop-filter: blur(var(--dg-liquid-blur)) saturate(1.55) brightness(1.04);
-  backdrop-filter: blur(var(--dg-liquid-blur)) saturate(1.55) brightness(1.04);
+  -webkit-backdrop-filter: blur(var(--dg-liquid-blur)) saturate(1.65) contrast(1.08) brightness(1.04);
+  backdrop-filter: blur(var(--dg-liquid-blur)) saturate(1.65) contrast(1.08) brightness(1.04);
+  transition: background var(--dg-shift) var(--dg-ease), border-color var(--dg-control), box-shadow var(--dg-shift) var(--dg-ease), transform var(--dg-control) var(--dg-spring);
 }
 
 .dg-liquid::after {
   background:
-    radial-gradient(110% 75% at 18% -10%, rgba(255,255,255,.22), transparent 48%),
-    radial-gradient(70% 120% at 110% 90%, rgba(var(--dg-accent-rgb),.09), transparent 58%);
+    radial-gradient(100px circle at var(--mx) var(--my), rgba(255,255,255,calc(var(--dg-liquid-lens) * .34)), transparent 52%),
+    radial-gradient(110% 75% at 18% -10%, rgba(255,255,255,.2), transparent 48%),
+    radial-gradient(70% 120% at 110% 90%, rgba(var(--dg-accent-rgb),.12), transparent 58%);
   content: "";
   inset: 1px;
   pointer-events: none;
   position: absolute;
   z-index: 0;
+  transition: background var(--dg-fast) linear;
 }
 
 .dg-liquid > * { position: relative; z-index: 1; }
 
 .dg-liquid-dock {
   align-items: center;
-  border-radius: var(--dg-shape-flow);
+  border-radius: var(--dg-shape-pill);
   display: inline-flex;
   gap: 4px;
   padding: 5px;
@@ -204,7 +251,7 @@ html[data-accent="mint"] {
   appearance: none;
   background: transparent;
   border: 0;
-  border-radius: var(--dg-shape-flow);
+  border-radius: var(--dg-shape-pill);
   color: var(--dg-ink-3);
   cursor: pointer;
   display: inline-flex;
@@ -216,7 +263,6 @@ html[data-accent="mint"] {
 }
 
 .dg-liquid-dock button svg,
-.dg-field-button svg,
 .dg-action-cluster svg {
   fill: none;
   height: 17px;
@@ -234,37 +280,11 @@ html[data-accent="mint"] {
   color: var(--dg-ink);
 }
 
-.dg-field-button {
-  align-items: center;
-  appearance: none;
-  background:
-    linear-gradient(130deg, rgba(255,255,255,.86), rgba(255,255,255,.28) 18%, transparent 34%),
-    var(--dg-aurora);
-  border: 1px solid rgba(255,255,255,.5);
-  box-shadow: 0 22px 54px rgba(var(--dg-accent-2-rgb),.28), inset 0 1px 0 rgba(255,255,255,.7);
-  color: #05070d;
-  cursor: pointer;
-  display: inline-flex;
-  font: 650 14px/1 var(--dg-font-display);
-  gap: 10px;
-  justify-content: center;
-  min-height: 58px;
-  min-width: 164px;
-  padding: 0 22px;
-  position: relative;
-  transition: border-radius var(--dg-shift) var(--dg-spring), box-shadow var(--dg-shift) var(--dg-ease), transform var(--dg-control) var(--dg-spring);
-}
-
-.dg-field-button--bloom { border-radius: var(--dg-shape-bloom); }
-.dg-field-button--orbit { border-radius: var(--dg-shape-orbit); min-width: 58px; padding: 0; width: 58px; }
-.dg-field-button:hover { border-radius: var(--dg-shape-bloom-active); box-shadow: 0 28px 70px rgba(var(--dg-accent-2-rgb),.38), inset 0 1px 0 rgba(255,255,255,.78); transform: translateY(-3px) scale(1.02); }
-.dg-field-button:active { transform: scale(.96); }
-
 .dg-action-cluster {
   align-items: center;
   background: linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.035)), rgba(7,10,17,.42);
   border: 1px solid rgba(255,255,255,.15);
-  border-radius: var(--dg-shape-dock);
+  border-radius: var(--dg-radius-3);
   box-shadow: 0 18px 44px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.1);
   display: inline-flex;
   gap: 1px;
@@ -289,8 +309,8 @@ html[data-accent="mint"] {
   width: 44px;
 }
 
-.dg-action-cluster button:first-child { border-radius: 20px 9px 9px 20px; }
-.dg-action-cluster button:last-child { border-radius: 9px 9px 20px 9px; }
+.dg-action-cluster button:first-child { border-radius: 13px 9px 9px 13px; }
+.dg-action-cluster button:last-child { border-radius: 9px 13px 13px 9px; }
 .dg-action-cluster button:hover { background: rgba(255,255,255,.11); color: var(--dg-ink); transform: translateY(-1px); }
 
 .dg-liquid-toggle { align-items: center; cursor: pointer; display: inline-flex; gap: 10px; }
@@ -298,7 +318,7 @@ html[data-accent="mint"] {
 .dg-liquid-toggle > span {
   background: rgba(255,255,255,.08);
   border: 1px solid rgba(255,255,255,.15);
-  border-radius: var(--dg-shape-flow);
+  border-radius: var(--dg-shape-pill);
   box-shadow: inset 0 2px 6px rgba(0,0,0,.3);
   height: 34px;
   position: relative;
@@ -308,7 +328,7 @@ html[data-accent="mint"] {
 
 .dg-liquid-toggle > span i {
   background: rgba(244,247,251,.82);
-  border-radius: var(--dg-shape-orbit);
+  border-radius: var(--dg-shape-circle);
   box-shadow: 0 5px 12px rgba(0,0,0,.36), inset 0 1px 0 #fff;
   height: 24px;
   left: 4px;
@@ -319,16 +339,18 @@ html[data-accent="mint"] {
 }
 
 .dg-liquid-toggle input:checked + span { background: rgba(var(--dg-accent-rgb),.18); border-color: rgba(var(--dg-accent-rgb),.5); box-shadow: 0 0 26px rgba(var(--dg-accent-rgb),.14), inset 0 2px 6px rgba(0,0,0,.3); }
-.dg-liquid-toggle input:checked + span i { background: var(--dg-accent); border-radius: var(--dg-shape-bloom); box-shadow: 0 0 18px rgba(var(--dg-accent-rgb),.58), inset 0 1px 0 rgba(255,255,255,.8); transform: translateX(24px) rotate(12deg); }
+.dg-liquid-toggle input:checked + span i { background: var(--dg-accent); border-radius: var(--dg-shape-circle); box-shadow: 0 0 18px rgba(var(--dg-accent-rgb),.58), inset 0 1px 0 rgba(255,255,255,.8); transform: translateX(24px); }
 .dg-liquid-toggle input:focus-visible + span { outline: 1px solid var(--dg-accent); outline-offset: 3px; box-shadow: var(--dg-focus-ring); }
 .dg-liquid-toggle em { color: var(--dg-ink-2); font: normal 500 10px/1 var(--dg-font-mono); letter-spacing: .08em; text-transform: uppercase; }
 
 .dg-liquid-dock button:focus-visible,
-.dg-field-button:focus-visible,
 .dg-action-cluster button:focus-visible { outline: 1px solid var(--dg-accent); outline-offset: 3px; box-shadow: var(--dg-focus-ring); }
 
 .dg-button,
 .dg-icon-button {
+  --magnetic-x: 0px;
+  --magnetic-y: 0px;
+  --lens-radius: 90px;
   -webkit-tap-highlight-color: transparent;
   align-items: center;
   appearance: none;
@@ -341,6 +363,7 @@ html[data-accent="mint"] {
   font-weight: 600;
   justify-content: center;
   line-height: 1;
+  overflow: hidden;
   position: relative;
   text-decoration: none;
   transition:
@@ -348,7 +371,7 @@ html[data-accent="mint"] {
     border-color var(--dg-control) var(--dg-ease),
     box-shadow var(--dg-control) var(--dg-ease),
     color var(--dg-control) var(--dg-ease),
-    transform var(--dg-control) var(--dg-ease);
+    transform var(--dg-control) var(--dg-spring);
 }
 
 .dg-button {
@@ -376,24 +399,30 @@ html[data-accent="mint"] {
 
 .dg-button--primary {
   background: var(--dg-aurora);
+  background-position: 15% 50%;
+  background-size: 180% 180%;
   box-shadow: 0 12px 34px rgba(var(--dg-accent-2-rgb), .24), inset 0 1px 0 rgba(255,255,255,.48);
   color: #05070d;
 }
 
-.dg-button--primary:hover { box-shadow: 0 16px 44px rgba(var(--dg-accent-2-rgb), .36), inset 0 1px 0 rgba(255,255,255,.6); transform: translateY(-2px); }
-.dg-button--secondary { background: rgba(255,255,255,.075); border: 1px solid rgba(255,255,255,.16); box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
-.dg-button--secondary:hover { background: rgba(255,255,255,.11); border-color: rgba(255,255,255,.24); transform: translateY(-2px); }
-.dg-button--quiet { background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.08); color: var(--dg-ink-2); }
-.dg-button--quiet:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.15); color: var(--dg-ink); }
+.dg-button--primary:hover,
+.dg-button--primary.is-pointer-active { background-position: 82% 50%; box-shadow: 0 18px 48px rgba(var(--dg-accent-2-rgb), .4), 0 0 24px rgba(var(--dg-accent-rgb),.13), inset 0 1px 0 rgba(255,255,255,.72); transform: translate3d(var(--magnetic-x), calc(var(--magnetic-y) - 2px), 0) scale(1.015); }
+.dg-button--secondary { background: rgba(var(--dg-surface-rgb),.72); border: 1px solid var(--dg-line-strong); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+.dg-button--secondary:hover,
+.dg-button--secondary.is-pointer-active { background: rgba(255,255,255,.11); border-color: rgba(var(--dg-accent-rgb),.34); box-shadow: 0 12px 28px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.1); transform: translateY(-2px); }
+.dg-button--quiet { background: rgba(255,255,255,.025); border: 1px solid var(--dg-line); color: var(--dg-ink-2); }
+.dg-button--quiet:hover,
+.dg-button--quiet.is-pointer-active { background: rgba(255,255,255,.07); border-color: rgba(var(--dg-accent-rgb),.24); color: var(--dg-ink); transform: translateY(-2px); }
 .dg-button--danger { background: rgba(255,112,133,.1); border: 1px solid rgba(255,112,133,.3); color: #ff9bab; }
-.dg-button--danger:hover { background: rgba(255,112,133,.17); border-color: rgba(255,112,133,.5); transform: translateY(-2px); }
-.dg-button:active:not(:disabled), .dg-icon-button:active:not(:disabled) { transform: scale(.97); }
+.dg-button--danger:hover,
+.dg-button--danger.is-pointer-active { background: rgba(255,112,133,.17); border-color: rgba(255,112,133,.5); box-shadow: 0 12px 28px rgba(255,112,133,.12); transform: translateY(-2px); }
+.dg-button:active:not(:disabled), .dg-icon-button:active:not(:disabled) { transform: scale(.975); transition-duration: var(--dg-fast); }
 .dg-button:disabled, .dg-icon-button:disabled { cursor: not-allowed; filter: saturate(.3); opacity: .42; transform: none; }
 .dg-button:focus-visible, .dg-icon-button:focus-visible { outline: 1px solid rgba(var(--dg-accent-rgb), .85); outline-offset: 3px; box-shadow: var(--dg-focus-ring); }
 
 .dg-icon-button {
-  background: rgba(255,255,255,.035);
-  border: 1px solid rgba(255,255,255,.09);
+  background: rgba(var(--dg-surface-rgb),.7);
+  border: 1px solid var(--dg-line);
   border-radius: var(--dg-radius-2);
   height: 44px;
   width: 44px;

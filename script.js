@@ -1,168 +1,93 @@
 (() => {
   'use strict';
 
-  const root = document.documentElement;
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const menu = document.querySelector('#guide-menu');
+  const menuToggle = document.querySelector('[data-menu-toggle]');
   const finePointer = window.matchMedia('(pointer: fine)');
 
-  function attachPointerLight(element) {
-    if (!finePointer.matches) return;
-
-    const update = (event) => {
-      const bounds = element.getBoundingClientRect();
-      element.style.setProperty('--mx', `${event.clientX - bounds.left}px`);
-      element.style.setProperty('--my', `${event.clientY - bounds.top}px`);
-      element.style.setProperty('--glow-opacity', '1');
-    };
-
-    element.addEventListener('pointermove', update, { passive: true });
-    element.addEventListener('pointerenter', update, { passive: true });
-    element.addEventListener('pointerleave', () => {
-      element.style.setProperty('--glow-opacity', '0');
-    }, { passive: true });
+  function closeMenu() {
+    menu?.classList.remove('is-open');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+    menuToggle?.setAttribute('aria-label', 'Open chapters');
   }
-
-  document.querySelectorAll('[data-glow]').forEach(attachPointerLight);
-
-  const header = document.querySelector('[data-site-header]');
-  const menuToggle = document.querySelector('[data-menu-toggle]');
-  const navigation = document.querySelector('#site-nav');
-
-  const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 28);
-  updateHeader();
-  window.addEventListener('scroll', updateHeader, { passive: true });
 
   menuToggle?.addEventListener('click', () => {
-    const open = menuToggle.getAttribute('aria-expanded') !== 'true';
-    menuToggle.setAttribute('aria-expanded', String(open));
-    menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-    navigation?.classList.toggle('is-open', open);
+    const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Open chapters' : 'Close chapters');
+    menu?.classList.toggle('is-open', !isOpen);
   });
 
-  navigation?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      navigation.classList.remove('is-open');
-      menuToggle?.setAttribute('aria-expanded', 'false');
-      menuToggle?.setAttribute('aria-label', 'Open navigation');
-    });
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
   });
 
-  const revealElements = document.querySelectorAll('.reveal');
-  if (!reducedMotion.matches && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    revealElements.forEach((element) => observer.observe(element));
-  } else {
-    revealElements.forEach((element) => element.classList.add('is-visible'));
-  }
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
 
-  const stage = document.querySelector('[data-tilt-stage]');
-  const stageCanvas = stage?.querySelector('.app-canvas');
-  if (stage && stageCanvas && finePointer.matches && !reducedMotion.matches) {
-    stage.addEventListener('pointermove', (event) => {
-      const bounds = stage.getBoundingClientRect();
-      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-      const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-      stageCanvas.style.setProperty('--stage-ry', `${x * 5 - 3}deg`);
-      stageCanvas.style.setProperty('--stage-rx', `${y * -4 + 1}deg`);
-    }, { passive: true });
+  if (finePointer.matches) {
+    document.querySelectorAll('[data-glow]').forEach((surface) => {
+      const updatePointerLight = (event) => {
+        const bounds = surface.getBoundingClientRect();
+        surface.style.setProperty('--mx', `${event.clientX - bounds.left}px`);
+        surface.style.setProperty('--my', `${event.clientY - bounds.top}px`);
+        surface.style.setProperty('--glow-opacity', '1');
+      };
 
-    stage.addEventListener('pointerleave', () => {
-      stageCanvas.style.setProperty('--stage-ry', '-3deg');
-      stageCanvas.style.setProperty('--stage-rx', '1deg');
-    }, { passive: true });
-  }
-
-  const componentTabs = Array.from(document.querySelectorAll('[data-component-tab]'));
-  const componentPanels = Array.from(document.querySelectorAll('[data-component-panel]'));
-
-  function selectComponentTab(selectedTab) {
-    const selectedName = selectedTab.dataset.componentTab;
-    componentTabs.forEach((tab) => {
-      const active = tab === selectedTab;
-      tab.setAttribute('aria-selected', String(active));
-      tab.tabIndex = active ? 0 : -1;
-    });
-    componentPanels.forEach((panel) => {
-      panel.hidden = panel.dataset.componentPanel !== selectedName;
+      surface.addEventListener('pointerenter', updatePointerLight, { passive: true });
+      surface.addEventListener('pointermove', updatePointerLight, { passive: true });
+      surface.addEventListener('pointerleave', () => {
+        surface.style.setProperty('--glow-opacity', '0');
+      }, { passive: true });
     });
   }
 
-  componentTabs.forEach((tab, index) => {
-    tab.tabIndex = tab.getAttribute('aria-selected') === 'true' ? 0 : -1;
-    tab.addEventListener('click', () => selectComponentTab(tab));
-    tab.addEventListener('keydown', (event) => {
-      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-      event.preventDefault();
-      let targetIndex = index;
-      if (event.key === 'ArrowRight') targetIndex = (index + 1) % componentTabs.length;
-      if (event.key === 'ArrowLeft') targetIndex = (index - 1 + componentTabs.length) % componentTabs.length;
-      if (event.key === 'Home') targetIndex = 0;
-      if (event.key === 'End') targetIndex = componentTabs.length - 1;
-      const target = componentTabs[targetIndex];
-      selectComponentTab(target);
-      target.focus();
+  const chapterLinks = Array.from(menu?.querySelectorAll('a') ?? []);
+  const chapterSections = chapterLinks
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  function updateActiveChapter() {
+    const readingLine = window.scrollY + window.innerHeight * .38;
+    const current = [...chapterSections]
+      .reverse()
+      .find((section) => section.offsetTop <= readingLine);
+
+    chapterLinks.forEach((link) => {
+      const isActive = Boolean(current) && link.getAttribute('href') === `#${current.id}`;
+      link.classList.toggle('is-active', isActive);
+      if (isActive) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
     });
-  });
-
-  document.querySelectorAll('.dg-segmented').forEach((group) => {
-    group.querySelectorAll('button').forEach((button) => {
-      button.addEventListener('click', () => {
-        group.querySelectorAll('button').forEach((item) => item.classList.toggle('is-active', item === button));
-      });
-    });
-  });
-
-  const labPanel = document.querySelector('[data-lab-panel]');
-  const blurInput = document.querySelector('[data-lab-blur]');
-  const fillInput = document.querySelector('[data-lab-fill]');
-  const radiusInput = document.querySelector('[data-lab-radius]');
-
-  function updateLab() {
-    if (!labPanel || !blurInput || !fillInput || !radiusInput) return;
-    const blur = Number(blurInput.value);
-    const fill = Number(fillInput.value);
-    const radius = Number(radiusInput.value);
-    labPanel.style.setProperty('--lab-blur', `${blur}px`);
-    labPanel.style.setProperty('--lab-fill', String(fill / 100));
-    labPanel.style.setProperty('--lab-radius', `${radius}px`);
-    document.querySelector('[data-blur-output]').textContent = `${blur}px`;
-    document.querySelector('[data-fill-output]').textContent = `${fill}%`;
-    document.querySelector('[data-radius-output]').textContent = `${radius}px`;
   }
 
-  [blurInput, fillInput, radiusInput].forEach((input) => input?.addEventListener('input', updateLab));
-  updateLab();
-
-  document.querySelectorAll('[data-accent-choice]').forEach((button) => {
-    button.addEventListener('click', () => {
-      root.dataset.accent = button.dataset.accentChoice;
-      document.querySelectorAll('[data-accent-choice]').forEach((item) => {
-        item.classList.toggle('is-active', item === button);
-      });
+  let activeTick = 0;
+  window.addEventListener('scroll', () => {
+    if (activeTick) return;
+    activeTick = window.requestAnimationFrame(() => {
+      updateActiveChapter();
+      activeTick = 0;
     });
-  });
+  }, { passive: true });
+  updateActiveChapter();
 
-  const copyButton = document.querySelector('[data-copy-code]');
-  const codeSnippet = document.querySelector('[data-code-snippet]');
-  copyButton?.addEventListener('click', async () => {
-    if (!codeSnippet) return;
-    const originalLabel = copyButton.textContent;
-    try {
-      await navigator.clipboard.writeText(codeSnippet.textContent);
-      copyButton.textContent = 'Copied';
-    } catch {
-      copyButton.textContent = 'Select code';
-    }
-    window.setTimeout(() => { copyButton.textContent = originalLabel; }, 1600);
-  });
+  const toast = document.querySelector('[data-copy-toast]');
+  let toastTimeout;
 
-  document.querySelectorAll('[data-year]').forEach((item) => {
-    item.textContent = String(new Date().getFullYear());
+  function showToast(message) {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add('is-visible');
+    window.clearTimeout(toastTimeout);
+    toastTimeout = window.setTimeout(() => toast.classList.remove('is-visible'), 1500);
+  }
+
+  document.querySelectorAll('.color-swatch[data-copy]').forEach((swatch) => {
+    swatch.addEventListener('click', () => {
+      const value = swatch.dataset.copy;
+      showToast(`Copied ${value}`);
+      navigator.clipboard?.writeText(value).catch(() => showToast(value));
+    });
   });
 })();

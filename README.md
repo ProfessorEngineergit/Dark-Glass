@@ -1,13 +1,13 @@
 # Dark Glass 2.0
 
-Dark Glass is the ProfessorEngineer interface material, component vocabulary and public brand showcase. It is a static website that deploys directly to GitHub Pages without a build step.
+Dark Glass is the ProfessorEngineer interface material, component vocabulary and public brand manual. The 23-screen editorial guideline documents the complete identity system and deploys directly to GitHub Pages without a build step.
 
 ## What is included
 
-- `index.html` — public system showcase and interactive component reference.
+- `index.html` — public brand guideline: idea, voice, mark, icons, color, type, material, motion, components and applications.
 - `dark-glass.css` — reusable design tokens and component styles.
-- `style.css` — layout and art direction for the showcase website.
-- `script.js` — pointer light, responsive navigation, component tabs and the material lab.
+- `style.css` — editorial 16:9 art direction, responsive layout and print treatment for the guideline.
+- `script.js` — pointer light, chapter navigation and copyable color values.
 - `design-tokens.json` — machine-readable colors, type, spacing, radius, material and motion decisions.
 - `BRAND_SYSTEM.md` — naming, voice, identity and component rules.
 - `assets/` — Caelum, Looksmith, OpenImageLabeler and Dark Glass product icons. The owner mark is retained only for the separate brand-guideline context.

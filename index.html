@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#05060A">
-  <meta name="description" content="Dark Glass 2.2 brand guidelines — three brand modes, expressive Material shapes, liquid optics, typography and interactive components.">
-  <meta property="og:title" content="Dark Glass 2.2 — Brand Guidelines">
+  <meta name="description" content="Dark Glass 2.3 brand guidelines — three brand modes, expressive Material shapes, liquid optics, typography and interactive components.">
+  <meta property="og:title" content="Dark Glass 2.3 — Brand Guidelines">
   <meta property="og:description" content="The complete visual, spatial and interaction standard for the Dark Glass interface material.">
   <meta property="og:type" content="website">
-  <title>Dark Glass 2.2 — Brand Guidelines</title>
+  <title>Dark Glass 2.3 — Brand Guidelines</title>
   <script>
     try {
       const savedTheme = localStorage.getItem('dark-glass-theme');
@@ -17,7 +17,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="dark-glass.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -30,6 +30,22 @@
       <symbol id="shape-cookie" viewBox="0 0 100 100"><path d="M75 11Q100 0 89 25Q78 50 89 75Q100 100 75 89Q50 78 25 89Q0 100 11 75Q22 50 11 25Q0 0 25 11Q50 22 75 11Z"/></symbol>
       <symbol id="shape-softburst" viewBox="0 0 100 100"><path d="M45.36 14.23Q50 7 54.64 14.23Q59.27 21.47 67.27 18.34Q75.27 15.21 74.77 23.79Q74.27 32.37 82.58 34.54Q90.9 36.71 85.45 43.36Q80 50 85.45 56.64Q90.9 63.29 82.58 65.46Q74.27 67.63 74.77 76.21Q75.27 84.79 67.27 81.66Q59.27 78.53 54.64 85.77Q50 93 45.36 85.77Q40.73 78.53 32.73 81.66Q24.73 84.79 25.23 76.21Q25.73 67.63 17.42 65.46Q9.1 63.29 14.55 56.64Q20 50 14.55 43.36Q9.1 36.71 17.42 34.54Q25.73 32.37 25.23 23.79Q24.73 15.21 32.73 18.34Q40.73 21.47 45.36 14.23Z"/></symbol>
       <symbol id="shape-pill" viewBox="0 0 160 100"><path d="M50 10H110C134 10 150 26 150 50S134 90 110 90H50C26 90 10 74 10 50S26 10 50 10Z"/></symbol>
+      <symbol id="glyph-orbit-arrow" viewBox="0 0 24 24"><path d="M5 15.5c1.5 3.6 6 5.2 9.6 3.4 3.3-1.7 4.7-5.7 3.2-9.1M4.8 8.6C6.4 5 10.7 3.5 14.3 5.1"/><path d="m15.3 3.7-1 3.7 3.7 1M18.7 15.4l-.9-3.8-3.7 1"/></symbol>
+      <symbol id="glyph-fold-arrow" viewBox="0 0 24 24"><path d="M4 17h7V7h8"/><path d="m15.5 3.5 3.5 3.5-3.5 3.5"/></symbol>
+      <symbol id="glyph-thrust" viewBox="0 0 24 24"><path d="M4 17.5 18 6"/><path d="M11.5 5.5H18v6.4M4 13.5v4h4M7 10.5l-3 2.4"/></symbol>
+      <symbol id="glyph-phase-rails" viewBox="0 0 24 24"><path d="M8.5 5.5 7 18.5M14 5.5l-1.5 13M17 8.5l-1 7"/></symbol>
+      <symbol id="glyph-aperture" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m8 5 3.6 6.8L18.5 9M19 15l-7.5-.2L8 21M5 9l3.9 6.4"/></symbol>
+      <symbol id="glyph-waypoint" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.6 2.6M15.8 15.8l2.6 2.6"/></symbol>
+      <symbol id="glyph-transfer" viewBox="0 0 24 24"><path d="M4 8h14M14.5 4.5 18 8l-3.5 3.5M20 16H6M9.5 12.5 6 16l3.5 3.5"/></symbol>
+      <symbol id="glyph-telemetry" viewBox="0 0 24 24"><path d="M4 17h2.6l2-7 3.2 10 2.5-14 2.1 11H20"/></symbol>
+      <symbol id="glyph-scan" viewBox="0 0 24 24"><path d="M8 4H4v4M16 4h4v4M20 16v4h-4M8 20H4v-4M7 12h10"/><path d="M9 9.5h6M9 14.5h6"/></symbol>
+      <symbol id="glyph-constellation" viewBox="0 0 24 24"><circle cx="5" cy="15" r="1.4"/><circle cx="10" cy="7" r="1.4"/><circle cx="17.5" cy="9.5" r="1.4"/><circle cx="19" cy="18" r="1.4"/><path d="m6 13.8 3.2-5.5m2.1-.8 4.9 1.6m1.5 1.8.9 5.7M6.4 15.6l11.2 2"/></symbol>
+      <symbol id="glyph-dock" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"/><path d="M8 15h8M9.5 9.5h5"/></symbol>
+      <symbol id="glyph-split" viewBox="0 0 24 24"><path d="M6 5v5c0 2 1.5 3 3.5 3H18M6 19v-3c0-2 1.5-3 3.5-3"/><path d="m15 10 3 3-3 3"/></symbol>
+      <symbol id="glyph-pulse" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M8.2 8.2a5.4 5.4 0 0 0 0 7.6M15.8 8.2a5.4 5.4 0 0 1 0 7.6M5.3 5.3a9.5 9.5 0 0 0 0 13.4M18.7 5.3a9.5 9.5 0 0 1 0 13.4"/></symbol>
+      <symbol id="glyph-axis" viewBox="0 0 24 24"><path d="M5 19V5M5 19h14"/><circle cx="12" cy="12" r="2"/><path d="m12 10 5-4M10 12l-4 3"/></symbol>
+      <symbol id="glyph-portal" viewBox="0 0 24 24"><path d="M7 19V9a5 5 0 0 1 10 0v10M4 19h16"/><path d="M10 19v-8a2 2 0 0 1 4 0v8"/></symbol>
+      <symbol id="glyph-relay" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="m7.8 11.1 8.4-4.2M7.8 12.9l8.4 4.2"/></symbol>
     </defs>
   </svg>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -37,7 +53,7 @@
   <header class="guide-nav dg-liquid dg-glow" data-guide-nav data-glow data-liquid>
     <a class="guide-nav__brand" href="#cover" aria-label="Dark Glass brand guidelines home">
       <img src="assets/icon-darkglass.svg" alt="" width="30" height="30">
-      <span><strong>Dark Glass</strong><small>Brand Guidelines / 2.2</small></span>
+      <span><strong>Dark Glass</strong><small>Brand Guidelines / 2.3</small></span>
     </a>
     <nav id="guide-menu" aria-label="Guideline chapters">
       <a href="#brand-idea">Brand</a>
@@ -78,7 +94,7 @@
           <img class="contents-visual__app contents-visual__app--one" src="assets/icon-caelum.svg" alt="">
           <img class="contents-visual__app contents-visual__app--two" src="assets/icon-looksmith.svg" alt="">
           <img class="contents-visual__app contents-visual__app--three" src="assets/icon-openimagelabeler.svg" alt="">
-          <span>OPTICAL INTERFACE MATTER / 2.2</span>
+          <span>OPTICAL INTERFACE MATTER / 2.3</span>
         </div>
         <ol class="contents-list">
           <li><a href="#brand-idea"><i>I.</i><span>Brand idea</span></a></li>
@@ -219,6 +235,32 @@
           <div class="element-strokes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         </div>
       </div>
+      <section class="space-glyph-system" aria-labelledby="space-glyph-title">
+        <div class="space-glyph-system__intro">
+          <span class="eyebrow">DARK GLASS SPACE GLYPHS / ORIGINAL SET</span>
+          <h3 id="space-glyph-title">Direction with orbital character.</h3>
+          <p>Sixteen custom 24px glyphs use clipped arcs, phase rails and precise open joints. They stay recognizable at interface scale without becoming generic outline icons.</p>
+        </div>
+        <div class="space-glyph-grid" aria-label="Dark Glass space glyph library">
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-orbit-arrow"/></svg></i><figcaption>Orbit arrow</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-fold-arrow"/></svg></i><figcaption>Fold arrow</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-thrust"/></svg></i><figcaption>Thrust</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-phase-rails"/></svg></i><figcaption>Phase rails</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-aperture"/></svg></i><figcaption>Aperture</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-waypoint"/></svg></i><figcaption>Waypoint</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-transfer"/></svg></i><figcaption>Transfer</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-telemetry"/></svg></i><figcaption>Telemetry</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-scan"/></svg></i><figcaption>Scan frame</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-constellation"/></svg></i><figcaption>Constellation</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-dock"/></svg></i><figcaption>Dock</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-split"/></svg></i><figcaption>Split relay</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-pulse"/></svg></i><figcaption>Pulse</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-axis"/></svg></i><figcaption>Axis</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-portal"/></svg></i><figcaption>Portal</figcaption></figure>
+          <figure><i><svg viewBox="0 0 24 24"><use href="#glyph-relay"/></svg></i><figcaption>Relay</figcaption></figure>
+        </div>
+        <label class="phase-field"><span class="phase-field__mark" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#glyph-phase-rails"/></svg></span><input value="Search the signal field" aria-label="Phase Rails input example"><kbd>⌘K</kbd></label>
+      </section>
     </section>
 
     <section class="guide-page chapter-page" id="colors" data-page="11">
@@ -283,6 +325,14 @@
         <article><div><h3>Inter</h3><p>Body copy, navigation, labels and control text. It stays neutral enough for every product skin.</p></div><div class="alphabet"><small>INTER / 400 · 500 · 600</small><strong>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>1234567890</strong><p>Clear enough for instructions. Calm enough for long sessions.</p></div></article>
         <article><div><h3>JetBrains Mono</h3><p>Measurements, metadata, code, shortcuts and system status. Never use it for long paragraphs.</p></div><div class="alphabet alphabet--mono"><small>JETBRAINS MONO / 400 · 500</small><strong>ORBITAL_PHASE +0.042 RAD<br>FRAME_COUNT 00128<br>STATUS STABLE</strong><p>10–12px · uppercase metadata · tabular rhythm</p></div></article>
       </div>
+      <section class="display-variants" aria-labelledby="display-variants-title">
+        <div class="display-variants__intro"><span class="eyebrow">OPTIONAL DISPLAY VOICES</span><h3 id="display-variants-title">One system, three orbital tones.</h3><p>Use one alternative per campaign or product moment. Interface text always stays Inter; data always stays JetBrains Mono.</p></div>
+        <div class="display-variant-grid">
+          <article class="display-variant display-variant--exo"><span>WEB READY / OFL</span><strong>EXO 2</strong><p>Technical, human and highly usable. The safe public-web choice for dashboards, spatial tools and medium-scale display text.</p><small>PRIMARY ALTERNATIVE · 500–700</small></article>
+          <article class="display-variant display-variant--nasalization"><span>LOCAL SPECIMEN / WEB LICENSE REQUIRED</span><strong>NASALIZATION</strong><p>Sharp, cinematic signature type for rare launch moments and ProfessorEngineer campaign lockups—not controls.</p><small>CAMPAIGN ONLY · REGULAR</small></article>
+          <article class="display-variant display-variant--notes"><span>LOCAL SPECIMEN / LICENSE REQUIRED</span><strong>NOTES ESA</strong><p>The mission-note voice already installed on this workstation. Use for sparse orbital annotations, never dense product copy.</p><small>MISSION ACCENT · REGULAR</small></article>
+        </div>
+      </section>
     </section>
 
     <section class="guide-page chapter-page" id="material" data-page="17">
@@ -296,10 +346,10 @@
       <div class="page-intro-row"><h2 class="page-title page-title--small">Material depths</h2><p>Blur is hierarchy, not atmosphere. Use the lowest depth that still communicates the surface’s role.</p><p>Never show more than three depths in one viewport.</p></div>
       <div class="depth-stage">
         <article class="depth-card depth-card--air"><span>00 / AIR</span><strong>Ambient structure</strong><small>0% fill · 0px blur</small></article>
-        <article class="depth-card depth-card--quiet dg-glow" data-glow><span>01 / QUIET</span><strong>Navigation &amp; grouping</strong><small>4% fill · 16px blur</small></article>
-        <article class="depth-card depth-card--base dg-glow" data-glow><span>02 / BASE</span><strong>Cards &amp; controls</strong><small>6% fill · 24px blur</small></article>
-        <article class="depth-card depth-card--raised dg-glow" data-glow><span>03 / RAISED</span><strong>Menus &amp; inspectors</strong><small>8% fill · 32px blur</small></article>
-        <article class="depth-card depth-card--focus dg-glow" data-glow><span>04 / FOCUS</span><strong>Active decisions</strong><small>10% fill · 40px blur</small></article>
+        <article class="depth-card depth-card--quiet dg-glow" data-glow><span>01 / QUIET</span><strong>Navigation &amp; grouping</strong><small>5.5% fill · 16px blur</small></article>
+        <article class="depth-card depth-card--base dg-glow" data-glow><span>02 / BASE</span><strong>Cards &amp; controls</strong><small>7.5% fill · 24px blur</small></article>
+        <article class="depth-card depth-card--raised dg-glow" data-glow><span>03 / RAISED</span><strong>Menus &amp; inspectors</strong><small>9.5% fill · 32px blur</small></article>
+        <article class="depth-card depth-card--focus dg-glow" data-glow><span>04 / FOCUS</span><strong>Active decisions</strong><small>11.5% fill · 40px blur</small></article>
       </div>
       <div class="depth-rules"><span><b>RADIUS</b>8 · 12 · 18 · 28 · pill</span><span><b>BORDER</b>1px / 10–18% white</span><span><b>SHADOW</b>Black only / 24–48%</span></div>
     </section>
@@ -320,6 +370,15 @@
           <code>cubic-bezier(.2, .8, .2, 1)</code>
         </div>
       </div>
+      <section class="dimensionality" aria-labelledby="dimensionality-title">
+        <div class="dimensionality__intro"><span class="eyebrow">DIMENSIONALITY LADDER</span><h3 id="dimensionality-title">Depth, one optical cue at a time.</h3><p>The silhouette never moves. Dimensionality grows through material density, directional edge light and balanced inset shading—not hover lift.</p></div>
+        <div class="dimensionality-grid">
+          <article><span>01 / PLANE</span><button class="dimension-button dimension-button--plane" type="button">Calibrate</button><p>Fill + border. Calm and functional.</p></article>
+          <article><span>02 / TOP LIGHT</span><button class="dimension-button dimension-button--top" type="button">Calibrate</button><p>A bright top edge establishes one light source.</p></article>
+          <article><span>03 / PERIMETER</span><button class="dimension-button dimension-button--perimeter" type="button">Calibrate</button><p>Side highlights and a dark lower seam define volume.</p></article>
+          <article><span>04 / LIVE OPTIC</span><button class="dimension-button dimension-button--optic dg-glow" type="button" data-glow>Calibrate</button><p>Pointer light joins the perimeter without moving the control.</p></article>
+        </div>
+      </section>
     </section>
 
     <section class="guide-page chapter-page field-chapter" id="shapes" data-page="20">
@@ -426,7 +485,7 @@
         </div>
         <div class="expressive-stage__statement" aria-live="polite" aria-atomic="true"><span data-lab-kicker>FIELD / OPTICAL RESPONSE</span><strong data-lab-title>Light follows<br>intent.</strong><p data-lab-copy>Move through the material. The nearest edge catches light while content remains still.</p></div>
         <div class="expressive-controls">
-          <button class="dg-button dg-button--primary dg-button--lg dg-glow" type="button" data-glow data-magnetic data-create-field><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Create field</span></button>
+          <button class="dg-button dg-button--primary dg-button--lg dg-glow" type="button" data-glow data-create-field><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Create field</span></button>
           <div class="dg-action-cluster dg-glow" role="group" aria-label="View controls" data-glow>
             <button type="button" aria-label="Inspect field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg></button>
             <button type="button" aria-label="Center field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M4 12h3m10 0h3M12 4v3m0 10v3"/></svg></button>
@@ -441,6 +500,13 @@
         <button type="button" data-material-reset>Reset material</button>
       </div>
       <div class="expressive-rules"><span><b>01</b>One liquid plane</span><span><b>02</b>Edge follows pointer</span><span><b>03</b>Shape confirms state</span><span><b>04</b>Content stays still</span></div>
+      <section class="wave-slider-lab" aria-labelledby="wave-slider-title">
+        <div class="wave-slider-lab__intro"><span class="eyebrow">EXPRESSIVE RANGE CONTROLS</span><h3 id="wave-slider-title">Signal shaped by value.</h3><p>The input remains a native range control. A generated wave carries progress as a readable, animated layer underneath.</p></div>
+        <div class="wave-slider-grid">
+          <label class="wave-slider" data-wave-slider data-segments="30"><span><b>Orbital gain</b><output>64%</output></span><span class="wave-slider__rail" data-wave-rail aria-hidden="true"></span><input type="range" min="0" max="100" value="64"></label>
+          <label class="wave-slider wave-slider--dense" data-wave-slider data-segments="38"><span><b>Signal density</b><output>42%</output></span><span class="wave-slider__rail" data-wave-rail aria-hidden="true"></span><input type="range" min="0" max="100" value="42"></label>
+        </div>
+      </section>
     </section>
 
     <section class="guide-page page-light" id="applications" data-page="26">
@@ -453,17 +519,65 @@
       </div>
     </section>
 
-    <section class="guide-page closing-page" data-page="27">
-      <span class="chapter-page__index">27 / END</span>
+    <section class="guide-page page-light handoff-page" id="handoff" data-page="27">
+      <div class="page-topline"><span>Dark Glass</span><span>Agent handoff / Embedded recipes</span><span>27</span></div>
+      <div class="page-intro-row"><h2 class="page-title page-title--small">Build with it</h2><p>These recipes encode the interaction law directly: no lift, a local edge lens, stable typography and one liquid plane.</p><p>Give this page plus <code>AGENT_BRAND_BRIEF.md</code> to a model or collaborator for an implementation-ready handoff.</p></div>
+      <div class="snippet-grid">
+        <article class="snippet-card"><header><span>01 / BUTTON LAW</span><button type="button" data-copy-code="#snippet-button">Copy code</button></header><pre id="snippet-button" tabindex="0"><code>&lt;button class="dg-button dg-button--primary dg-glow"
+  type="button" data-glow&gt;
+  Calibrate field
+&lt;/button&gt;
+
+/* Hover changes light and shadow only.
+   Never translate the control. */</code></pre></article>
+        <article class="snippet-card"><header><span>02 / PHASE RAILS INPUT</span><button type="button" data-copy-code="#snippet-phase-field">Copy code</button></header><pre id="snippet-phase-field" tabindex="0"><code>&lt;label class="phase-field"&gt;
+  &lt;span class="phase-field__mark" aria-hidden="true"&gt;
+    &lt;svg viewBox="0 0 24 24"&gt;
+      &lt;use href="#glyph-phase-rails"/&gt;
+    &lt;/svg&gt;
+  &lt;/span&gt;
+  &lt;input aria-label="Search" placeholder="Search the signal field"&gt;
+  &lt;kbd&gt;⌘K&lt;/kbd&gt;
+&lt;/label&gt;</code></pre></article>
+        <article class="snippet-card"><header><span>03 / AGENT CONTRACT</span><button type="button" data-copy-code="#snippet-agent">Copy brief</button></header><pre id="snippet-agent" tabindex="0"><code>brand: Dark Glass 2.3
+defaultTheme: aurora
+themes: [aurora, obsidian, lux]
+fonts:
+  display: Space Grotesk
+  body: Inter
+  data: JetBrains Mono
+interaction:
+  hoverLift: 0px
+  hoverScale: 1
+  pointerLight: local-edge-only
+material:
+  glassLevels: [quiet, base, raised, focus]
+  maxDepthsPerViewport: 3
+rules:
+  - content-never-moves-on-hover
+  - one-liquid-plane-per-composition
+  - white-is-signal-not-background</code></pre></article>
+        <article class="snippet-card"><header><span>04 / LIVE WAVE</span><button type="button" data-copy-code="#snippet-wave">Copy code</button></header><pre id="snippet-wave" tabindex="0"><code>&lt;label class="wave-slider" data-wave-slider data-segments="30"&gt;
+  &lt;span&gt;&lt;b&gt;Orbital gain&lt;/b&gt;&lt;output&gt;64%&lt;/output&gt;&lt;/span&gt;
+  &lt;span class="wave-slider__rail" data-wave-rail aria-hidden="true"&gt;&lt;/span&gt;
+  &lt;input type="range" min="0" max="100" value="64"&gt;
+&lt;/label&gt;</code></pre></article>
+      </div>
+      <div class="handoff-links"><a href="AGENT_BRAND_BRIEF.md">Agent brand brief ↗</a><a href="design-tokens.json" download>Machine tokens ↘</a><a href="dark-glass.css" download>Component CSS ↘</a></div>
+    </section>
+
+    <section class="guide-page closing-page" data-page="28">
+      <span class="chapter-page__index">28 / END</span>
       <h2>SYSTEM<br>READY.</h2>
       <p>One optical language.<br>Distinct products.</p>
       <div class="closing-actions">
         <a href="design-tokens.json" download>Design tokens ↘</a>
         <a href="dark-glass.css" download>Component CSS ↘</a>
+        <a href="AGENT_BRAND_BRIEF.md">Agent handoff ↗</a>
         <a href="BRAND_SYSTEM.md">Written standard ↗</a>
         <a href="https://github.com/ProfessorEngineergit/Dark-Glass">Repository ↗</a>
       </div>
-      <div class="cover-lockup"><img src="assets/icon-darkglass.svg" alt="" width="64" height="64"><span><strong>Dark Glass</strong><small>INTERFACE MATERIAL / 2.2</small></span></div>
+      <div class="cover-lockup"><img src="assets/icon-darkglass.svg" alt="" width="64" height="64"><span><strong>Dark Glass</strong><small>INTERFACE MATERIAL / 2.3</small></span></div>
     </section>
   </main>
 

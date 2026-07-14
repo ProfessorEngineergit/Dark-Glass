@@ -1,5 +1,17 @@
+@font-face {
+  font-display: swap;
+  font-family: "DG Nasalization";
+  src: local("Nasalization"), local("Nasalization Regular");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "DG NotesESA";
+  src: local("NotesEsa"), local("NotesESA"), local("Notes ESA");
+}
+
 /*
- * Dark Glass 2.2 — ProfessorEngineer interface material
+ * Dark Glass 2.3 — ProfessorEngineer interface material
  * Framework-agnostic tokens and components.
  */
 
@@ -43,6 +55,9 @@
   --dg-font-display: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --dg-font-body: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --dg-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  --dg-font-future: "Exo 2", var(--dg-font-display);
+  --dg-font-signature: "DG Nasalization", "Exo 2", var(--dg-font-display);
+  --dg-font-mission: "DG NotesESA", "Exo 2", var(--dg-font-display);
 
   --dg-space-1: 4px;
   --dg-space-2: 8px;
@@ -134,7 +149,7 @@ html[data-theme="lux"] {
 }
 
 .dg-glass {
-  --dg-surface-fill: .06;
+  --dg-surface-fill: .075;
   --dg-surface-blur: var(--dg-blur-base);
   --dg-surface-saturation: 1.35;
   position: relative;
@@ -148,13 +163,13 @@ html[data-theme="lux"] {
 }
 
 .dg-glass--quiet {
-  --dg-surface-fill: .04;
+  --dg-surface-fill: .055;
   --dg-surface-blur: var(--dg-blur-quiet);
   --dg-surface-saturation: 1.2;
 }
 
 .dg-glass--raised {
-  --dg-surface-fill: .08;
+  --dg-surface-fill: .095;
   --dg-surface-blur: var(--dg-blur-raised);
   --dg-surface-saturation: 1.45;
   border-color: rgba(255, 255, 255, .13);
@@ -162,7 +177,7 @@ html[data-theme="lux"] {
 }
 
 .dg-glass--focus {
-  --dg-surface-fill: .1;
+  --dg-surface-fill: .115;
   --dg-surface-blur: var(--dg-blur-focus);
   --dg-surface-saturation: 1.55;
   border-color: rgba(var(--dg-accent-rgb), .22);
@@ -201,12 +216,16 @@ html[data-theme="lux"] {
 
 /* Liquid is a single functional plane above content, never a content texture. */
 .dg-liquid {
-  --dg-liquid-fill: .075;
+  --dg-liquid-fill: .095;
   --dg-liquid-blur: 28px;
   --dg-liquid-lens: .62;
+  --glow-opacity: 0;
+  --mx: 50%;
+  --my: 50%;
   --lens-radius: 150px;
   background:
-    radial-gradient(140px circle at var(--mx) var(--my), rgba(255,255,255,calc(var(--dg-liquid-lens) * .14)), transparent 66%),
+    radial-gradient(110% 75% at 18% -10%, rgba(255,255,255,.085), transparent 48%),
+    radial-gradient(70% 120% at 110% 90%, rgba(var(--dg-accent-rgb),.055), transparent 58%),
     linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.025) 38%, rgba(var(--dg-accent-2-rgb),.07)),
     rgba(var(--dg-glass-tint), var(--dg-liquid-fill));
   border: 1px solid var(--dg-line-strong);
@@ -226,14 +245,14 @@ html[data-theme="lux"] {
 .dg-liquid::after {
   background:
     radial-gradient(100px circle at var(--mx) var(--my), rgba(255,255,255,calc(var(--dg-liquid-lens) * .34)), transparent 52%),
-    radial-gradient(110% 75% at 18% -10%, rgba(255,255,255,.2), transparent 48%),
-    radial-gradient(70% 120% at 110% 90%, rgba(var(--dg-accent-rgb),.12), transparent 58%);
+    radial-gradient(160px circle at var(--mx) var(--my), rgba(var(--dg-accent-rgb),.11), transparent 70%);
   content: "";
   inset: 1px;
+  opacity: var(--glow-opacity);
   pointer-events: none;
   position: absolute;
   z-index: 0;
-  transition: background var(--dg-fast) linear;
+  transition: background var(--dg-fast) linear, opacity var(--dg-control) var(--dg-ease);
 }
 
 .dg-liquid > * { position: relative; z-index: 1; }
@@ -273,7 +292,7 @@ html[data-theme="lux"] {
   width: 17px;
 }
 
-.dg-liquid-dock button:hover { color: var(--dg-ink); transform: translateY(-1px); }
+.dg-liquid-dock button:hover { color: var(--dg-ink); }
 .dg-liquid-dock button.is-active {
   background: rgba(255,255,255,.13);
   box-shadow: 0 8px 22px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.13);
@@ -311,7 +330,7 @@ html[data-theme="lux"] {
 
 .dg-action-cluster button:first-child { border-radius: 13px 9px 9px 13px; }
 .dg-action-cluster button:last-child { border-radius: 9px 13px 13px 9px; }
-.dg-action-cluster button:hover { background: rgba(255,255,255,.11); color: var(--dg-ink); transform: translateY(-1px); }
+.dg-action-cluster button:hover { background: rgba(255,255,255,.11); color: var(--dg-ink); }
 
 .dg-liquid-toggle { align-items: center; cursor: pointer; display: inline-flex; gap: 10px; }
 .dg-liquid-toggle input { height: 1px; opacity: 0; position: absolute; width: 1px; }
@@ -348,8 +367,6 @@ html[data-theme="lux"] {
 
 .dg-button,
 .dg-icon-button {
-  --magnetic-x: 0px;
-  --magnetic-y: 0px;
   --lens-radius: 90px;
   -webkit-tap-highlight-color: transparent;
   align-items: center;
@@ -406,17 +423,17 @@ html[data-theme="lux"] {
 }
 
 .dg-button--primary:hover,
-.dg-button--primary.is-pointer-active { background-position: 82% 50%; box-shadow: 0 18px 48px rgba(var(--dg-accent-2-rgb), .4), 0 0 24px rgba(var(--dg-accent-rgb),.13), inset 0 1px 0 rgba(255,255,255,.72); transform: translate3d(var(--magnetic-x), calc(var(--magnetic-y) - 2px), 0) scale(1.015); }
+.dg-button--primary.is-pointer-active { background-position: 82% 50%; box-shadow: 0 18px 48px rgba(var(--dg-accent-2-rgb), .4), 0 0 24px rgba(var(--dg-accent-rgb),.13), inset 1px 1px 0 rgba(255,255,255,.78), inset -1px 0 0 rgba(255,255,255,.24), inset 0 -1px 0 rgba(0,0,0,.22); }
 .dg-button--secondary { background: rgba(var(--dg-surface-rgb),.72); border: 1px solid var(--dg-line-strong); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
 .dg-button--secondary:hover,
-.dg-button--secondary.is-pointer-active { background: rgba(255,255,255,.11); border-color: rgba(var(--dg-accent-rgb),.34); box-shadow: 0 12px 28px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.1); transform: translateY(-2px); }
+.dg-button--secondary.is-pointer-active { background: rgba(255,255,255,.11); border-color: rgba(var(--dg-accent-rgb),.34); box-shadow: 0 12px 28px rgba(0,0,0,.25), inset 1px 1px 0 rgba(255,255,255,.14), inset -1px -1px 0 rgba(255,255,255,.035); }
 .dg-button--quiet { background: rgba(255,255,255,.025); border: 1px solid var(--dg-line); color: var(--dg-ink-2); }
 .dg-button--quiet:hover,
-.dg-button--quiet.is-pointer-active { background: rgba(255,255,255,.07); border-color: rgba(var(--dg-accent-rgb),.24); color: var(--dg-ink); transform: translateY(-2px); }
+.dg-button--quiet.is-pointer-active { background: rgba(255,255,255,.07); border-color: rgba(var(--dg-accent-rgb),.24); color: var(--dg-ink); box-shadow: inset 1px 1px 0 rgba(255,255,255,.08), inset -1px -1px 0 rgba(0,0,0,.18); }
 .dg-button--danger { background: rgba(255,112,133,.1); border: 1px solid rgba(255,112,133,.3); color: #ff9bab; }
 .dg-button--danger:hover,
-.dg-button--danger.is-pointer-active { background: rgba(255,112,133,.17); border-color: rgba(255,112,133,.5); box-shadow: 0 12px 28px rgba(255,112,133,.12); transform: translateY(-2px); }
-.dg-button:active:not(:disabled), .dg-icon-button:active:not(:disabled) { transform: scale(.975); transition-duration: var(--dg-fast); }
+.dg-button--danger.is-pointer-active { background: rgba(255,112,133,.17); border-color: rgba(255,112,133,.5); box-shadow: 0 12px 28px rgba(255,112,133,.12), inset 1px 1px 0 rgba(255,255,255,.12), inset -1px -1px 0 rgba(0,0,0,.2); }
+.dg-button:active:not(:disabled), .dg-icon-button:active:not(:disabled) { transform: scale(.985); transition-duration: var(--dg-fast); }
 .dg-button:disabled, .dg-icon-button:disabled { cursor: not-allowed; filter: saturate(.3); opacity: .42; transform: none; }
 .dg-button:focus-visible, .dg-icon-button:focus-visible { outline: 1px solid rgba(var(--dg-accent-rgb), .85); outline-offset: 3px; box-shadow: var(--dg-focus-ring); }
 
@@ -429,7 +446,7 @@ html[data-theme="lux"] {
 }
 
 .dg-icon-button svg { height: 19px; width: 19px; }
-.dg-icon-button:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.18); transform: translateY(-1px); }
+.dg-icon-button:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.18); box-shadow: inset 1px 1px 0 rgba(255,255,255,.12), inset -1px -1px 0 rgba(0,0,0,.2); }
 .dg-icon-button--sm { border-radius: 9px; height: 34px; width: 34px; }
 .dg-icon-button--sm svg { height: 16px; width: 16px; }
 .dg-icon-button--accent { background: rgba(var(--dg-accent-rgb), .12); border-color: rgba(var(--dg-accent-rgb), .28); color: var(--dg-accent); }

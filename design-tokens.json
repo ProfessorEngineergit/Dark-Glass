@@ -1,9 +1,9 @@
 {
   "$schema": "https://tr.designtokens.org/format/",
   "meta": {
-    "name": "Dark Glass 2.2",
+    "name": "Dark Glass 2.3",
     "owner": "ProfessorEngineer",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "thesis": "A dark precision instrument that reveals light through intent.",
     "defaultTheme": "aurora"
   },
@@ -65,7 +65,14 @@
       "display": { "$type": "fontFamily", "$value": "Space Grotesk" },
       "body": { "$type": "fontFamily", "$value": "Inter" },
       "data": { "$type": "fontFamily", "$value": "JetBrains Mono" },
-      "signature": { "$type": "fontFamily", "$value": "Nasalization" }
+      "future": { "$type": "fontFamily", "$value": "Exo 2" },
+      "signature": { "$type": "fontFamily", "$value": "Nasalization" },
+      "mission": { "$type": "fontFamily", "$value": "NotesESA" }
+    },
+    "usage": {
+      "publicWebAlternative": { "$type": "fontFamily", "$value": "Exo 2" },
+      "signatureLicense": { "$type": "string", "$value": "Local specimen only; obtain a web license before embedding Nasalization." },
+      "missionLicense": { "$type": "string", "$value": "Local specimen only; verify NotesESA web embedding rights before distribution." }
     },
     "weight": {
       "regular": { "$type": "fontWeight", "$value": 400 },
@@ -104,6 +111,12 @@
     "cookie4": { "$type": "string", "$value": "MaterialShapes.Cookie4Sided | #shape-cookie" },
     "softBurst": { "$type": "string", "$value": "MaterialShapes.SoftBurst | #shape-softburst" }
   },
+  "glyph": {
+    "$description": "Original Dark Glass 24px orbital glyphs. Rounded open strokes, 1.65–1.8px, no filled decoration.",
+    "grid": { "$type": "dimension", "$value": "24px" },
+    "stroke": { "$type": "dimension", "$value": "1.65px" },
+    "set": { "$type": "string", "$value": "orbit-arrow, fold-arrow, thrust, phase-rails, aperture, waypoint, transfer, telemetry, scan, constellation, dock, split, pulse, axis, portal, relay" }
+  },
   "material": {
     "$description": "Optical depth tokens. Glass must reveal real content behind the plane.",
     "air": {
@@ -111,23 +124,23 @@
       "blur": { "$type": "dimension", "$value": "0px" }
     },
     "quiet": {
-      "fill": { "$type": "number", "$value": 0.04 },
+      "fill": { "$type": "number", "$value": 0.055 },
       "blur": { "$type": "dimension", "$value": "16px" }
     },
     "base": {
-      "fill": { "$type": "number", "$value": 0.06 },
+      "fill": { "$type": "number", "$value": 0.075 },
       "blur": { "$type": "dimension", "$value": "24px" }
     },
     "raised": {
-      "fill": { "$type": "number", "$value": 0.08 },
+      "fill": { "$type": "number", "$value": 0.095 },
       "blur": { "$type": "dimension", "$value": "32px" }
     },
     "focus": {
-      "fill": { "$type": "number", "$value": 0.1 },
+      "fill": { "$type": "number", "$value": 0.115 },
       "blur": { "$type": "dimension", "$value": "40px" }
     },
     "liquid": {
-      "fill": { "$type": "number", "$value": 0.075 },
+      "fill": { "$type": "number", "$value": 0.095 },
       "blur": { "$type": "dimension", "$value": "28px" },
       "saturation": { "$type": "number", "$value": 1.65 },
       "contrast": { "$type": "number", "$value": 1.08 },
@@ -137,12 +150,28 @@
     }
   },
   "interaction": {
-    "hoverLift": { "$type": "dimension", "$value": "-2px" },
-    "hoverScale": { "$type": "number", "$value": 1.015 },
-    "pressScale": { "$type": "number", "$value": 0.975 },
-    "magneticMaximum": { "$type": "dimension", "$value": "2px" },
+    "hoverLift": { "$type": "dimension", "$value": "0px" },
+    "hoverScale": { "$type": "number", "$value": 1 },
+    "pressScale": { "$type": "number", "$value": 0.985 },
+    "magneticMaximum": { "$type": "dimension", "$value": "0px" },
+    "pointerExitReset": { "$type": "boolean", "$value": true },
+    "hoverLaw": { "$type": "string", "$value": "Change local edge light, gradient and shadow only; content and silhouette never move." },
     "buttonLensRadius": { "$type": "dimension", "$value": "90px" },
     "surfaceLensRadius": { "$type": "dimension", "$value": "180px" }
+  },
+  "dimensionality": {
+    "$description": "Add depth without changing silhouette or position.",
+    "1-plane": { "$type": "string", "$value": "material fill + 1px border" },
+    "2-topLight": { "$type": "string", "$value": "plane + bright inset top edge" },
+    "3-perimeter": { "$type": "string", "$value": "top light + side inset lights + dark lower seam" },
+    "4-liveOptic": { "$type": "string", "$value": "perimeter + pointer-local edge lens" }
+  },
+  "waveSlider": {
+    "$description": "Native range input over a generated, value-reactive signal rail.",
+    "defaultSegments": { "$type": "number", "$value": 30 },
+    "denseSegments": { "$type": "number", "$value": 38 },
+    "amplitude": { "$type": "dimension", "$value": "7px" },
+    "progressSource": { "$type": "string", "$value": "native input[type=range]" }
   },
   "motion": {
     "instant": { "$type": "duration", "$value": "90ms" },

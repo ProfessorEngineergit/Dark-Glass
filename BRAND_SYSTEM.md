@@ -1,4 +1,4 @@
-# ProfessorEngineer / Dark Glass 2.2
+# ProfessorEngineer / Dark Glass 2.3
 
 Dark Glass is a dark precision instrument that reveals light through intent. It is the shared interface material for ProfessorEngineer products: measured enough for engineering software, expressive enough to feel authored, and quiet enough to keep the work—not the chrome—at the center.
 
@@ -45,7 +45,11 @@ Use `assets/professorengineer-mark.svg` only in the personal portfolio and owner
 - **Space Grotesk 600–700:** display headings and product titles.
 - **Inter 400–600:** interface text, descriptions and long reading.
 - **JetBrains Mono 400–500:** measurements, labels, statuses and keyboard commands.
+- **Exo 2 500–700:** public-web orbital alternative for technical display moments.
 - **Nasalization:** ProfessorEngineer signature and rare campaign moments only. Never use it for controls, paragraphs or dense product UI.
+- **NotesESA:** sparse mission-note annotations only; never body copy or controls.
+
+Nasalization and NotesESA are local specimens in the reference site. Do not distribute their binaries or embed them on the public web without appropriate licenses; the public fallback is Exo 2.
 
 Display text may use tight tracking down to `-0.055em`. Body text stays between `1.5` and `1.75` line height. Uppercase is reserved for short monospaced metadata. The type system does not change between themes.
 
@@ -96,10 +100,10 @@ Glass is a functional control layer, not a translucent wallpaper. It must reveal
 | Depth | Use | Fill | Blur |
 | --- | --- | ---: | ---: |
 | Air | Ambient structure | 0% | 0px |
-| Quiet | Navigation and grouping | 4% | 16px |
-| Base | Cards and controls | 6% | 24px |
-| Raised | Menus and inspectors | 8% | 32px |
-| Focus | Active decisions and hero surfaces | 10% | 40px |
+| Quiet | Navigation and grouping | 5.5% | 16px |
+| Base | Cards and controls | 7.5% | 24px |
+| Raised | Menus and inspectors | 9.5% | 32px |
+| Focus | Active decisions and hero surfaces | 11.5% | 40px |
 
 ### Liquid rules
 
@@ -120,9 +124,10 @@ CSS backdrop filtering approximates optical refraction. If a product has access 
 
 - One primary button per decision area; the Aurora gradient is its default signal treatment.
 - Secondary buttons support the primary path. Quiet buttons are for optional or reversible actions. Danger buttons are only for irreversible actions.
-- Hover follows one law: local edge light tracks the pointer, gradient position shifts, the control rises up to 2px and may scale to `1.015`.
-- Magnetic movement is subtle and capped at 2px. The label must remain visually stable.
-- Press settles immediately to approximately `0.975` scale and restores elevation on release.
+- Hover follows one law: local edge light tracks the pointer while gradient position, border and shadow respond. The control and its content never move.
+- Hover lift, magnetic movement and hover scale are all zero. Dimensionality comes from light on the top and side edges plus a darker lower seam.
+- Pointer light resets completely on pointer exit, cancellation, window blur and visibility loss.
+- Press settles immediately to approximately `0.985` scale and restores on release.
 - Minimum target size is 44 × 44px. Small desktop-toolbar controls need equivalent surrounding hit space.
 - Icon-only controls require an accessible name and a tooltip in product interfaces.
 - Expressive SVG contours may sit behind icon-only feature actions, but never replace the standard text-button silhouette.
@@ -160,7 +165,15 @@ Use `cubic-bezier(.2,.8,.2,1)` as the shared settling curve and `cubic-bezier(.3
 
 At rest, controls are still. Hover reveals material; press confirms contact; release settles. Shape changes happen only when they explain a real state transition. No permanent wobble, breathing buttons, random morphing or decorative movement behind reading content.
 
-Respect `prefers-reduced-motion`: remove magnetic movement, shape morphs and spatial parallax while preserving instant state, focus and contrast feedback.
+Respect `prefers-reduced-motion`: remove shape morphs and spatial parallax while preserving instant state, focus and contrast feedback. Magnetic movement is never part of Dark Glass.
+
+## Dark Glass Space Glyphs
+
+The original 24px glyph set uses open 1.65–1.8px rounded strokes, clipped orbit arcs, phase rails and deliberate breaks. The named set is Orbit Arrow, Fold Arrow, Thrust, Phase Rails, Aperture, Waypoint, Transfer, Telemetry, Scan Frame, Constellation, Dock, Split Relay, Pulse, Axis, Portal and Relay. `Phase Rails` is the signature marker before command and search inputs.
+
+## Dimensionality ladder
+
+Build depth in a fixed order: plane fill and border; then a bright top edge; then light on both side edges plus a dark lower seam; finally a localized pointer lens. Do not add vertical translation at any level.
 
 ## Accessibility
 
@@ -173,4 +186,4 @@ Respect `prefers-reduced-motion`: remove magnetic movement, shape morphs and spa
 
 ## Reuse
 
-`dark-glass.css` contains the framework-independent implementation. `design-tokens.json` is the machine-readable source for models, design tools and other codebases. `BRAND_SYSTEM.md` defines the decisions that must survive framework changes. The live website is the visual and interactive reference.
+`dark-glass.css` contains the framework-independent implementation. `design-tokens.json` is the machine-readable source for models, design tools and other codebases. `AGENT_BRAND_BRIEF.md` is the concise implementation contract for models and collaborators. `BRAND_SYSTEM.md` defines the decisions that must survive framework changes. The live website is the visual and interactive reference.

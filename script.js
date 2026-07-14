@@ -5,7 +5,6 @@
   const menu = document.querySelector('#guide-menu');
   const menuToggle = document.querySelector('[data-menu-toggle]');
   const finePointer = window.matchMedia('(pointer: fine)');
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   const themeColors = {
     aurora: '#05060A',
@@ -67,46 +66,52 @@
     if (event.key === 'Escape') closeMenu();
   });
 
+  const glowSurfaces = Array.from(document.querySelectorAll('[data-glow]'));
+  let activeGlowSurface = null;
+
+  function resetPointerLight(surface) {
+    if (!surface) return;
+    surface.classList.remove('is-pointer-active');
+    surface.style.setProperty('--glow-opacity', '0');
+    surface.style.setProperty('--mx', '50%');
+    surface.style.setProperty('--my', '50%');
+    if (activeGlowSurface === surface) activeGlowSurface = null;
+  }
+
+  function resetAllPointerLights() {
+    glowSurfaces.forEach(resetPointerLight);
+  }
+
   if (finePointer.matches) {
-    document.querySelectorAll('[data-glow]').forEach((surface) => {
+    glowSurfaces.forEach((surface) => {
       const updatePointerLight = (event) => {
+        if (activeGlowSurface && activeGlowSurface !== surface) resetPointerLight(activeGlowSurface);
         const bounds = surface.getBoundingClientRect();
+        activeGlowSurface = surface;
         surface.classList.add('is-pointer-active');
         surface.style.setProperty('--mx', `${event.clientX - bounds.left}px`);
         surface.style.setProperty('--my', `${event.clientY - bounds.top}px`);
         surface.style.setProperty('--glow-opacity', '1');
       };
 
-      const activatePointerLight = (event) => {
-        surface.classList.add('is-pointer-active');
-        updatePointerLight(event);
-      };
-
-      surface.addEventListener('pointerenter', activatePointerLight, { passive: true });
+      surface.addEventListener('pointerenter', updatePointerLight, { passive: true });
       surface.addEventListener('pointermove', updatePointerLight, { passive: true });
-      surface.addEventListener('pointerleave', () => {
-        surface.classList.remove('is-pointer-active');
-        surface.style.setProperty('--glow-opacity', '0');
-      }, { passive: true });
+      surface.addEventListener('pointerleave', () => resetPointerLight(surface), { passive: true });
+      surface.addEventListener('pointercancel', () => resetPointerLight(surface), { passive: true });
+      surface.addEventListener('lostpointercapture', () => resetPointerLight(surface), { passive: true });
+      surface.addEventListener('blur', () => resetPointerLight(surface), true);
     });
+
+    document.addEventListener('pointermove', (event) => {
+      const nextSurface = event.target instanceof Element ? event.target.closest('[data-glow]') : null;
+      if (activeGlowSurface && activeGlowSurface !== nextSurface) resetPointerLight(activeGlowSurface);
+    }, { capture: true, passive: true });
   }
 
-  if (finePointer.matches && !reducedMotion.matches) {
-    document.querySelectorAll('[data-magnetic]').forEach((control) => {
-      control.addEventListener('pointermove', (event) => {
-        const bounds = control.getBoundingClientRect();
-        const x = ((event.clientX - bounds.left) / bounds.width - .5) * 3.6;
-        const y = ((event.clientY - bounds.top) / bounds.height - .5) * 3.6;
-        control.style.setProperty('--magnetic-x', `${x.toFixed(2)}px`);
-        control.style.setProperty('--magnetic-y', `${y.toFixed(2)}px`);
-      }, { passive: true });
-
-      control.addEventListener('pointerleave', () => {
-        control.style.setProperty('--magnetic-x', '0px');
-        control.style.setProperty('--magnetic-y', '0px');
-      }, { passive: true });
-    });
-  }
+  window.addEventListener('blur', resetAllPointerLights);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) resetAllPointerLights();
+  });
 
   const chapterLinks = Array.from(menu?.querySelectorAll('a') ?? []);
   const chapterSections = chapterLinks
@@ -226,5 +231,52 @@
     });
 
     updateMaterial();
+  });
+
+  document.querySelectorAll('[data-wave-slider]').forEach((slider) => {
+    const input = slider.querySelector('input[type="range"]');
+    const rail = slider.querySelector('[data-wave-rail]');
+    const output = slider.querySelector('output');
+    const count = Number(slider.dataset.segments || 28);
+
+    if (!input || !rail) return;
+
+    const segments = Array.from({ length: count }, (_, index) => {
+      const segment = document.createElement('i');
+      segment.style.setProperty('--wave-index', index);
+      segment.style.setProperty('--wave-y', `${Math.sin((index / (count - 1)) * Math.PI * 4) * 7}px`);
+      rail.append(segment);
+      return segment;
+    });
+
+    const updateWave = () => {
+      const minimum = Number(input.min || 0);
+      const maximum = Number(input.max || 100);
+      const value = Number(input.value);
+      const progress = (value - minimum) / (maximum - minimum);
+      const activeSegments = Math.round(progress * (segments.length - 1));
+      segments.forEach((segment, index) => segment.classList.toggle('is-active', index <= activeSegments));
+      slider.style.setProperty('--wave-progress', `${progress * 100}%`);
+      if (output) output.value = `${Math.round(progress * 100)}%`;
+    };
+
+    input.addEventListener('input', updateWave);
+    updateWave();
+  });
+
+  document.querySelectorAll('[data-copy-code]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const snippet = document.querySelector(button.dataset.copyCode);
+      if (!snippet) return;
+
+      try {
+        await navigator.clipboard.writeText(snippet.textContent.trim());
+        const original = button.textContent;
+        button.textContent = 'Copied';
+        window.setTimeout(() => { button.textContent = original; }, 1400);
+      } catch {
+        snippet.focus();
+      }
+    });
   });
 })();

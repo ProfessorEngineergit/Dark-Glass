@@ -1,5 +1,5 @@
 /*
- * Dark Glass 2.0 — ProfessorEngineer interface material
+ * Dark Glass 2.1 — ProfessorEngineer interface material
  * Framework-agnostic tokens and components.
  */
 
@@ -47,6 +47,13 @@
   --dg-radius-4: 28px;
   --dg-radius-pill: 999px;
 
+  --dg-shape-orbit: 50%;
+  --dg-shape-flow: 999px;
+  --dg-shape-bloom: 38% 62% 58% 42% / 48% 36% 64% 52%;
+  --dg-shape-bloom-active: 58% 42% 36% 64% / 44% 58% 42% 56%;
+  --dg-shape-dock: 28px 10px 28px 10px;
+  --dg-shape-beacon: 50% 50% 18% 50% / 50% 50% 18% 50%;
+
   --dg-blur-quiet: 16px;
   --dg-blur-base: 24px;
   --dg-blur-raised: 32px;
@@ -58,6 +65,7 @@
   --dg-reveal: 420ms;
   --dg-atmosphere: 700ms;
   --dg-ease: cubic-bezier(.2, .8, .2, 1);
+  --dg-spring: cubic-bezier(.34, 1.56, .64, 1);
 
   --dg-hairline: rgba(255, 255, 255, .1);
   --dg-hairline-strong: rgba(255, 255, 255, .18);
@@ -141,6 +149,183 @@ html[data-accent="mint"] {
   mask-composite: exclude;
   transition: opacity var(--dg-control) var(--dg-ease);
 }
+
+/* Field Geometry: semantic contours for observation, flow, creation and signal. */
+.dg-shape { display: block; }
+.dg-shape--orbit { border-radius: var(--dg-shape-orbit); }
+.dg-shape--flow { border-radius: var(--dg-shape-flow); }
+.dg-shape--bloom { border-radius: var(--dg-shape-bloom); }
+.dg-shape--dock { border-radius: var(--dg-shape-dock); }
+.dg-shape--beacon { border-radius: var(--dg-shape-beacon); }
+
+/* Liquid is a single functional plane above content, never a content texture. */
+.dg-liquid {
+  --dg-liquid-fill: .075;
+  --dg-liquid-blur: 28px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.11), rgba(255,255,255,.025) 38%, rgba(var(--dg-accent-2-rgb),.055)),
+    rgba(7, 10, 17, var(--dg-liquid-fill));
+  border: 1px solid rgba(255,255,255,.17);
+  box-shadow:
+    0 24px 64px rgba(0,0,0,.4),
+    0 2px 10px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.13),
+    inset 0 -1px 0 rgba(0,0,0,.12);
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+  -webkit-backdrop-filter: blur(var(--dg-liquid-blur)) saturate(1.55) brightness(1.04);
+  backdrop-filter: blur(var(--dg-liquid-blur)) saturate(1.55) brightness(1.04);
+}
+
+.dg-liquid::after {
+  background:
+    radial-gradient(110% 75% at 18% -10%, rgba(255,255,255,.22), transparent 48%),
+    radial-gradient(70% 120% at 110% 90%, rgba(var(--dg-accent-rgb),.09), transparent 58%);
+  content: "";
+  inset: 1px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.dg-liquid > * { position: relative; z-index: 1; }
+
+.dg-liquid-dock {
+  align-items: center;
+  border-radius: var(--dg-shape-flow);
+  display: inline-flex;
+  gap: 4px;
+  padding: 5px;
+}
+
+.dg-liquid-dock button {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: var(--dg-shape-flow);
+  color: var(--dg-ink-3);
+  cursor: pointer;
+  display: inline-flex;
+  font: 600 11px/1 var(--dg-font-display);
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 15px;
+  transition: background var(--dg-control) var(--dg-ease), box-shadow var(--dg-control) var(--dg-ease), color var(--dg-control) var(--dg-ease), transform var(--dg-control) var(--dg-spring);
+}
+
+.dg-liquid-dock button svg,
+.dg-field-button svg,
+.dg-action-cluster svg {
+  fill: none;
+  height: 17px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  width: 17px;
+}
+
+.dg-liquid-dock button:hover { color: var(--dg-ink); transform: translateY(-1px); }
+.dg-liquid-dock button.is-active {
+  background: rgba(255,255,255,.13);
+  box-shadow: 0 8px 22px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.13);
+  color: var(--dg-ink);
+}
+
+.dg-field-button {
+  align-items: center;
+  appearance: none;
+  background:
+    linear-gradient(130deg, rgba(255,255,255,.86), rgba(255,255,255,.28) 18%, transparent 34%),
+    var(--dg-aurora);
+  border: 1px solid rgba(255,255,255,.5);
+  box-shadow: 0 22px 54px rgba(var(--dg-accent-2-rgb),.28), inset 0 1px 0 rgba(255,255,255,.7);
+  color: #05070d;
+  cursor: pointer;
+  display: inline-flex;
+  font: 650 14px/1 var(--dg-font-display);
+  gap: 10px;
+  justify-content: center;
+  min-height: 58px;
+  min-width: 164px;
+  padding: 0 22px;
+  position: relative;
+  transition: border-radius var(--dg-shift) var(--dg-spring), box-shadow var(--dg-shift) var(--dg-ease), transform var(--dg-control) var(--dg-spring);
+}
+
+.dg-field-button--bloom { border-radius: var(--dg-shape-bloom); }
+.dg-field-button--orbit { border-radius: var(--dg-shape-orbit); min-width: 58px; padding: 0; width: 58px; }
+.dg-field-button:hover { border-radius: var(--dg-shape-bloom-active); box-shadow: 0 28px 70px rgba(var(--dg-accent-2-rgb),.38), inset 0 1px 0 rgba(255,255,255,.78); transform: translateY(-3px) scale(1.02); }
+.dg-field-button:active { transform: scale(.96); }
+
+.dg-action-cluster {
+  align-items: center;
+  background: linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.035)), rgba(7,10,17,.42);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: var(--dg-shape-dock);
+  box-shadow: 0 18px 44px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.1);
+  display: inline-flex;
+  gap: 1px;
+  overflow: hidden;
+  padding: 4px;
+  -webkit-backdrop-filter: blur(24px) saturate(1.45);
+  backdrop-filter: blur(24px) saturate(1.45);
+}
+
+.dg-action-cluster button {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: 10px;
+  color: var(--dg-ink-2);
+  cursor: pointer;
+  display: flex;
+  height: 44px;
+  justify-content: center;
+  transition: background var(--dg-control), color var(--dg-control), transform var(--dg-control) var(--dg-spring);
+  width: 44px;
+}
+
+.dg-action-cluster button:first-child { border-radius: 20px 9px 9px 20px; }
+.dg-action-cluster button:last-child { border-radius: 9px 9px 20px 9px; }
+.dg-action-cluster button:hover { background: rgba(255,255,255,.11); color: var(--dg-ink); transform: translateY(-1px); }
+
+.dg-liquid-toggle { align-items: center; cursor: pointer; display: inline-flex; gap: 10px; }
+.dg-liquid-toggle input { height: 1px; opacity: 0; position: absolute; width: 1px; }
+.dg-liquid-toggle > span {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: var(--dg-shape-flow);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,.3);
+  height: 34px;
+  position: relative;
+  transition: background var(--dg-control), border-color var(--dg-control), box-shadow var(--dg-control);
+  width: 58px;
+}
+
+.dg-liquid-toggle > span i {
+  background: rgba(244,247,251,.82);
+  border-radius: var(--dg-shape-orbit);
+  box-shadow: 0 5px 12px rgba(0,0,0,.36), inset 0 1px 0 #fff;
+  height: 24px;
+  left: 4px;
+  position: absolute;
+  top: 4px;
+  transition: background var(--dg-control), border-radius var(--dg-shift) var(--dg-spring), box-shadow var(--dg-control), transform var(--dg-shift) var(--dg-spring);
+  width: 24px;
+}
+
+.dg-liquid-toggle input:checked + span { background: rgba(var(--dg-accent-rgb),.18); border-color: rgba(var(--dg-accent-rgb),.5); box-shadow: 0 0 26px rgba(var(--dg-accent-rgb),.14), inset 0 2px 6px rgba(0,0,0,.3); }
+.dg-liquid-toggle input:checked + span i { background: var(--dg-accent); border-radius: var(--dg-shape-bloom); box-shadow: 0 0 18px rgba(var(--dg-accent-rgb),.58), inset 0 1px 0 rgba(255,255,255,.8); transform: translateX(24px) rotate(12deg); }
+.dg-liquid-toggle input:focus-visible + span { outline: 1px solid var(--dg-accent); outline-offset: 3px; box-shadow: var(--dg-focus-ring); }
+.dg-liquid-toggle em { color: var(--dg-ink-2); font: normal 500 10px/1 var(--dg-font-mono); letter-spacing: .08em; text-transform: uppercase; }
+
+.dg-liquid-dock button:focus-visible,
+.dg-field-button:focus-visible,
+.dg-action-cluster button:focus-visible { outline: 1px solid var(--dg-accent); outline-offset: 3px; box-shadow: var(--dg-focus-ring); }
 
 .dg-button,
 .dg-icon-button {

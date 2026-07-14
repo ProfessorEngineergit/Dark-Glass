@@ -90,4 +90,18 @@
       navigator.clipboard?.writeText(value).catch(() => showToast(value));
     });
   });
+
+  document.querySelectorAll('.dg-liquid-dock').forEach((dock) => {
+    const items = Array.from(dock.querySelectorAll('[data-dock-item]'));
+
+    items.forEach((item) => {
+      item.addEventListener('click', () => {
+        items.forEach((candidate) => {
+          const isSelected = candidate === item;
+          candidate.classList.toggle('is-active', isSelected);
+          candidate.setAttribute('aria-pressed', String(isSelected));
+        });
+      });
+    });
+  });
 })();

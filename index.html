@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111214">
-  <meta name="description" content="Dark Glass 2.0 brand guidelines — identity, material, color, typography and interface components.">
-  <meta property="og:title" content="Dark Glass 2.0 — Brand Guidelines">
-  <meta property="og:description" content="The complete visual and interaction standard for the Dark Glass interface material.">
+  <meta name="description" content="Dark Glass 2.1 brand guidelines — identity, Field Geometry, liquid material, typography and expressive interface components.">
+  <meta property="og:title" content="Dark Glass 2.1 — Brand Guidelines">
+  <meta property="og:description" content="The complete visual, spatial and interaction standard for the Dark Glass interface material.">
   <meta property="og:type" content="website">
-  <title>Dark Glass 2.0 — Brand Guidelines</title>
+  <title>Dark Glass 2.1 — Brand Guidelines</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@
   <header class="guide-nav" data-guide-nav>
     <a class="guide-nav__brand" href="#cover" aria-label="Dark Glass brand guidelines home">
       <img src="assets/icon-darkglass.svg" alt="" width="30" height="30">
-      <span><strong>Dark Glass</strong><small>Brand Guidelines / 2.0</small></span>
+      <span><strong>Dark Glass</strong><small>Brand Guidelines / 2.1</small></span>
     </a>
     <nav id="guide-menu" aria-label="Guideline chapters">
       <a href="#brand-idea">Brand</a>
@@ -30,6 +30,7 @@
       <a href="#colors">Color</a>
       <a href="#typography">Type</a>
       <a href="#material">Material</a>
+      <a href="#shapes">Shapes</a>
       <a href="#components">Components</a>
     </nav>
     <button class="guide-nav__toggle" type="button" aria-controls="guide-menu" aria-expanded="false" aria-label="Open chapters" data-menu-toggle>
@@ -56,7 +57,7 @@
           <img class="contents-visual__app contents-visual__app--one" src="assets/icon-caelum.svg" alt="">
           <img class="contents-visual__app contents-visual__app--two" src="assets/icon-looksmith.svg" alt="">
           <img class="contents-visual__app contents-visual__app--three" src="assets/icon-openimagelabeler.svg" alt="">
-          <span>OPTICAL INTERFACE MATTER / 2.0</span>
+          <span>OPTICAL INTERFACE MATTER / 2.1</span>
         </div>
         <ol class="contents-list">
           <li><a href="#brand-idea"><i>I.</i><span>Brand idea</span></a></li>
@@ -66,7 +67,8 @@
           <li><a href="#colors"><i>V.</i><span>Colors</span></a></li>
           <li><a href="#typography"><i>VI.</i><span>Typography</span></a></li>
           <li><a href="#material"><i>VII.</i><span>Material &amp; motion</span></a></li>
-          <li><a href="#components"><i>VIII.</i><span>Components &amp; applications</span></a></li>
+          <li><a href="#shapes"><i>VIII.</i><span>Field Geometry</span></a></li>
+          <li><a href="#components"><i>IX.</i><span>Components &amp; applications</span></a></li>
         </ol>
       </div>
     </section>
@@ -291,14 +293,67 @@
       </div>
     </section>
 
-    <section class="guide-page chapter-page" id="components" data-page="20">
+    <section class="guide-page chapter-page field-chapter" id="shapes" data-page="20">
       <span class="chapter-page__index">VIII / 20</span>
+      <h2>FIELD<br>GEOMETRY</h2>
+      <div class="chapter-field-shapes" aria-hidden="true">
+        <i class="field-shape field-shape--orbit"></i>
+        <i class="field-shape field-shape--bloom"></i>
+        <i class="field-shape field-shape--beacon"></i>
+      </div>
+    </section>
+
+    <section class="guide-page page-light" data-page="21">
+      <div class="page-topline"><span>Dark Glass</span><span>Field Geometry / Vocabulary</span><span>21</span></div>
+      <div class="page-intro-row"><h2 class="page-title page-title--small">Shape vocabulary</h2><p>Every contour carries a role. Geometry may flex with content and state, but its meaning stays stable.</p><p>Use expressive forms at moments of intent—not as ambient decoration.</p></div>
+      <div class="shape-vocabulary">
+        <article class="shape-specimen shape-specimen--orbit"><div><i></i></div><span>01 / OBSERVE</span><h3>Orbit</h3><p>Inspection, identity and spatial focus. Circular because the state has no preferred direction.</p></article>
+        <article class="shape-specimen shape-specimen--flow"><div><i></i></div><span>02 / CONTINUE</span><h3>Flow</h3><p>Navigation, ranges and ongoing processes. A continuous path with calm momentum.</p></article>
+        <article class="shape-specimen shape-specimen--bloom"><div><i></i></div><span>03 / CREATE</span><h3>Bloom</h3><p>Primary creation and transformation. It opens toward the action as intent increases.</p></article>
+        <article class="shape-specimen shape-specimen--dock"><div><i></i></div><span>04 / GROUP</span><h3>Dock</h3><p>Related tools and attached actions. The asymmetric corners expose the grouping direction.</p></article>
+        <article class="shape-specimen shape-specimen--beacon"><div><i></i></div><span>05 / SIGNAL</span><h3>Beacon</h3><p>Notifications, direction and time-sensitive attention. The tapered edge points to consequence.</p></article>
+      </div>
+    </section>
+
+    <section class="guide-page page-light" data-page="22">
+      <div class="page-topline"><span>Dark Glass</span><span>Field Geometry / Grammar</span><span>22</span></div>
+      <div class="page-intro-row"><h2 class="page-title page-title--small">Mass &amp; charge</h2><p><b>Mass</b> is visual gravity: size, blur, shadow and thickness express importance.</p><p><b>Charge</b> is live intent: color, edge light and asymmetry express state.</p></div>
+      <div class="field-grammar">
+        <article class="mass-system">
+          <span class="eyebrow">MASS / HIERARCHY</span>
+          <div class="mass-stack" aria-label="Three levels of visual mass">
+            <i><b>Quiet</b><small>16 blur</small></i>
+            <i><b>Base</b><small>24 blur</small></i>
+            <i><b>Focus</b><small>40 blur</small></i>
+          </div>
+          <p>Thicker material belongs to fewer, more consequential controls. Never raise every object at once.</p>
+        </article>
+        <article class="charge-system">
+          <span class="eyebrow">CHARGE / STATE</span>
+          <div class="charge-states">
+            <i class="charge-neutral"><b>0</b><small>Rest</small></i>
+            <i class="charge-intent"><b>1</b><small>Intent</small></i>
+            <i class="charge-valid"><b>2</b><small>Valid</small></i>
+            <i class="charge-alert"><b>3</b><small>Alert</small></i>
+          </div>
+          <p>Color never works alone: each charged state also changes edge, shadow or contour.</p>
+        </article>
+        <article class="morph-system">
+          <span class="eyebrow">MORPH / INTENT</span>
+          <div class="morph-sequence" aria-label="Shape progression from rest to commit"><i></i><span>→</span><i></i><span>→</span><i></i></div>
+          <div class="morph-labels"><small>REST</small><small>INTENT</small><small>COMMIT</small></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="guide-page chapter-page" id="components" data-page="23">
+      <span class="chapter-page__index">IX / 23</span>
       <h2>COMPONENTS<br>&amp; APPLICATIONS</h2>
       <div class="chapter-controls" aria-hidden="true"><i></i><i></i><i></i></div>
     </section>
 
-    <section class="guide-page page-light" data-page="21">
-      <div class="page-topline"><span>Dark Glass</span><span>Core components</span><span>21</span></div>
+    <section class="guide-page page-light" data-page="24">
+      <div class="page-topline"><span>Dark Glass</span><span>Core components</span><span>24</span></div>
       <h2 class="page-title page-title--small">Core components</h2>
       <div class="component-manual">
         <div class="component-column">
@@ -328,8 +383,32 @@
       </div>
     </section>
 
-    <section class="guide-page page-light" id="applications" data-page="22">
-      <div class="page-topline"><span>Dark Glass</span><span>Product applications</span><span>22</span></div>
+    <section class="guide-page page-light" data-page="25">
+      <div class="page-topline"><span>Dark Glass</span><span>Expressive components</span><span>25</span></div>
+      <div class="page-intro-row"><h2 class="page-title page-title--small">Liquid controls</h2><p>One floating control plane bends light above the content. Pointer proximity brightens only the nearest edge.</p><p>Shape morphing is reserved for intent, selection and commitment.</p></div>
+      <div class="expressive-stage">
+        <div class="expressive-atmosphere" aria-hidden="true"><i></i><i></i><i></i></div>
+        <nav class="dg-liquid dg-liquid-dock dg-glow" data-glow aria-label="Material preview modes">
+          <button class="is-active" type="button" aria-pressed="true" data-dock-item><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M3 12h3m12 0h3M12 3v3m0 12v3"/></svg><span>Field</span></button>
+          <button type="button" aria-pressed="false" data-dock-item><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17 9 6l4 8 3-5 4 8H4Z"/></svg><span>Depth</span></button>
+          <button type="button" aria-pressed="false" data-dock-item><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"/><circle cx="9" cy="7" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="11" cy="17" r="1.5"/></svg><span>Signal</span></button>
+        </nav>
+        <div class="expressive-stage__statement"><span>FIELD / 08:42</span><strong>Form follows<br>intent.</strong><p>A single optical layer. Responsive edges. Geometry with meaning.</p></div>
+        <div class="expressive-controls">
+          <button class="dg-field-button dg-field-button--bloom dg-glow" type="button" data-glow><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Create field</span></button>
+          <div class="dg-action-cluster" role="group" aria-label="View controls">
+            <button type="button" aria-label="Inspect field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg></button>
+            <button type="button" aria-label="Center field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M4 12h3m10 0h3M12 4v3m0 10v3"/></svg></button>
+            <button type="button" aria-label="Open field menu"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="18" cy="12" r="1"/></svg></button>
+          </div>
+          <label class="dg-liquid-toggle"><input type="checkbox" checked><span aria-hidden="true"><i></i></span><em>Live lens</em></label>
+        </div>
+      </div>
+      <div class="expressive-rules"><span><b>01</b>One liquid plane</span><span><b>02</b>Edge follows pointer</span><span><b>03</b>Shape confirms state</span><span><b>04</b>Content stays still</span></div>
+    </section>
+
+    <section class="guide-page page-light" id="applications" data-page="26">
+      <div class="page-topline"><span>Dark Glass</span><span>Product applications</span><span>26</span></div>
       <div class="page-intro-row"><h2 class="page-title page-title--small">Product applications</h2><p>Every product owns an object, accent and purpose. Dark Glass supplies the shared geometry, typography and interaction physics.</p><p>Family resemblance without uniformity.</p></div>
       <div class="application-grid">
         <article class="application-card application-card--caelum"><div><img src="assets/icon-caelum.svg" alt="Caelum"><span>ORBITAL AMBIENCE</span></div><h3>Caelum</h3><p>Quiet cosmic depth, luminous orbit geometry and low-density controls.</p></article>
@@ -338,8 +417,8 @@
       </div>
     </section>
 
-    <section class="guide-page closing-page" data-page="23">
-      <span class="chapter-page__index">23 / END</span>
+    <section class="guide-page closing-page" data-page="27">
+      <span class="chapter-page__index">27 / END</span>
       <h2>SYSTEM<br>READY.</h2>
       <p>One optical language.<br>Distinct products.</p>
       <div class="closing-actions">
@@ -348,7 +427,7 @@
         <a href="BRAND_SYSTEM.md">Written standard ↗</a>
         <a href="https://github.com/ProfessorEngineergit/Dark-Glass">Repository ↗</a>
       </div>
-      <div class="cover-lockup"><img src="assets/icon-darkglass.svg" alt="" width="64" height="64"><span><strong>Dark Glass</strong><small>INTERFACE MATERIAL / 2.0</small></span></div>
+      <div class="cover-lockup"><img src="assets/icon-darkglass.svg" alt="" width="64" height="64"><span><strong>Dark Glass</strong><small>INTERFACE MATERIAL / 2.1</small></span></div>
     </section>
   </main>
 

@@ -1,14 +1,14 @@
-# Dark Glass 2.0
+# Dark Glass 2.1
 
-Dark Glass is the ProfessorEngineer interface material, component vocabulary and public brand manual. The 23-screen editorial guideline documents the complete identity system and deploys directly to GitHub Pages without a build step.
+Dark Glass is the ProfessorEngineer interface material, Field Geometry language, component vocabulary and public brand manual. The 27-screen editorial guideline documents the complete identity system and deploys directly to GitHub Pages without a build step.
 
 ## What is included
 
-- `index.html` — public brand guideline: idea, voice, mark, icons, color, type, material, motion, components and applications.
-- `dark-glass.css` — reusable design tokens and component styles.
+- `index.html` — public brand guideline: idea, voice, mark, icons, color, type, material, motion, Field Geometry, components and applications.
+- `dark-glass.css` — reusable design tokens, semantic shapes, liquid controls and component styles.
 - `style.css` — editorial 16:9 art direction, responsive layout and print treatment for the guideline.
 - `script.js` — pointer light, chapter navigation and copyable color values.
-- `design-tokens.json` — machine-readable colors, type, spacing, radius, material and motion decisions.
+- `design-tokens.json` — machine-readable colors, type, spacing, shape, material and motion decisions.
 - `BRAND_SYSTEM.md` — naming, voice, identity and component rules.
 - `assets/` — Caelum, Looksmith, OpenImageLabeler and Dark Glass product icons. The owner mark is retained only for the separate brand-guideline context.
 
@@ -31,6 +31,15 @@ Copy `dark-glass.css`, link it after your reset, then use a material depth and c
   <span class="dg-badge dg-badge--success">Stable</span>
   <button class="dg-button dg-button--primary">Calibrate</button>
 </article>
+
+<nav class="dg-liquid dg-liquid-dock dg-glow" data-glow aria-label="View">
+  <button class="is-active" aria-pressed="true">Field</button>
+  <button aria-pressed="false">Depth</button>
+</nav>
+
+<button class="dg-field-button dg-field-button--bloom dg-glow" data-glow>
+  Create field
+</button>
 ```
 
 The website's `script.js` provides the optional pointer-reactive edge for `[data-glow]`. Product code can copy `attachPointerLight` or implement the same `--mx`, `--my` and `--glow-opacity` variables in its own framework.

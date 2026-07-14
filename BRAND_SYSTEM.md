@@ -1,4 +1,4 @@
-# ProfessorEngineer / Dark Glass 2.0
+# ProfessorEngineer / Dark Glass 2.1
 
 Dark Glass is the shared interface material for ProfessorEngineer products. It should make software feel precise, dimensional and human without looking like a copy of another operating system or AI product.
 
@@ -68,7 +68,43 @@ Product skins may add one ownable accent, but the Obsidian base, signal white an
 - Use no more than three material depths in one viewport.
 - The nearest edge brightens around the pointer. The whole card must not glow uniformly.
 - Prefer one-pixel hairlines with 10–18% white rather than heavy borders.
-- Radius communicates scale: 8px controls, 12px compact groups, 18px standard surfaces, 28px feature surfaces, pills only for tags and statuses.
+- Radius communicates scale: 8px controls, 12px compact groups, 18px standard surfaces and 28px feature surfaces. Expressive contours are reserved for the semantic roles defined below.
+
+## Field Geometry
+
+Field Geometry is the ownable Dark Glass shape language. It combines **mass** and **charge** so that form communicates interface meaning instead of acting as decoration.
+
+- **Mass** expresses hierarchy through size, blur, elevation, shadow and apparent material thickness. Quiet objects have low mass; a consequential focus control may have high mass.
+- **Charge** expresses live state through accent, edge light and contour tension. Neutral, intent, valid and alert states must each differ through more than color.
+- A shape may flex to fit content, but its semantic role must remain recognizable.
+- Prefer one expressive object per decision area. Standard geometry remains the default for dense data and repeated content.
+
+| Shape | Meaning | Primary uses |
+| --- | --- | --- |
+| Orbit | Observe | Inspection, identity, spatial focus |
+| Flow | Continue | Navigation, ranges, ongoing processes |
+| Bloom | Create | Primary creation and transformation |
+| Dock | Group | Attached tools and related actions |
+| Beacon | Signal | Direction, notification and time-sensitive attention |
+
+### Shape behavior
+
+- Rest states are compact and visually balanced.
+- Intent may shift the nearest edge, increase charge and open an asymmetric contour.
+- Commit resolves into the role-specific shape and confirms with motion, text or icon—not color alone.
+- Shape morphs use the spring curve `cubic-bezier(.34,1.56,.64,1)` and normally settle within 280ms.
+- Never randomize border radii. Avoid unrelated blobs, inflated pills and decorative morphing behind reading content.
+
+### Liquid control plane
+
+Liquid Glass is a functional control layer above content. It lenses the environment with blur, saturation, inner highlights and adaptive shadow while keeping labels immediately legible.
+
+- Keep one floating liquid plane in a local composition. Do not stack glass on glass.
+- Content surfaces remain stable; navigation and controls may float above them.
+- The edge nearest the pointer may brighten. The center stays quiet so text does not lose contrast.
+- Larger, more consequential controls may use deeper shadow and stronger refraction to appear thicker.
+- A liquid component needs a solid-color fallback when `backdrop-filter` is unavailable.
+- Use Flow for floating docks, Bloom for creation, Dock for attached actions and Orbit for inspection controls.
 
 ## Components
 
@@ -80,6 +116,7 @@ Product skins may add one ownable accent, but the Obsidian base, signal white an
 - Danger buttons are only for irreversible actions.
 - Minimum target size is 44 × 44px; small buttons are allowed in dense desktop toolbars only when the toolbar itself provides sufficient spacing.
 - Icon-only controls always need an accessible name and a tooltip in product interfaces.
+- Bloom buttons are reserved for creation or transformation. Do not use the expressive primary shape for ordinary confirmation.
 
 ### Menus and navigation
 
@@ -87,6 +124,7 @@ Product skins may add one ownable accent, but the Obsidian base, signal white an
 - Group commands by user intent, not implementation module.
 - Keyboard shortcuts are displayed in JetBrains Mono.
 - Keep navigation labels to one or two words.
+- Floating navigation uses one Flow-shaped liquid dock. Selected items gain charge without creating a second glass layer.
 
 ### Inputs
 

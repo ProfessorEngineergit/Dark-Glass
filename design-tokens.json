@@ -152,6 +152,19 @@
       "brightness": { "$type": "number", "$value": 1.04 },
       "refraction": { "$type": "number", "$value": 0.62 },
       "edgeLight": { "$type": "number", "$value": 0.2 }
+    },
+    "caption": {
+      "$description": "Highly translucent passive overlay for short titles, prompts and context banners above visual content. Not a card depth.",
+      "fill": { "$type": "number", "$value": 0.28 },
+      "blur": { "$type": "dimension", "$value": "36px" },
+      "saturation": { "$type": "number", "$value": 1.42 },
+      "brightness": { "$type": "number", "$value": 1.06 },
+      "border": { "$type": "string", "$value": "rgba(255,255,255,0.155)" },
+      "radius": { "$type": "dimension", "$value": "22px" },
+      "titlePadding": { "$type": "string", "$value": "20px 24px 22px" },
+      "banner": { "$type": "string", "$value": "24% fill | 32px blur | 16px radius" },
+      "label": { "$type": "string", "$value": "20% fill | 26px blur | 12px radius" },
+      "maximumLines": { "$type": "number", "$value": 2 }
     }
   },
   "interaction": {

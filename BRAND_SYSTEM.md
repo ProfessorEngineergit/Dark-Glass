@@ -118,6 +118,24 @@ Glass is a functional control layer, not a translucent wallpaper. It must reveal
 
 CSS backdrop filtering approximates optical refraction. If a product has access to a native material or GPU shader, preserve the same hierarchy and interaction law rather than adding stronger distortion.
 
+### Liquid Caption
+
+Liquid Caption is a highly translucent, passive overlay for a title, short prompt or compact status banner above visual content. It is not another card depth. Its identity comes from stronger blur, lower visual density and a fine upper specular edge.
+
+| Variant | Fill | Blur | Radius | Content |
+| --- | ---: | ---: | ---: | --- |
+| Title | 28% | 36px | 22px | one short thought, maximum two lines |
+| Banner | 24% | 32px | 16px | one status or contextual message |
+| Label | 20% | 26px | 12px | one compact metadata label |
+
+- Float the caption 12–24px across the edge of the visual it describes.
+- Let blur provide separation before increasing tint, shadow or glow.
+- Keep the referenced scene visible but unreadable through the caption text.
+- Use Space Grotesk for titles, Inter for banner copy and JetBrains Mono for labels.
+- Local pointer edge light is optional. The caption never lifts, follows the pointer or becomes a general-purpose card.
+- Do not place paragraphs, forms, menus or multiple actions inside it.
+- Use at most one Title caption and one supporting Banner or Label in a focal composition.
+
 ## Components
 
 ### Buttons

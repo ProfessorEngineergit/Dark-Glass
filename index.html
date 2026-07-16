@@ -393,6 +393,32 @@
         <article class="depth-card depth-card--focus dg-glow" data-glow><span>04 / FOCUS</span><strong>Active decisions</strong><small>11.5% fill · 40px blur</small></article>
       </div>
       <div class="depth-rules"><span><b>RADIUS</b>8 · 12 · 18 · 28 · pill</span><span><b>BORDER</b>1px / 10–18% white</span><span><b>SHADOW</b>Black only / 24–48%</span></div>
+      <section class="liquid-caption-manual" aria-labelledby="liquid-caption-title">
+        <div class="liquid-caption-manual__intro">
+          <span class="eyebrow">PASSIVE OVERLAY MATERIAL / LIQUID CAPTION</span>
+          <h3 id="liquid-caption-title">A title plane that almost disappears.</h3>
+          <p>Use Liquid Caption when a heading, short prompt or status banner must float above visual content without becoming another card. Strong blur carries separation; tint and shadow remain quiet.</p>
+        </div>
+        <div class="caption-stage">
+          <div class="caption-stage__scene" aria-hidden="true">
+            <div class="caption-scene__rail"><i></i><i></i><i></i></div>
+            <div class="caption-scene__canvas"><i></i><i></i><i></i><i></i></div>
+            <div class="caption-scene__panel"><span></span><span></span><span></span></div>
+          </div>
+          <article class="dg-caption-glass dg-caption-glass--title dg-glow caption-example caption-example--title" data-glow>
+            <small>CONCEPT SET / 02</small>
+            <strong>Shape a quieter<br>interface.</strong>
+          </article>
+          <div class="dg-caption-glass dg-caption-glass--banner dg-glow caption-example caption-example--banner" data-glow><i aria-hidden="true"></i><span>Calibration complete · 128 frames</span></div>
+          <div class="dg-caption-glass dg-caption-glass--label caption-example caption-example--label"><span>LIVE PREVIEW</span></div>
+        </div>
+        <div class="caption-rules">
+          <article><span>01 / CONTENT</span><strong>One thought</strong><p>One short line or a two-line title. Never paragraphs, forms or dense controls.</p></article>
+          <article><span>02 / OPTICS</span><strong>Blur before tint</strong><p>20–28% theme tint with 26–36px blur. The scene remains present, never readable through the text.</p></article>
+          <article><span>03 / POSITION</span><strong>Float above</strong><p>Overlap the referenced visual by 12–24px so the relationship is unmistakable.</p></article>
+          <article><span>04 / BEHAVIOR</span><strong>Passive by default</strong><p>Local edge light is optional. The plane never lifts, follows the pointer or becomes a card.</p></article>
+        </div>
+      </section>
     </section>
 
     <section class="guide-page page-light" data-page="19">
@@ -597,6 +623,7 @@ icons:
   unicodeArrows: forbidden
 material:
   glassLevels: [quiet, base, raised, focus]
+  passiveOverlay: liquid-caption
   maxDepthsPerViewport: 3
 rules:
   - content-never-moves-on-hover
@@ -607,6 +634,12 @@ rules:
   &lt;span class="wave-slider__rail" data-wave-rail aria-hidden="true"&gt;&lt;/span&gt;
   &lt;input type="range" min="0" max="100" value="64"&gt;
 &lt;/label&gt;</code></pre></article>
+        <article class="snippet-card snippet-card--wide"><header><span>05 / LIQUID CAPTION</span><button type="button" data-copy-code="#snippet-caption">Copy code</button></header><pre id="snippet-caption" tabindex="0"><code>&lt;article class="dg-caption-glass dg-caption-glass--title dg-glow" data-glow&gt;
+  &lt;small&gt;CONCEPT SET / 02&lt;/small&gt;
+  &lt;strong&gt;Shape a quieter interface.&lt;/strong&gt;
+&lt;/article&gt;
+
+Rules: maximum two lines · passive overlay · 12–24px visual overlap · never a card</code></pre></article>
       </div>
       <div class="handoff-links"><a href="AGENT_BRAND_BRIEF.md">Agent brand brief <svg class="dg-arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#glyph-external"/></svg></a><a href="design-tokens.json" download>Machine tokens <svg class="dg-arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#glyph-download"/></svg></a><a href="dark-glass.css" download>Component CSS <svg class="dg-arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#glyph-download"/></svg></a></div>
     </section>

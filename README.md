@@ -10,6 +10,7 @@ Dark Glass is the ProfessorEngineer interface material and public brand manual: 
 - **Core geometry** carries 80–90% of the interface: buttons, inputs, menus, cards and data.
 - **Expressive geometry** carries 10–20%: selected icon fields and feature moments using Square, Pill, Arch, Diamond, Cookie 4 and Soft Burst SVG shapes.
 - **Liquid Glass** is an interactive control plane with real backdrop blur, theme tint, localized pointer light and restrained lensing.
+- **Liquid Caption** is a highly translucent title and mini-banner plane for contextual overlays above visual content.
 - **Stable interaction** keeps every control in place: hover changes edge light and depth, never position.
 - **Arrow Font** adds 32 typographically constructed direction, flow, history and system glyphs.
 

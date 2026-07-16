@@ -43,8 +43,11 @@ Hover reveals a surface; it never relocates it. Pointer light must disappear com
 | Raised | 9.5% | 32px | menus, inspectors |
 | Focus | 11.5% | 40px | active decisions |
 | Liquid | 9.5% | 28px | one floating control plane |
+| Liquid Caption | 20–28% | 26–36px | passive title or compact banner over visual content |
 
 Use no more than three levels in one viewport. Dimensionality should progress through: fill and border → top edge → all-side inset light with dark lower seam → localized pointer lens. The silhouette stays still at every level.
+
+Liquid Caption is separate from the card-depth ladder: use `.dg-caption-glass` only for a maximum two-line title, one short banner or a metadata label floating 12–24px across the edge of visual content. Use blur before tint; never put paragraphs, forms or menus inside it.
 
 ## Geometry and components
 
@@ -92,4 +95,5 @@ If pointer-reactive light is used, copy the glow controller from `script.js`. Do
 - Body copy remains Inter; status and measurements remain JetBrains Mono.
 - Nasalization and NotesESA are not shipped as webfont files without licenses.
 - Navigation uses `.dg-arrow-icon`; no Unicode arrows or ornamental space glyphs.
+- Liquid Caption stays passive, contains no more than two lines and never replaces a card.
 - Keyboard focus, semantic labels, reduced motion and a non-blur fallback remain intact.

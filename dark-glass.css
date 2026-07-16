@@ -257,6 +257,53 @@ html[data-theme="lux"] {
 
 .dg-liquid > * { position: relative; z-index: 1; }
 
+/* Liquid Caption: a highly translucent, passive title plane over visual content. */
+.dg-caption-glass {
+  --dg-caption-fill: .28;
+  --dg-caption-blur: 36px;
+  --dg-caption-radius: 22px;
+  --dg-caption-saturation: 1.42;
+  --dg-caption-brightness: 1.06;
+  --lens-radius: 130px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.018) 46%, rgba(0,0,0,.035)),
+    rgba(var(--dg-glass-tint), var(--dg-caption-fill));
+  border: 1px solid rgba(255,255,255,.155);
+  border-radius: var(--dg-caption-radius);
+  box-shadow:
+    0 22px 58px rgba(0,0,0,.28),
+    0 3px 12px rgba(0,0,0,.2),
+    inset 0 1px 0 rgba(255,255,255,.15),
+    inset 1px 0 0 rgba(255,255,255,.035),
+    inset -1px 0 0 rgba(255,255,255,.025),
+    inset 0 -1px 0 rgba(0,0,0,.2);
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+  -webkit-backdrop-filter: blur(var(--dg-caption-blur)) saturate(var(--dg-caption-saturation)) brightness(var(--dg-caption-brightness));
+  backdrop-filter: blur(var(--dg-caption-blur)) saturate(var(--dg-caption-saturation)) brightness(var(--dg-caption-brightness));
+}
+
+.dg-caption-glass::after {
+  background:
+    radial-gradient(125% 86% at 50% -32%, rgba(255,255,255,.14), transparent 64%),
+    linear-gradient(110deg, rgba(255,255,255,.025), transparent 34% 72%, rgba(var(--dg-accent-rgb),.025));
+  content: "";
+  inset: 1px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.dg-caption-glass > * { position: relative; z-index: 1; }
+.dg-caption-glass--title { padding: 20px 24px 22px; }
+.dg-caption-glass--banner { --dg-caption-fill: .24; --dg-caption-blur: 32px; --dg-caption-radius: 16px; padding: 12px 16px; }
+.dg-caption-glass--label { --dg-caption-fill: .2; --dg-caption-blur: 26px; --dg-caption-radius: 12px; padding: 9px 12px; }
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .dg-caption-glass { background: rgba(var(--dg-surface-rgb),.94); }
+}
+
 .dg-liquid-dock {
   align-items: center;
   border-radius: var(--dg-shape-pill);

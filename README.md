@@ -71,3 +71,7 @@ The repository deploys directly from its root without a build step. In GitHub, c
 ## License
 
 See `LICENSE`.
+
+## Development and AI assistance
+
+The default-branch history includes contributions explicitly attributed to GitHub Copilot ([example](https://github.com/ProfessorEngineergit/Dark-Glass/commit/5391f9845f8fd376a978ac283a9529eafdbb0083)). This documents AI involvement in those contributions; it does not establish the origin of every line or independent validation. Existing author, co-author and session records are retained.

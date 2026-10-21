@@ -4,11 +4,11 @@ Dark Glass is the ProfessorEngineer interface material and public brand manual: 
 
 ## The system
 
-- **Aurora** is the primary identity: near-black with a cyan–violet–magenta gradient.
+- **Aurora** is the primary identity: near-black with a cyan-violet-magenta gradient.
 - **Obsidian** is pure black with restrained white and silver signals.
 - **Lux** is warm smoked glass with parchment, amber and clay light.
-- **Core geometry** carries 80–90% of the interface: buttons, inputs, menus, cards and data.
-- **Expressive geometry** carries 10–20%: selected icon fields and feature moments using Square, Pill, Arch, Diamond, Cookie 4 and Soft Burst SVG shapes.
+- **Core geometry** carries 80-90% of the interface: buttons, inputs, menus, cards and data.
+- **Expressive geometry** carries 10-20%: selected icon fields and feature moments using Square, Pill, Arch, Diamond, Cookie 4 and Soft Burst SVG shapes.
 - **Liquid Glass** is an interactive control plane with real backdrop blur, theme tint, localized pointer light and restrained lensing.
 - **Liquid Caption** is a highly translucent title and mini-banner plane for contextual overlays above visual content.
 - **Stable interaction** keeps every control in place: hover changes edge light and depth, never position.
@@ -18,14 +18,14 @@ Text buttons always use stable core geometry. The system contains no arbitrary p
 
 ## What is included
 
-- `index.html` — interactive brand guideline, theme switcher, shape atlas, component library and material lab.
-- `dark-glass.css` — reusable themes, material depths, Liquid Glass behavior and components.
-- `style.css` — responsive art direction and print treatment for the guideline.
-- `script.js` — theme state, pointer-reactive light, material controls and chapter navigation.
-- `design-tokens.json` — machine-readable theme, type, spacing, geometry, material, interaction and motion values.
-- `BRAND_SYSTEM.md` — identity, voice, geometry, Liquid Glass, component and motion rules.
-- `AGENT_BRAND_BRIEF.md` — concise implementation contract for models and collaborators.
-- `assets/` — Dark Glass and product artwork. The personal ProfessorEngineer mark is intentionally excluded from the public Dark Glass site.
+- `index.html` - interactive brand guideline, theme switcher, shape atlas, component library and material lab.
+- `dark-glass.css` - reusable themes, material depths, Liquid Glass behavior and components.
+- `style.css` - responsive art direction and print treatment for the guideline.
+- `script.js` - theme state, pointer-reactive light, material controls and chapter navigation.
+- `design-tokens.json` - machine-readable theme, type, spacing, geometry, material, interaction and motion values.
+- `BRAND_SYSTEM.md` - identity, voice, geometry, Liquid Glass, component and motion rules.
+- `AGENT_BRAND_BRIEF.md` - concise implementation contract for models and collaborators.
+- `assets/` - Dark Glass and product artwork. The personal ProfessorEngineer mark is intentionally excluded from the public Dark Glass site.
 
 ## Preview locally
 
@@ -72,6 +72,6 @@ The repository deploys directly from its root without a build step. In GitHub, c
 
 See `LICENSE`.
 
-## Development and AI assistance
+## AI assistance
 
-The default-branch history includes contributions explicitly attributed to GitHub Copilot ([example](https://github.com/ProfessorEngineergit/Dark-Glass/commit/5391f9845f8fd376a978ac283a9529eafdbb0083)). This documents AI involvement in those contributions; it does not establish the origin of every line or independent validation. Existing author, co-author and session records are retained.
+Some code contributions are explicitly attributed to AI tools: [GitHub Copilot](https://github.com/ProfessorEngineergit/Dark-Glass/commit/b641925af46a8c9a55e2cbe6d07d6cecfaeb2e8c). This applies to those contributions, not every file.
